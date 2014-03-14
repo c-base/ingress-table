@@ -1,0 +1,33 @@
+{
+  "name": "ingress-table",
+  "version": "0.0.0",
+  "description": "Ingress Table with NoFlo",
+  "main": "index.js",
+  "dependencies": {
+    "noflo": "~0.4.4",
+    "noflo-core": "~0.1.3",
+    "noflo-filesystem": "~1.0.4",
+    "noflo-groups": "~0.1.3",
+    "noflo-nodejs": "~0.0.3",
+    "noflo-packets": "~0.1.3",
+    "noflo-webserver": "~0.0.3",
+    "noflo-websocket": "~0.1.1",
+    "noflo-strings": "^0.1.5",
+    "noflo-objects": "^0.1.8"
+  },
+  "devDependencies": {
+    "coffee-script": "~1.7.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "noflo": {
+    "icon": "beer",
+    "components": {
+      "GetPortalState": "components/GetPortalState.coffee",
+      "GetAreaState": "components/GetAreaState.coffee"
+    }
+  },
+  "author": "",
+  "license": "ISC"
+}
