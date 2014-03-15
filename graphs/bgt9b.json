@@ -61,13 +61,24 @@
             "metadata": {
                 "description": ""
             }
+        },
+        {
+            "name": "Street Lights",
+            "nodes": [
+                "core/RunInterval_5f3rf",
+                "ingress-table/Pulsate_qo650",
+                "strings/ParseJson_l8zh"
+            ],
+            "metadata": {
+                "description": ""
+            }
         }
     ],
     "processes": {
         "core/Repeat_x0tsf": {
             "component": "core/Repeat",
             "metadata": {
-                "label": "core/Repeat",
+                "label": "Start",
                 "x": 0,
                 "y": 504
             }
@@ -76,7 +87,7 @@
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 144,
+                "x": 180,
                 "y": 504
             }
         },
@@ -84,7 +95,7 @@
             "component": "ingress-table/StateToColor",
             "metadata": {
                 "label": "ToRGB",
-                "x": 576,
+                "x": 612,
                 "y": 540
             }
         },
@@ -108,16 +119,16 @@
             "component": "websocket/SendMessage",
             "metadata": {
                 "label": "SendToTable",
-                "x": 1512,
-                "y": 324
+                "x": 1296,
+                "y": 252
             }
         },
         "strings/Jsonify_urxeq": {
             "component": "strings/Jsonify",
             "metadata": {
                 "label": "Stringify",
-                "x": 1368,
-                "y": 360
+                "x": 1152,
+                "y": 324
             }
         },
         "core/Drop_z1l5r": {
@@ -132,7 +143,7 @@
             "component": "ingress-table/CalculateState",
             "metadata": {
                 "label": "WatchState",
-                "x": 288,
+                "x": 324,
                 "y": 576
             }
         },
@@ -140,15 +151,15 @@
             "component": "ingress-table/StabilizePortal",
             "metadata": {
                 "label": "Stabilize",
-                "x": 432,
+                "x": 468,
                 "y": 576
             }
         },
         "strings/ParseJson_l8zh": {
             "component": "strings/ParseJson",
             "metadata": {
-                "label": "strings/ParseJson",
-                "x": 288,
+                "label": "StreetColor",
+                "x": 324,
                 "y": 864
             }
         },
@@ -157,30 +168,30 @@
             "metadata": {
                 "label": "PrepareMessage",
                 "x": 1008,
-                "y": 540
+                "y": 648
             }
         },
         "ingress-table/DetermineWinner_z8u0g": {
             "component": "ingress-table/DetermineWinner",
             "metadata": {
-                "label": "ingress-table/DetermineWinner",
-                "x": 756,
-                "y": 612
+                "label": "BlueOrGreen",
+                "x": 792,
+                "y": 648
             }
         },
         "ingress-table/Pulsate_qo650": {
             "component": "ingress-table/Pulsate",
             "metadata": {
-                "label": "ingress-table/Pulsate",
-                "x": 504,
+                "label": "Pulsate",
+                "x": 612,
                 "y": 864
             }
         },
         "core/RunInterval_5f3rf": {
             "component": "core/RunInterval",
             "metadata": {
-                "label": "core/RunInterval",
-                "x": 288,
+                "label": "PulseInterval",
+                "x": 324,
                 "y": 756
             }
         }
@@ -296,7 +307,7 @@
                 "port": "string"
             },
             "metadata": {
-                "route": null
+                "route": 7
             }
         },
         {
@@ -321,7 +332,9 @@
                 "process": "strings/Jsonify_urxeq",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -332,7 +345,9 @@
                 "process": "ingress-table/DetermineWinner_z8u0g",
                 "port": "states"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -343,7 +358,9 @@
                 "process": "PrepareMessage",
                 "port": "bottomstripes"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -367,7 +384,9 @@
                 "process": "PrepareMessage",
                 "port": "innerstripes"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 3
+            }
         },
         {
             "src": {
@@ -378,7 +397,9 @@
                 "process": "ingress-table/Pulsate_qo650",
                 "port": "step"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 3
+            }
         },
         {
             "src": {
