@@ -39,9 +39,10 @@
             }
         },
         {
-            "name": "Communication",
+            "name": "Communications",
             "nodes": [
                 "core/Drop_z1l5r",
+                "strings/Jsonify_urxeq",
                 "webserver/Server_uovn0",
                 "websocket/ListenConnections_9f5av",
                 "websocket/SendMessage_9oy1f"
@@ -51,12 +52,11 @@
             }
         },
         {
-            "name": "Polling",
+            "name": "Portal Status",
             "nodes": [
-                "core/Repeat_x0tsf",
-                "ingress-table/FetchDat_7edo2",
-                "ingress-table/StateToColor_ifaav",
-                "strings/Jsonify_urxeq"
+                "ingress-table/CalculateState_xkyq7",
+                "ingress-table/StabilizePortal_sg4x0",
+                "ingress-table/StateToColor_ifaav"
             ],
             "metadata": {
                 "description": ""
@@ -85,7 +85,7 @@
             "metadata": {
                 "label": "ToRGB",
                 "x": 576,
-                "y": 504
+                "y": 540
             }
         },
         "webserver/Server_uovn0": {
@@ -108,7 +108,7 @@
             "component": "websocket/SendMessage",
             "metadata": {
                 "label": "SendToTable",
-                "x": 828,
+                "x": 1512,
                 "y": 324
             }
         },
@@ -116,8 +116,8 @@
             "component": "strings/Jsonify",
             "metadata": {
                 "label": "Stringify",
-                "x": 684,
-                "y": 504
+                "x": 1368,
+                "y": 360
             }
         },
         "core/Drop_z1l5r": {
@@ -125,7 +125,7 @@
             "metadata": {
                 "label": "IgnoreHTTP",
                 "x": 432,
-                "y": 216
+                "y": 180
             }
         },
         "ingress-table/CalculateState_xkyq7": {
@@ -133,7 +133,7 @@
             "metadata": {
                 "label": "WatchState",
                 "x": 288,
-                "y": 540
+                "y": 576
             }
         },
         "ingress-table/StabilizePortal_sg4x0": {
@@ -141,6 +141,30 @@
             "metadata": {
                 "label": "Stabilize",
                 "x": 432,
+                "y": 576
+            }
+        },
+        "strings/ParseJson_l8zh": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "strings/ParseJson",
+                "x": 684,
+                "y": 432
+            }
+        },
+        "strings/ParseJson_vhkw4": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "strings/ParseJson",
+                "x": 900,
+                "y": 396
+            }
+        },
+        "PrepareMessage": {
+            "component": "ingress-table/PrepareMessage",
+            "metadata": {
+                "label": "PrepareMessage",
+                "x": 1008,
                 "y": 540
             }
         }
@@ -209,32 +233,6 @@
         },
         {
             "src": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "strings/Jsonify_urxeq",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "strings/Jsonify_urxeq",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "websocket/SendMessage_9oy1f",
-                "port": "string"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "state"
             },
@@ -271,6 +269,63 @@
             "metadata": {
                 "route": 4
             }
+        },
+        {
+            "src": {
+                "process": "strings/Jsonify_urxeq",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "websocket/SendMessage_9oy1f",
+                "port": "string"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_vhkw4",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "PrepareMessage",
+                "port": "bottomstripes"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_l8zh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "PrepareMessage",
+                "port": "innerstripes"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "PrepareMessage",
+                "port": "portals"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "PrepareMessage",
+                "port": "message"
+            },
+            "tgt": {
+                "process": "strings/Jsonify_urxeq",
+                "port": "in"
+            },
+            "metadata": {}
         },
         {
             "data": "start",
@@ -301,7 +356,28 @@
             }
         },
         {
-            "data": "5000",
+            "data": "[[180,120,120]]",
+            "tgt": {
+                "process": "strings/ParseJson_vhkw4",
+                "port": "in"
+            }
+        },
+        {
+            "data": "[[160,255,255],[0,160,160],[160,160,160],[160,160,160]]",
+            "tgt": {
+                "process": "strings/ParseJson_l8zh",
+                "port": "in"
+            }
+        },
+        {
+            "data": "1000",
+            "tgt": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "blink"
+            }
+        },
+        {
+            "data": "8000",
             "tgt": {
                 "process": "ingress-table/StabilizePortal_sg4x0",
                 "port": "wait"
