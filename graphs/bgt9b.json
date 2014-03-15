@@ -148,16 +148,8 @@
             "component": "strings/ParseJson",
             "metadata": {
                 "label": "strings/ParseJson",
-                "x": 684,
-                "y": 432
-            }
-        },
-        "strings/ParseJson_vhkw4": {
-            "component": "strings/ParseJson",
-            "metadata": {
-                "label": "strings/ParseJson",
-                "x": 900,
-                "y": 396
+                "x": 288,
+                "y": 864
             }
         },
         "PrepareMessage": {
@@ -166,6 +158,30 @@
                 "label": "PrepareMessage",
                 "x": 1008,
                 "y": 540
+            }
+        },
+        "ingress-table/DetermineWinner_z8u0g": {
+            "component": "ingress-table/DetermineWinner",
+            "metadata": {
+                "label": "ingress-table/DetermineWinner",
+                "x": 756,
+                "y": 612
+            }
+        },
+        "ingress-table/Pulsate_qo650": {
+            "component": "ingress-table/Pulsate",
+            "metadata": {
+                "label": "ingress-table/Pulsate",
+                "x": 504,
+                "y": 864
+            }
+        },
+        "core/RunInterval_5f3rf": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "core/RunInterval",
+                "x": 288,
+                "y": 756
             }
         }
     },
@@ -285,8 +301,43 @@
         },
         {
             "src": {
-                "process": "strings/ParseJson_vhkw4",
-                "port": "out"
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "PrepareMessage",
+                "port": "portals"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "PrepareMessage",
+                "port": "message"
+            },
+            "tgt": {
+                "process": "strings/Jsonify_urxeq",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "states"
+            },
+            "tgt": {
+                "process": "ingress-table/DetermineWinner_z8u0g",
+                "port": "states"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/DetermineWinner_z8u0g",
+                "port": "colors"
             },
             "tgt": {
                 "process": "PrepareMessage",
@@ -300,6 +351,19 @@
                 "port": "out"
             },
             "tgt": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
+            "tgt": {
                 "process": "PrepareMessage",
                 "port": "innerstripes"
             },
@@ -307,25 +371,27 @@
         },
         {
             "src": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "colors"
+                "process": "core/RunInterval_5f3rf",
+                "port": "out"
             },
             "tgt": {
-                "process": "PrepareMessage",
-                "port": "portals"
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "step"
             },
             "metadata": {}
         },
         {
             "src": {
-                "process": "PrepareMessage",
-                "port": "message"
+                "process": "core/Repeat_x0tsf",
+                "port": "out"
             },
             "tgt": {
-                "process": "strings/Jsonify_urxeq",
-                "port": "in"
+                "process": "core/RunInterval_5f3rf",
+                "port": "start"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 0
+            }
         },
         {
             "data": "start",
@@ -356,20 +422,6 @@
             }
         },
         {
-            "data": "[[180,120,120]]",
-            "tgt": {
-                "process": "strings/ParseJson_vhkw4",
-                "port": "in"
-            }
-        },
-        {
-            "data": "[[160,255,255],[0,160,160],[160,160,160],[160,160,160]]",
-            "tgt": {
-                "process": "strings/ParseJson_l8zh",
-                "port": "in"
-            }
-        },
-        {
             "data": "1000",
             "tgt": {
                 "process": "ingress-table/StateToColor_ifaav",
@@ -381,6 +433,20 @@
             "tgt": {
                 "process": "ingress-table/StabilizePortal_sg4x0",
                 "port": "wait"
+            }
+        },
+        {
+            "data": "[255,255,255]",
+            "tgt": {
+                "process": "strings/ParseJson_l8zh",
+                "port": "in"
+            }
+        },
+        {
+            "data": 100,
+            "tgt": {
+                "process": "core/RunInterval_5f3rf",
+                "port": "interval"
             }
         }
     ]
