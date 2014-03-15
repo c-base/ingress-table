@@ -25,7 +25,8 @@
     "icon": "beer",
     "components": {
       "GetPortalState": "components/GetPortalState.coffee",
-      "GetAreaState": "components/GetAreaState.coffee"
+      "GetAreaState": "components/GetAreaState.coffee",
+      "StateToColor": "components/StateToColor.coffee"
     }
   },
   "author": "",
