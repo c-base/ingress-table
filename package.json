@@ -28,6 +28,7 @@
       "DetermineWinner": "components/DetermineWinner.coffee",
       "GetPortalState": "components/GetPortalState.coffee",
       "GetAreaState": "components/GetAreaState.coffee",
+      "Pulsate": "components/Pulsate.coffee",
       "StabilizePortal": "components/StabilizePortal.coffee",
       "StateToColor": "components/StateToColor.coffee"
     }
