@@ -16,20 +16,20 @@
                 "y": 612
             }
         },
-        "innerstripes": {
-            "process": "objects/SetPropertyValue_hiaws",
-            "port": "value",
-            "metadata": {
-                "x": 792,
-                "y": 504
-            }
-        },
         "bottomstripes": {
             "process": "objects/SetPropertyValue_9djcz",
             "port": "value",
             "metadata": {
-                "x": 972,
-                "y": 504
+                "x": 360,
+                "y": 180
+            }
+        },
+        "innerstripes": {
+            "process": "core/Split_zu4d",
+            "port": "in",
+            "metadata": {
+                "x": 360,
+                "y": 324
             }
         }
     },
@@ -39,7 +39,7 @@
             "port": "out",
             "metadata": {
                 "x": 1296,
-                "y": 612
+                "y": 504
             }
         }
     },
@@ -49,7 +49,7 @@
             "component": "objects/SetPropertyValue",
             "metadata": {
                 "label": "SetPortals",
-                "x": 792,
+                "x": 828,
                 "y": 612
             }
         },
@@ -58,7 +58,7 @@
             "metadata": {
                 "label": "SetInner",
                 "x": 972,
-                "y": 612
+                "y": 576
             }
         },
         "objects/SetPropertyValue_9djcz": {
@@ -66,14 +66,14 @@
             "metadata": {
                 "label": "SetBottom",
                 "x": 1152,
-                "y": 612
+                "y": 504
             }
         },
         "objects/CreateObject_lp7r5": {
             "component": "objects/CreateObject",
             "metadata": {
                 "label": "CreateMessage",
-                "x": 612,
+                "x": 720,
                 "y": 504
             }
         },
@@ -83,6 +83,22 @@
                 "label": "core/Split",
                 "x": 504,
                 "y": 612
+            }
+        },
+        "core/Merge_uz4ze": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "core/Merge",
+                "x": 612,
+                "y": 504
+            }
+        },
+        "core/Split_zu4d": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "core/Split",
+                "x": 504,
+                "y": 324
             }
         }
     },
@@ -135,7 +151,18 @@
         },
         {
             "src": {
-                "process": "core/Split_amkva",
+                "process": "core/Split_zu4d",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/SetPropertyValue_hiaws",
+                "port": "value"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Merge_uz4ze",
                 "port": "out"
             },
             "tgt": {
@@ -143,6 +170,32 @@
                 "port": "start"
             },
             "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Split_amkva",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_uz4ze",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_zu4d",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_uz4ze",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
         },
         {
             "data": "portals",
