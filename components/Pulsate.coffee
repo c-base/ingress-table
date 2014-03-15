@@ -6,7 +6,7 @@ class Pulsate extends noflo.Component
 
   constructor: ->
     @value = 0
-    @steps = [0, 15, 30, 70]
+    @steps = [0, 70, 50, 15]
     @maxSteps = 100
     @colors = [255, 255, 255]
     @inPorts = new noflo.InPorts
