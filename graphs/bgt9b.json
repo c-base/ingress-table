@@ -37,6 +37,30 @@
             "metadata": {
                 "description": ""
             }
+        },
+        {
+            "name": "Communication",
+            "nodes": [
+                "core/Drop_z1l5r",
+                "webserver/Server_uovn0",
+                "websocket/ListenConnections_9f5av",
+                "websocket/SendMessage_9oy1f"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Polling",
+            "nodes": [
+                "core/Repeat_x0tsf",
+                "ingress-table/FetchDat_7edo2",
+                "ingress-table/StateToColor_ifaav",
+                "strings/Jsonify_urxeq"
+            ],
+            "metadata": {
+                "description": ""
+            }
         }
     ],
     "processes": {
@@ -45,7 +69,7 @@
             "metadata": {
                 "label": "core/Repeat",
                 "x": 144,
-                "y": 432
+                "y": 504
             }
         },
         "ingress-table/FetchDat_7edo2": {
@@ -53,7 +77,7 @@
             "metadata": {
                 "label": "FetchData",
                 "x": 288,
-                "y": 432
+                "y": 504
             }
         },
         "ingress-table/StateToColor_ifaav": {
@@ -61,31 +85,31 @@
             "metadata": {
                 "label": "ToRGB",
                 "x": 432,
-                "y": 432
+                "y": 504
             }
         },
         "webserver/Server_uovn0": {
             "component": "webserver/Server",
             "metadata": {
-                "label": "webserver/Server",
+                "label": "HTTPServer",
                 "x": 144,
-                "y": 288
+                "y": 324
             }
         },
         "websocket/ListenConnections_9f5av": {
             "component": "websocket/ListenConnections",
             "metadata": {
-                "label": "websocket/ListenConnections",
-                "x": 576,
-                "y": 288
+                "label": "WebSocketConnection",
+                "x": 432,
+                "y": 324
             }
         },
         "websocket/SendMessage_9oy1f": {
             "component": "websocket/SendMessage",
             "metadata": {
-                "label": "ToTable",
-                "x": 720,
-                "y": 432
+                "label": "SendToTable",
+                "x": 684,
+                "y": 324
             }
         },
         "strings/Jsonify_urxeq": {
@@ -93,15 +117,15 @@
             "metadata": {
                 "label": "Stringify",
                 "x": 576,
-                "y": 432
+                "y": 504
             }
         },
         "core/Drop_z1l5r": {
             "component": "core/Drop",
             "metadata": {
-                "label": "core/Drop",
-                "x": 360,
-                "y": 180
+                "label": "IgnoreHTTP",
+                "x": 432,
+                "y": 216
             }
         }
     },
@@ -127,7 +151,7 @@
                 "port": "portals"
             },
             "metadata": {
-                "route": null
+                "route": 2
             }
         },
         {
@@ -140,7 +164,7 @@
                 "port": "state"
             },
             "metadata": {
-                "route": null
+                "route": 4
             }
         },
         {
@@ -163,7 +187,9 @@
                 "process": "websocket/ListenConnections_9f5av",
                 "port": "server"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -174,7 +200,9 @@
                 "process": "websocket/SendMessage_9oy1f",
                 "port": "connection"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -186,7 +214,7 @@
                 "port": "in"
             },
             "metadata": {
-                "route": null
+                "route": 4
             }
         },
         {
@@ -198,7 +226,9 @@
                 "process": "websocket/SendMessage_9oy1f",
                 "port": "string"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "data": "start",
