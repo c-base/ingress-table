@@ -24,8 +24,10 @@
   "noflo": {
     "icon": "beer",
     "components": {
+      "CalculateState": "components/CalculateState.coffee",
       "GetPortalState": "components/GetPortalState.coffee",
       "GetAreaState": "components/GetAreaState.coffee",
+      "StabilizePortal": "components/StabilizePortal.coffee",
       "StateToColor": "components/StateToColor.coffee"
     }
   },

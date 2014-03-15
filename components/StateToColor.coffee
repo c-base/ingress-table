@@ -1,9 +1,5 @@
 noflo = require 'noflo'
 
-# { guid: 'a6301120831b46f1be00fa2cb0bce195.16',
-#   health: 100,
-#   team: 'RESISTANCE',
-#   level: 4 }
 class StateToColor extends noflo.Component
   icon: 'adjust'
   description: 'Convert portal state information to a RGB value'
@@ -11,6 +7,7 @@ class StateToColor extends noflo.Component
   constructor: ->
     @portals = []
     @states = []
+    @previousStates = {}
     @inPorts = new noflo.InPorts
       portals:
         datatype: 'array'
@@ -35,6 +32,8 @@ class StateToColor extends noflo.Component
 
       @states[idx] = @stateToRgb state
       @outPorts.colors.send @states
+
+      @previousStates[state.guid] = state
 
     @inPorts.state.on 'disconnect', =>
       @outPorts.colors.disconnect()
