@@ -1,0 +1,232 @@
+{
+    "properties": {
+        "name": "Ingress Table",
+        "id": "bgt9b",
+        "project": "ingress-table",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [
+        {
+            "name": "ApiConfig",
+            "nodes": [],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "PortalConfig",
+            "nodes": [],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Scheduling",
+            "nodes": [],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "DataFetching",
+            "nodes": [],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "core/Repeat_x0tsf": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "core/Repeat",
+                "x": 144,
+                "y": 432
+            }
+        },
+        "ingress-table/FetchDat_7edo2": {
+            "component": "ingress-table/FetchDat",
+            "metadata": {
+                "label": "FetchData",
+                "x": 288,
+                "y": 432
+            }
+        },
+        "ingress-table/StateToColor_ifaav": {
+            "component": "ingress-table/StateToColor",
+            "metadata": {
+                "label": "ToRGB",
+                "x": 432,
+                "y": 432
+            }
+        },
+        "webserver/Server_uovn0": {
+            "component": "webserver/Server",
+            "metadata": {
+                "label": "webserver/Server",
+                "x": 144,
+                "y": 288
+            }
+        },
+        "websocket/ListenConnections_9f5av": {
+            "component": "websocket/ListenConnections",
+            "metadata": {
+                "label": "websocket/ListenConnections",
+                "x": 576,
+                "y": 288
+            }
+        },
+        "websocket/SendMessage_9oy1f": {
+            "component": "websocket/SendMessage",
+            "metadata": {
+                "label": "ToTable",
+                "x": 720,
+                "y": 432
+            }
+        },
+        "strings/Jsonify_urxeq": {
+            "component": "strings/Jsonify",
+            "metadata": {
+                "label": "Stringify",
+                "x": 576,
+                "y": 432
+            }
+        },
+        "core/Drop_z1l5r": {
+            "component": "core/Drop",
+            "metadata": {
+                "label": "core/Drop",
+                "x": 360,
+                "y": 180
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "core/Repeat_x0tsf",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "poll"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "portals"
+            },
+            "tgt": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "portals"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "state"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "webserver/Server_uovn0",
+                "port": "request"
+            },
+            "tgt": {
+                "process": "core/Drop_z1l5r",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/Server_uovn0",
+                "port": "server"
+            },
+            "tgt": {
+                "process": "websocket/ListenConnections_9f5av",
+                "port": "server"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "websocket/ListenConnections_9f5av",
+                "port": "connection"
+            },
+            "tgt": {
+                "process": "websocket/SendMessage_9oy1f",
+                "port": "connection"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "strings/Jsonify_urxeq",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "strings/Jsonify_urxeq",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "websocket/SendMessage_9oy1f",
+                "port": "string"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "start",
+            "tgt": {
+                "process": "core/Repeat_x0tsf",
+                "port": "in"
+            }
+        },
+        {
+            "data": "portals.json",
+            "tgt": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "portalconfig"
+            }
+        },
+        {
+            "data": "ingress",
+            "tgt": {
+                "process": "websocket/ListenConnections_9f5av",
+                "port": "protocol"
+            }
+        },
+        {
+            "data": "8001",
+            "tgt": {
+                "process": "webserver/Server_uovn0",
+                "port": "listen"
+            }
+        }
+    ]
+}
