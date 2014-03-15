@@ -61,13 +61,24 @@
             "metadata": {
                 "description": ""
             }
+        },
+        {
+            "name": "Street Lights",
+            "nodes": [
+                "core/RunInterval_5f3rf",
+                "ingress-table/Pulsate_qo650",
+                "strings/ParseJson_l8zh"
+            ],
+            "metadata": {
+                "description": ""
+            }
         }
     ],
     "processes": {
         "core/Repeat_x0tsf": {
             "component": "core/Repeat",
             "metadata": {
-                "label": "core/Repeat",
+                "label": "Start",
                 "x": 0,
                 "y": 504
             }
@@ -76,7 +87,7 @@
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 144,
+                "x": 180,
                 "y": 504
             }
         },
@@ -84,7 +95,7 @@
             "component": "ingress-table/StateToColor",
             "metadata": {
                 "label": "ToRGB",
-                "x": 576,
+                "x": 612,
                 "y": 540
             }
         },
@@ -108,16 +119,16 @@
             "component": "websocket/SendMessage",
             "metadata": {
                 "label": "SendToTable",
-                "x": 1512,
-                "y": 324
+                "x": 1296,
+                "y": 252
             }
         },
         "strings/Jsonify_urxeq": {
             "component": "strings/Jsonify",
             "metadata": {
                 "label": "Stringify",
-                "x": 1368,
-                "y": 360
+                "x": 1152,
+                "y": 324
             }
         },
         "core/Drop_z1l5r": {
@@ -132,7 +143,7 @@
             "component": "ingress-table/CalculateState",
             "metadata": {
                 "label": "WatchState",
-                "x": 288,
+                "x": 324,
                 "y": 576
             }
         },
@@ -140,24 +151,16 @@
             "component": "ingress-table/StabilizePortal",
             "metadata": {
                 "label": "Stabilize",
-                "x": 432,
+                "x": 468,
                 "y": 576
             }
         },
         "strings/ParseJson_l8zh": {
             "component": "strings/ParseJson",
             "metadata": {
-                "label": "strings/ParseJson",
-                "x": 684,
-                "y": 432
-            }
-        },
-        "strings/ParseJson_vhkw4": {
-            "component": "strings/ParseJson",
-            "metadata": {
-                "label": "strings/ParseJson",
-                "x": 900,
-                "y": 396
+                "label": "StreetColor",
+                "x": 324,
+                "y": 864
             }
         },
         "PrepareMessage": {
@@ -165,7 +168,31 @@
             "metadata": {
                 "label": "PrepareMessage",
                 "x": 1008,
-                "y": 540
+                "y": 648
+            }
+        },
+        "ingress-table/DetermineWinner_z8u0g": {
+            "component": "ingress-table/DetermineWinner",
+            "metadata": {
+                "label": "BlueOrGreen",
+                "x": 792,
+                "y": 648
+            }
+        },
+        "ingress-table/Pulsate_qo650": {
+            "component": "ingress-table/Pulsate",
+            "metadata": {
+                "label": "Pulsate",
+                "x": 612,
+                "y": 864
+            }
+        },
+        "core/RunInterval_5f3rf": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "PulseInterval",
+                "x": 324,
+                "y": 756
             }
         }
     },
@@ -280,30 +307,8 @@
                 "port": "string"
             },
             "metadata": {
-                "route": null
+                "route": 7
             }
-        },
-        {
-            "src": {
-                "process": "strings/ParseJson_vhkw4",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "PrepareMessage",
-                "port": "bottomstripes"
-            },
-            "metadata": {}
-        },
-        {
-            "src": {
-                "process": "strings/ParseJson_l8zh",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "PrepareMessage",
-                "port": "innerstripes"
-            },
-            "metadata": {}
         },
         {
             "src": {
@@ -314,7 +319,9 @@
                 "process": "PrepareMessage",
                 "port": "portals"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
@@ -325,7 +332,87 @@
                 "process": "strings/Jsonify_urxeq",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "states"
+            },
+            "tgt": {
+                "process": "ingress-table/DetermineWinner_z8u0g",
+                "port": "states"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/DetermineWinner_z8u0g",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "PrepareMessage",
+                "port": "bottomstripes"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_l8zh",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "PrepareMessage",
+                "port": "innerstripes"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_5f3rf",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "step"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_x0tsf",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RunInterval_5f3rf",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 0
+            }
         },
         {
             "data": "start",
@@ -356,20 +443,6 @@
             }
         },
         {
-            "data": "[[180,120,120]]",
-            "tgt": {
-                "process": "strings/ParseJson_vhkw4",
-                "port": "in"
-            }
-        },
-        {
-            "data": "[[160,255,255],[0,160,160],[160,160,160],[160,160,160]]",
-            "tgt": {
-                "process": "strings/ParseJson_l8zh",
-                "port": "in"
-            }
-        },
-        {
             "data": "1000",
             "tgt": {
                 "process": "ingress-table/StateToColor_ifaav",
@@ -381,6 +454,20 @@
             "tgt": {
                 "process": "ingress-table/StabilizePortal_sg4x0",
                 "port": "wait"
+            }
+        },
+        {
+            "data": "[255,255,255]",
+            "tgt": {
+                "process": "strings/ParseJson_l8zh",
+                "port": "in"
+            }
+        },
+        {
+            "data": 100,
+            "tgt": {
+                "process": "core/RunInterval_5f3rf",
+                "port": "interval"
             }
         }
     ]
