@@ -28,6 +28,9 @@ class StateToColor extends noflo.Component
       colors:
         datatype: 'array'
         required: yes
+      states:
+        datatype: 'object'
+        required: no
 
     @inPorts.portals.on 'data', (@portals) =>
     @inPorts.blink.on 'data', (@blink) =>
@@ -44,8 +47,11 @@ class StateToColor extends noflo.Component
 
       @previousStates[state.guid] = state
 
+      @outPorts.states.send @previousStates
+
     @inPorts.state.on 'disconnect', =>
       @outPorts.colors.disconnect()
+      @outPorts.states.disconnect()
 
   teamToRgb: (state) ->
     if state.team is 'RESISTANCE'
