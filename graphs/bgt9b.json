@@ -68,7 +68,7 @@
             "component": "core/Repeat",
             "metadata": {
                 "label": "core/Repeat",
-                "x": 144,
+                "x": 0,
                 "y": 504
             }
         },
@@ -76,7 +76,7 @@
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 288,
+                "x": 144,
                 "y": 504
             }
         },
@@ -84,7 +84,7 @@
             "component": "ingress-table/StateToColor",
             "metadata": {
                 "label": "ToRGB",
-                "x": 432,
+                "x": 576,
                 "y": 504
             }
         },
@@ -92,7 +92,7 @@
             "component": "webserver/Server",
             "metadata": {
                 "label": "HTTPServer",
-                "x": 144,
+                "x": 0,
                 "y": 324
             }
         },
@@ -108,7 +108,7 @@
             "component": "websocket/SendMessage",
             "metadata": {
                 "label": "SendToTable",
-                "x": 684,
+                "x": 828,
                 "y": 324
             }
         },
@@ -116,7 +116,7 @@
             "component": "strings/Jsonify",
             "metadata": {
                 "label": "Stringify",
-                "x": 576,
+                "x": 684,
                 "y": 504
             }
         },
@@ -126,6 +126,22 @@
                 "label": "IgnoreHTTP",
                 "x": 432,
                 "y": 216
+            }
+        },
+        "ingress-table/CalculateState_xkyq7": {
+            "component": "ingress-table/CalculateState",
+            "metadata": {
+                "label": "WatchState",
+                "x": 288,
+                "y": 540
+            }
+        },
+        "ingress-table/StabilizePortal_sg4x0": {
+            "component": "ingress-table/StabilizePortal",
+            "metadata": {
+                "label": "Stabilize",
+                "x": 432,
+                "y": 540
             }
         }
     },
@@ -152,19 +168,6 @@
             },
             "metadata": {
                 "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "state"
-            },
-            "metadata": {
-                "route": 4
             }
         },
         {
@@ -231,6 +234,45 @@
             }
         },
         {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "ingress-table/CalculateState_xkyq7",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/CalculateState_xkyq7",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
             "data": "start",
             "tgt": {
                 "process": "core/Repeat_x0tsf",
@@ -256,6 +298,13 @@
             "tgt": {
                 "process": "webserver/Server_uovn0",
                 "port": "listen"
+            }
+        },
+        {
+            "data": "5000",
+            "tgt": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "wait"
             }
         }
     ]

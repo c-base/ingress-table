@@ -46,7 +46,7 @@ class GetPortalState extends noflo.AsyncComponent
       host: @hostname
       hostname: @hostname
       auth: "#{@login.username}:#{@login.password}"
-      path: "/api/table/portals/#{id}"
+      path: "/api/table/portals/#{id}/1"
     , (res) =>
       body = ''
       res.on 'data', (chunk) ->
