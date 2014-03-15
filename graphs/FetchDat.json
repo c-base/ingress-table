@@ -1,0 +1,581 @@
+{
+    "properties": {
+        "name": "FetchData",
+        "id": "FetchDat",
+        "project": "ingress-table",
+        "environment": {
+            "type": "noflo-nodejs",
+            "content": ""
+        }
+    },
+    "inports": {
+        "portalconfig": {
+            "process": "filesystem/ReadFile_cpmsi",
+            "port": "in",
+            "metadata": {
+                "x": -72,
+                "y": 72
+            }
+        },
+        "poll": {
+            "process": "core/Repeat_ghioo",
+            "port": "in",
+            "metadata": {
+                "x": -72,
+                "y": 468
+            }
+        }
+    },
+    "outports": {
+        "portals": {
+            "process": "objects/GetObjectKey_5jjkz",
+            "port": "out",
+            "metadata": {
+                "x": 1404,
+                "y": 252
+            }
+        },
+        "state": {
+            "process": "core/Merge_lqryg",
+            "port": "out",
+            "metadata": {
+                "x": 1404,
+                "y": 0
+            }
+        }
+    },
+    "groups": [
+        {
+            "name": "PortalConfig",
+            "nodes": [
+                "filesystem/ReadFile_cpmsi",
+                "objects/GetObjectKey_5jjkz",
+                "objects/GetObjectKey_v6uzr",
+                "objects/GetObjectKey_wx95o",
+                "strings/ParseJson_9qdty"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "ApiConfig",
+            "nodes": [
+                "filesystem/ReadFile_1p6x8",
+                "objects/GetObjectKey_gkwul",
+                "objects/GetObjectKey_y3u7c",
+                "strings/ParseJson_uopal"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Scheduling",
+            "nodes": [
+                "core/Repeat_ghioo",
+                "core/RunInterval_a6amz",
+                "core/RunInterval_z62hi"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "FetchData",
+            "nodes": [
+                "core/Merge_lqryg",
+                "ingress-table/GetAreaState_sohnu",
+                "ingress-table/GetPortalState_fvy0f",
+                "objects/SplitArray_5f4ly",
+                "strings/SendString_3ssea",
+                "strings/SendString_si8hf"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "filesystem/ReadFile_1p6x8": {
+            "component": "filesystem/ReadFile",
+            "metadata": {
+                "label": "ReadHostConf",
+                "x": 72,
+                "y": -180
+            }
+        },
+        "strings/ParseJson_uopal": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "ParseHostConf",
+                "x": 252,
+                "y": -180
+            }
+        },
+        "objects/GetObjectKey_gkwul": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "Hostname",
+                "x": 468,
+                "y": -288
+            }
+        },
+        "objects/GetObjectKey_y3u7c": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "Login",
+                "x": 468,
+                "y": -180
+            }
+        },
+        "strings/SendString_si8hf": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "TriggerCbaseFetch",
+                "x": 720,
+                "y": -108
+            }
+        },
+        "ingress-table/GetPortalState_fvy0f": {
+            "component": "ingress-table/GetPortalState",
+            "metadata": {
+                "label": "GetCbase",
+                "x": 1080,
+                "y": -108
+            }
+        },
+        "objects/SplitArray_5f4ly": {
+            "component": "objects/SplitArray",
+            "metadata": {
+                "label": "IndividualPortals",
+                "x": 1080,
+                "y": 108
+            }
+        },
+        "ingress-table/GetAreaState_sohnu": {
+            "component": "ingress-table/GetAreaState",
+            "metadata": {
+                "label": "GetPortals",
+                "x": 936,
+                "y": 108
+            }
+        },
+        "strings/SendString_3ssea": {
+            "component": "strings/SendString",
+            "metadata": {
+                "label": "TriggerAreaFetch",
+                "x": 720,
+                "y": 108
+            }
+        },
+        "objects/GetObjectKey_5jjkz": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "PortalIds",
+                "x": 468,
+                "y": 252
+            }
+        },
+        "objects/GetObjectKey_v6uzr": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "Area",
+                "x": 468,
+                "y": 144
+            }
+        },
+        "objects/GetObjectKey_wx95o": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "MainPortal",
+                "x": 468,
+                "y": 36
+            }
+        },
+        "core/RunInterval_z62hi": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "MainPortalTimer",
+                "x": 468,
+                "y": 432
+            }
+        },
+        "core/RunInterval_a6amz": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "FetchTimer",
+                "x": 468,
+                "y": 540
+            }
+        },
+        "filesystem/ReadFile_cpmsi": {
+            "component": "filesystem/ReadFile",
+            "metadata": {
+                "label": "ReadPortalConf",
+                "x": 72,
+                "y": 72
+            }
+        },
+        "strings/ParseJson_9qdty": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "ParsePortalConf",
+                "x": 252,
+                "y": 72
+            }
+        },
+        "core/Repeat_ghioo": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "StartTimers",
+                "x": 288,
+                "y": 468
+            }
+        },
+        "core/Merge_lqryg": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "States",
+                "x": 1260,
+                "y": 0
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "filesystem/ReadFile_1p6x8",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/ParseJson_uopal",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_uopal",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_gkwul",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_uopal",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_y3u7c",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_cpmsi",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/ParseJson_9qdty",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_9qdty",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_wx95o",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_9qdty",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_v6uzr",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_9qdty",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_5jjkz",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_wx95o",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_si8hf",
+                "port": "string"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_z62hi",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_si8hf",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_y3u7c",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetPortalState_fvy0f",
+                "port": "login"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_gkwul",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetPortalState_fvy0f",
+                "port": "hostname"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_si8hf",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetPortalState_fvy0f",
+                "port": "id"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_gkwul",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetAreaState_sohnu",
+                "port": "hostname"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_y3u7c",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetAreaState_sohnu",
+                "port": "login"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_v6uzr",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_3ssea",
+                "port": "string"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_a6amz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_3ssea",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "strings/SendString_3ssea",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetAreaState_sohnu",
+                "port": "area"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/GetAreaState_sohnu",
+                "port": "states"
+            },
+            "tgt": {
+                "process": "objects/SplitArray_5f4ly",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_ghioo",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RunInterval_z62hi",
+                "port": "start"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Repeat_ghioo",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RunInterval_a6amz",
+                "port": "start"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "objects/SplitArray_5f4ly",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Merge_lqryg",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/GetPortalState_fvy0f",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "core/Merge_lqryg",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "mainportal",
+            "tgt": {
+                "process": "objects/GetObjectKey_wx95o",
+                "port": "key"
+            }
+        },
+        {
+            "data": "area",
+            "tgt": {
+                "process": "objects/GetObjectKey_v6uzr",
+                "port": "key"
+            }
+        },
+        {
+            "data": "portals",
+            "tgt": {
+                "process": "objects/GetObjectKey_5jjkz",
+                "port": "key"
+            }
+        },
+        {
+            "data": 10000,
+            "tgt": {
+                "process": "core/RunInterval_z62hi",
+                "port": "interval"
+            }
+        },
+        {
+            "data": 60000,
+            "tgt": {
+                "process": "core/RunInterval_a6amz",
+                "port": "interval"
+            }
+        },
+        {
+            "data": "login",
+            "tgt": {
+                "process": "objects/GetObjectKey_y3u7c",
+                "port": "key"
+            }
+        },
+        {
+            "data": "hostname",
+            "tgt": {
+                "process": "objects/GetObjectKey_gkwul",
+                "port": "key"
+            }
+        },
+        {
+            "data": "server.json",
+            "tgt": {
+                "process": "filesystem/ReadFile_1p6x8",
+                "port": "in"
+            }
+        }
+    ]
+}
