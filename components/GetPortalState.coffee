@@ -37,6 +37,31 @@ class GetPortalState extends noflo.AsyncComponent
     super 'id', 'state'
 
   doAsync: (id, callback) ->
-    do callback
+    unless @login
+      return callback new Error "Missing login details"
+    unless @hostname
+      return callback new Error "Missing API server hostname"
+
+    req = http.request
+      host: @hostname
+      hostname: @hostname
+      auth: "#{@login.username}:#{@login.password}"
+      path: "/api/table/portals/#{id}"
+    , (res) =>
+      body = ''
+      res.on 'data', (chunk) ->
+        body += chunk
+      res.on 'end', =>
+        unless res.statusCode is 200
+          return callback new Error "Server responded with #{res.statusCode}"
+        @outPorts.state.beginGroup id
+        @outPorts.state.send JSON.parse body
+        @outPorts.state.endGroup()
+        @outPorts.state.disconnect()
+        do callback
+
+    req.on 'error', (err) =>
+      callback err
+    req.end()
 
 exports.getComponent = -> new GetPortalState
