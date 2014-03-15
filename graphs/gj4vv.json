@@ -1,0 +1,277 @@
+{
+    "properties": {
+        "name": "DataReceiver",
+        "id": "gj4vv",
+        "project": "ingress-table",
+        "environment": {
+            "type": "noflo-browser",
+            "content": ""
+        },
+        "description": "Basic data receiver that connects to a data source via websockets and exports its input as JSON. Will fail horrible, if the data source does not export valid JSON."
+    },
+    "inports": {
+        "url": {
+            "process": "websocket/Connect_61qm3",
+            "port": "url",
+            "metadata": {
+                "x": 360,
+                "y": 396
+            }
+        },
+        "protocol": {
+            "process": "websocket/Connect_61qm3",
+            "port": "protocol",
+            "metadata": {
+                "x": 360,
+                "y": 540
+            }
+        }
+    },
+    "outports": {
+        "portals": {
+            "process": "objects/GetObjectKey_sekua",
+            "port": "out",
+            "metadata": {
+                "x": 1224,
+                "y": 252
+            }
+        },
+        "innerstripes": {
+            "process": "objects/GetObjectKey_x3cvv",
+            "port": "out",
+            "metadata": {
+                "x": 1224,
+                "y": 396
+            }
+        },
+        "bottomstripes": {
+            "process": "objects/GetObjectKey_9zkbb",
+            "port": "out",
+            "metadata": {
+                "x": 1224,
+                "y": 540
+            }
+        }
+    },
+    "groups": [
+        {
+            "name": "DataReceiver",
+            "nodes": [
+                "objects/GetObjectKey_9zkbb",
+                "objects/GetObjectKey_sekua",
+                "objects/GetObjectKey_x3cvv",
+                "strings/ParseJson_u1fne",
+                "websocket/Connect_61qm3",
+                "websocket/ListenMessages_p9hdi"
+            ],
+            "metadata": {
+                "description": "Transforms an input stream from a websocket to an output stream of three objects containing the RGB values for coloring the LEDs."
+            }
+        }
+    ],
+    "processes": {
+        "websocket/Connect_61qm3": {
+            "component": "websocket/Connect",
+            "metadata": {
+                "label": "websocket/Connect",
+                "x": 504,
+                "y": 468
+            }
+        },
+        "websocket/ListenMessages_p9hdi": {
+            "component": "websocket/ListenMessages",
+            "metadata": {
+                "label": "websocket/ListenMessages",
+                "x": 720,
+                "y": 396
+            }
+        },
+        "strings/ParseJson_u1fne": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "strings/ParseJson",
+                "x": 900,
+                "y": 396
+            }
+        },
+        "objects/GetObjectKey_sekua": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "objects/GetObjectKey",
+                "x": 1080,
+                "y": 288
+            }
+        },
+        "objects/GetObjectKey_x3cvv": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "objects/GetObjectKey",
+                "x": 1080,
+                "y": 432
+            }
+        },
+        "objects/GetObjectKey_9zkbb": {
+            "component": "objects/GetObjectKey",
+            "metadata": {
+                "label": "objects/GetObjectKey",
+                "x": 1080,
+                "y": 576
+            }
+        },
+        "core/Output_fynm0": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "core/Output",
+                "x": 1260,
+                "y": 720
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "websocket/Connect_61qm3",
+                "port": "connection"
+            },
+            "tgt": {
+                "process": "websocket/ListenMessages_p9hdi",
+                "port": "connection"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_u1fne",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_sekua",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_u1fne",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_x3cvv",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "strings/ParseJson_u1fne",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/GetObjectKey_9zkbb",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_9zkbb",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Output_fynm0",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_x3cvv",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Output_fynm0",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_sekua",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Output_fynm0",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "websocket/Connect_61qm3",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_fynm0",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "websocket/ListenMessages_p9hdi",
+                "port": "string"
+            },
+            "tgt": {
+                "process": "core/Output_fynm0",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "websocket/ListenMessages_p9hdi",
+                "port": "string"
+            },
+            "tgt": {
+                "process": "strings/ParseJson_u1fne",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "data": "portals",
+            "tgt": {
+                "process": "objects/GetObjectKey_sekua",
+                "port": "key"
+            }
+        },
+        {
+            "data": "innerStripes",
+            "tgt": {
+                "process": "objects/GetObjectKey_x3cvv",
+                "port": "key"
+            }
+        },
+        {
+            "data": "bottomStripes",
+            "tgt": {
+                "process": "objects/GetObjectKey_9zkbb",
+                "port": "key"
+            }
+        }
+    ]
+}
