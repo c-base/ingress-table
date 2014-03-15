@@ -34,10 +34,10 @@ class CalculateState extends noflo.Component
   calculateState: (newState, previousStates) ->
     state =
       guid: newState.guid
-      team: newstate.team
+      team: newState.team
       state: 'stable'
 
-    previous = previousState[newState.guid]
+    previous = previousStates[newState.guid]
     return state unless previous
 
     # We have a previous state to compare with
@@ -54,7 +54,7 @@ class CalculateState extends noflo.Component
       state.state = 'attack'
       return state
 
-    if newState.level is 8 newState.team is 'RESISTANCE'
+    if newState.level is 8 and newState.team is 'RESISTANCE'
       state.state = 'awesome'
       return state
 
@@ -70,9 +70,6 @@ class CalculateState extends noflo.Component
       state.state = 'calvinball'
       return state
 
-    return state
-
-exports.getComponent = -> new CalculateState
     return state
 
 exports.getComponent = -> new CalculateState

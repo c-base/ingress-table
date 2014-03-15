@@ -38,7 +38,11 @@ class StabilizePortal extends noflo.Component
     @inPorts.wait.on 'data', (@wait) =>
 
   stabilize: (state) =>
-    return if state.state is 'stable' or state.state is 'awesome'
+    return if state.state in [
+      'stable'
+      'awesome'
+      'bad'
+      ]
 
     timer = setTimeout =>
       state.state = 'stable'
