@@ -24,6 +24,14 @@
                 "x": -72,
                 "y": 468
             }
+        },
+        "apiconfig": {
+            "process": "filesystem/ReadFile_1p6x8",
+            "port": "in",
+            "metadata": {
+                "x": -72,
+                "y": -180
+            }
         }
     },
     "outports": {
@@ -522,7 +530,7 @@
                 "port": "in"
             },
             "metadata": {
-                "route": null
+                "route": 5
             }
         },
         {
@@ -534,7 +542,9 @@
                 "process": "core/RunInterval_z62hi",
                 "port": "start"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 2
+            }
         },
         {
             "src": {
@@ -545,7 +555,9 @@
                 "process": "core/RunInterval_a6amz",
                 "port": "start"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 2
+            }
         },
         {
             "src": {
@@ -556,7 +568,9 @@
                 "process": "core/Merge_lqryg",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -567,7 +581,9 @@
                 "process": "core/Merge_lqryg",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 5
+            }
         },
         {
             "src": {
@@ -733,13 +749,6 @@
             "tgt": {
                 "process": "objects/GetObjectKey_gkwul",
                 "port": "key"
-            }
-        },
-        {
-            "data": "server.json",
-            "tgt": {
-                "process": "filesystem/ReadFile_1p6x8",
-                "port": "in"
             }
         }
     ]
