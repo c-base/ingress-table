@@ -48,14 +48,22 @@ class GetPortalState extends noflo.AsyncComponent
       auth: "#{@login.username}:#{@login.password}"
       path: "/api/table/portals/#{id}/1"
     , (res) =>
+      unless res.statusCode is 200
+        return callback new Error "Server responded with #{res.statusCode}"
+
       body = ''
       res.on 'data', (chunk) ->
         body += chunk
       res.on 'end', =>
-        unless res.statusCode is 200
-          return callback new Error "Server responded with #{res.statusCode}"
+        return callback new Error 'No return value from server' unless body
+
+        try
+          portalState = JSON.parse body
+        catch e
+          return callback e
+
         @outPorts.state.beginGroup id
-        @outPorts.state.send JSON.parse body
+        @outPorts.state.send portalState
         @outPorts.state.endGroup()
         @outPorts.state.disconnect()
         do callback

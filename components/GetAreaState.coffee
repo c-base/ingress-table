@@ -52,9 +52,16 @@ class GetAreaState extends noflo.AsyncComponent
       res.on 'data', (chunk) ->
         body += chunk
       res.on 'end', =>
+        return callback new Error 'No return value from server' unless body
+
+        try
+          portalStates = JSON.parse body
+        catch e
+          return callback e
+
         unless res.statusCode is 200
           return callback new Error "Server responded with #{res.statusCode}"
-        @outPorts.states.send JSON.parse body
+        @outPorts.states.send portalStates
         @outPorts.states.disconnect()
         do callback
 
