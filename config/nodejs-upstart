@@ -1,0 +1,23 @@
+# /etc/init/nodejs.conf
+ 
+description "Ingress Table Server"
+author      "Ingress Table Developers"
+
+# Ingress Table Developers are (alphabetically):
+#   * bergie
+#   * Grayhead
+#   * JohnRandom
+ 
+# We need a network connection to poll the API.
+start on (local-filesystems and net-device-up IFACE=wlan0)
+
+# We need a network connection to poll the API.
+stop on (shutdown and net-device-down IFACE=wlan0)
+ 
+# Automatically Respawn:
+respawn
+respawn limit 10 5
+ 
+script
+    exec /home/ubuntu/ingress-table/node_modules/.bin/noflo /home/ubuntu/ingress-table/graphs/bgt9b.json
+end script
