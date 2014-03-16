@@ -79,15 +79,15 @@
             "component": "core/Repeat",
             "metadata": {
                 "label": "Start",
-                "x": 0,
-                "y": 504
+                "x": -180,
+                "y": 648
             }
         },
         "ingress-table/FetchDat_7edo2": {
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 180,
+                "x": 0,
                 "y": 504
             }
         },
@@ -111,7 +111,7 @@
             "component": "websocket/ListenConnections",
             "metadata": {
                 "label": "WebSocketConnection",
-                "x": 432,
+                "x": 324,
                 "y": 324
             }
         },
@@ -135,7 +135,7 @@
             "component": "core/Drop",
             "metadata": {
                 "label": "IgnoreHTTP",
-                "x": 432,
+                "x": 324,
                 "y": 180
             }
         },
@@ -194,6 +194,14 @@
                 "x": 324,
                 "y": 756
             }
+        },
+        "core/Output_qmkan": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "LogErrors",
+                "x": 180,
+                "y": 612
+            }
         }
     },
     "connections": [
@@ -230,7 +238,9 @@
                 "process": "core/Drop_z1l5r",
                 "port": "in"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 1
+            }
         },
         {
             "src": {
@@ -415,6 +425,45 @@
             }
         },
         {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "apierror"
+            },
+            "tgt": {
+                "process": "core/Output_qmkan",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "configerror"
+            },
+            "tgt": {
+                "process": "core/Output_qmkan",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "missingconfig"
+            },
+            "tgt": {
+                "process": "core/Output_qmkan",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
             "data": "start",
             "tgt": {
                 "process": "core/Repeat_x0tsf",
@@ -464,7 +513,7 @@
             }
         },
         {
-            "data": 100,
+            "data": 50,
             "tgt": {
                 "process": "core/RunInterval_5f3rf",
                 "port": "interval"

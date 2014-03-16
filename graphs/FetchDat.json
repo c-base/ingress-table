@@ -42,6 +42,30 @@
                 "x": 1404,
                 "y": 0
             }
+        },
+        "apierror": {
+            "process": "core/Merge_ppjmj",
+            "port": "out",
+            "metadata": {
+                "x": 1404,
+                "y": 396
+            }
+        },
+        "configerror": {
+            "process": "core/Merge_9ko07",
+            "port": "out",
+            "metadata": {
+                "x": 1404,
+                "y": 540
+            }
+        },
+        "missingconfig": {
+            "process": "core/Merge_tfnbb",
+            "port": "out",
+            "metadata": {
+                "x": 1404,
+                "y": -468
+            }
         }
     },
     "groups": [
@@ -239,6 +263,30 @@
                 "label": "States",
                 "x": 1260,
                 "y": 0
+            }
+        },
+        "core/Merge_ppjmj": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "APIErrors",
+                "x": 1260,
+                "y": 396
+            }
+        },
+        "core/Merge_9ko07": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "ConfigErrors",
+                "x": 792,
+                "y": 540
+            }
+        },
+        "core/Merge_tfnbb": {
+            "component": "core/Merge",
+            "metadata": {
+                "label": "core/Merge",
+                "x": 288,
+                "y": -468
             }
         }
     },
@@ -520,6 +568,123 @@
                 "port": "in"
             },
             "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/GetAreaState_sohnu",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_ppjmj",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/GetPortalState_fvy0f",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_ppjmj",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_gkwul",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Merge_9ko07",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_y3u7c",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Merge_9ko07",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_wx95o",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Merge_9ko07",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_v6uzr",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Merge_9ko07",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_5jjkz",
+                "port": "missed"
+            },
+            "tgt": {
+                "process": "core/Merge_9ko07",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_1p6x8",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_tfnbb",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_cpmsi",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_tfnbb",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
         },
         {
             "data": "mainportal",
