@@ -11,7 +11,8 @@
     "noflo-webserver": "~0.0.3",
     "noflo-websocket": "~0.1.1",
     "noflo-strings": "^0.1.5",
-    "noflo-objects": "^0.1.8"
+    "noflo-objects": "^0.1.8",
+    "microflo": "git://github.com/jonnor/microflo.git"
   },
   "devDependencies": {
     "coffee-script": "~1.7.1"
