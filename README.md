@@ -16,3 +16,39 @@ The status information is then transmitted to a microcontroller that shows porta
 * Individually controllable LEDs for portals
 * LED strips for street and floor lighting
 * USB chargers for agents running out of battery
+
+## LED strip i/o pins
+
+```
+J2
+---
+
+PF0 Red1
+PB7 Green1
+PD1 Blue1
+
+J4
+---
+
+PF3 Red2
+PC4 Green2
+PC5 Blue2
+
+PF2 Red Bottom
+
+J3
+---
+
+PD0 Red3
+PD1 Green3
+PF1 Blue3
+
+J1
+---
+PB5 Red4
+PE4 Green4
+PE5 Blue4
+
+PA6 Green Bottom
+PA7 Blue Bottom
+```
