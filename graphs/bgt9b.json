@@ -87,7 +87,7 @@
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 0,
+                "x": 36,
                 "y": 504
             }
         },
@@ -464,31 +464,10 @@
             }
         },
         {
-            "data": "start",
-            "tgt": {
-                "process": "core/Repeat_x0tsf",
-                "port": "in"
-            }
-        },
-        {
-            "data": "portals.json",
-            "tgt": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "portalconfig"
-            }
-        },
-        {
             "data": "ingress",
             "tgt": {
                 "process": "websocket/ListenConnections_9f5av",
                 "port": "protocol"
-            }
-        },
-        {
-            "data": "8001",
-            "tgt": {
-                "process": "webserver/Server_uovn0",
-                "port": "listen"
             }
         },
         {
@@ -517,6 +496,34 @@
             "tgt": {
                 "process": "core/RunInterval_5f3rf",
                 "port": "interval"
+            }
+        },
+        {
+            "data": "start",
+            "tgt": {
+                "process": "core/Repeat_x0tsf",
+                "port": "in"
+            }
+        },
+        {
+            "data": "8001",
+            "tgt": {
+                "process": "webserver/Server_uovn0",
+                "port": "listen"
+            }
+        },
+        {
+            "data": "portals.json",
+            "tgt": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "portalconfig"
+            }
+        },
+        {
+            "data": "server.json",
+            "tgt": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "apiconfig"
             }
         }
     ]
