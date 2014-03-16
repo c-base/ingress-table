@@ -627,7 +627,7 @@
                 "port": "redone"
             },
             "metadata": {
-                "route": null
+                "route": 1
             }
         },
         {
@@ -640,7 +640,7 @@
                 "port": "greenone"
             },
             "metadata": {
-                "route": null
+                "route": 4
             }
         },
         {
@@ -653,7 +653,7 @@
                 "port": "blueone"
             },
             "metadata": {
-                "route": null
+                "route": 7
             }
         },
         {
@@ -666,7 +666,7 @@
                 "port": "redtwo"
             },
             "metadata": {
-                "route": null
+                "route": 1
             }
         },
         {
@@ -679,7 +679,7 @@
                 "port": "greentwo"
             },
             "metadata": {
-                "route": null
+                "route": 4
             }
         },
         {
@@ -692,7 +692,7 @@
                 "port": "bluetwo"
             },
             "metadata": {
-                "route": null
+                "route": 7
             }
         },
         {
@@ -704,7 +704,9 @@
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "redthree"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 1
+            }
         },
         {
             "src": {
@@ -715,7 +717,9 @@
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "greenthree"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
@@ -726,7 +730,9 @@
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "bluethree"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -737,7 +743,9 @@
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "redfour"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 1
+            }
         },
         {
             "src": {
@@ -748,7 +756,9 @@
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "greenfour"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 4
+            }
         },
         {
             "src": {
@@ -759,7 +769,9 @@
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "bluefour"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "src": {
@@ -842,6 +854,13 @@
             "tgt": {
                 "process": "core/RunInterval_5f3rf",
                 "port": "interval"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "upload"
             }
         }
     ]
