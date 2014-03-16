@@ -79,7 +79,7 @@
             "component": "core/Repeat",
             "metadata": {
                 "label": "Start",
-                "x": -180,
+                "x": -144,
                 "y": 648
             }
         },
@@ -201,6 +201,14 @@
                 "label": "LogErrors",
                 "x": 180,
                 "y": 612
+            }
+        },
+        "ConfigPaths": {
+            "component": "ingress-table/ConfigPaths",
+            "metadata": {
+                "label": "ConfigPaths",
+                "x": -144,
+                "y": 504
             }
         }
     },
@@ -464,6 +472,41 @@
             }
         },
         {
+            "src": {
+                "process": "ConfigPaths",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_qmkan",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConfigPaths",
+                "port": "serverfile"
+            },
+            "tgt": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "apiconfig"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ConfigPaths",
+                "port": "portalfile"
+            },
+            "tgt": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "portalconfig"
+            },
+            "metadata": {}
+        },
+        {
             "data": "ingress",
             "tgt": {
                 "process": "websocket/ListenConnections_9f5av",
@@ -513,17 +556,24 @@
             }
         },
         {
-            "data": "portals.json",
+            "data": "INGRESS_TABLE_ROOT",
             "tgt": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "portalconfig"
+                "process": "ConfigPaths",
+                "port": "envvar"
             }
         },
         {
             "data": "server.json",
             "tgt": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "apiconfig"
+                "process": "ConfigPaths",
+                "port": "serverfile"
+            }
+        },
+        {
+            "data": "portals.json",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "portalfile"
             }
         }
     ]
