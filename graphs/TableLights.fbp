@@ -1,0 +1,49 @@
+INPORT=FloorBlue.ONTIME:FLOORBLUE
+INPORT=FloorGreen.ONTIME:FLOORGREEN
+INPORT=RedOne.ONTIME:REDONE
+INPORT=GreenOne.ONTIME:GREENONE
+INPORT=BlueOne.ONTIME:BLUEONE
+INPORT=RedTwo.ONTIME:REDTWO
+INPORT=GreenTwo.ONTIME:GREENTWO
+INPORT=BlueTwo.ONTIME:BLUETWO
+INPORT=Red3.ONTIME:REDTHREE
+INPORT=Green3.ONTIME:GREENTHREE
+INPORT=Blue3.ONTIME:BLUETHREE
+INPORT=Red4.ONTIME:REDFOUR
+INPORT=Green4.ONTIME:GREENFOUR
+INPORT=Blue4.ONTIME:BLUEFOUR
+
+# Floor light
+Board(TivaC) PA7 -> PIN FloorBlue(PseudoPwmWrite)
+'300' -> PERIOD FloorBlue
+Board(TivaC) PA6 -> PIN FloorGreen(PseudoPwmWrite)
+'300' -> PERIOD FloorGreen
+
+# Street lights
+Board(TivaC) PF0 -> PIN RedOne(PseudoPwmWrite)
+'300' -> PERIOD RedOne
+Board(TivaC) PB7 -> PIN GreenOne(PseudoPwmWrite)
+'300' -> PERIOD GreenOne
+Board(TivaC) PD1 -> PIN BlueOne(PseudoPwmWrite)
+'300' -> PERIOD BlueOne
+
+Board(TivaC) PF3 -> PIN RedTwo(PseudoPwmWrite)
+'300' -> PERIOD RedTwo
+Board(TivaC) PC4 -> PIN GreenTwo(PseudoPwmWrite)
+'300' -> PERIOD GreenTwo
+Board(TivaC) PC5 -> PIN BlueTwo(PseudoPwmWrite)
+'300' -> PERIOD BlueTwo
+
+Board(TivaC) PD0 -> PIN Red3(PseudoPwmWrite)
+'300' -> PERIOD Red3
+Board(TivaC) PD1 -> PIN Green3(PseudoPwmWrite)
+'300' -> PERIOD Green3
+Board(TivaC) PF1 -> PIN Blue3(PseudoPwmWrite)
+'300' -> PERIOD Blue3
+
+Board(TivaC) PB5 -> PIN Red4(PseudoPwmWrite)
+'300' -> PERIOD Red4
+Board(TivaC) PE4 -> PIN Green4(PseudoPwmWrite)
+'300' -> PERIOD Green4
+Board(TivaC) PE5 -> PIN Blue4(PseudoPwmWrite)
+'300' -> PERIOD Blue4

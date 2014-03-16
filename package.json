@@ -25,6 +25,7 @@
     "icon": "beer",
     "components": {
       "CalculateState": "components/CalculateState.coffee",
+      "ConvertStreetLight": "components/ConvertStreetLight.coffee",
       "DetectAttack": "components/DetectAttack.coffee",
       "DetermineWinner": "components/DetermineWinner.coffee",
       "GetPortalState": "components/GetPortalState.coffee",
@@ -37,6 +38,11 @@
       "ConfigPaths": "graphs/ConfigPaths.json",
       "FetchDat": "graphs/FetchDat.json",
       "PrepareMessage": "graphs/PrepareMessage.json"
+    }
+  },
+  "microflo": {
+    "graphs": {
+      "TableLights": "graphs/TableLights.fbp"
     }
   },
   "author": "",
