@@ -1,0 +1,186 @@
+{
+    "properties": {
+        "name": "ConfigPaths",
+        "id": "ConfigPaths",
+        "project": "ingress-table",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {
+        "envvar": {
+            "process": "core/ReadEnv_2mde7",
+            "port": "key",
+            "metadata": {
+                "x": -612,
+                "y": 432
+            }
+        },
+        "serverfile": {
+            "process": "core/Repeat_ktvob",
+            "port": "in",
+            "metadata": {
+                "x": -612,
+                "y": 324
+            }
+        },
+        "portalfile": {
+            "process": "core/Repeat_r65df",
+            "port": "in",
+            "metadata": {
+                "x": -612,
+                "y": 540
+            }
+        }
+    },
+    "outports": {
+        "error": {
+            "process": "core/ReadEnv_2mde7",
+            "port": "error",
+            "metadata": {
+                "x": -324,
+                "y": 684
+            }
+        },
+        "serverfile": {
+            "process": "strings/CompileString_pjcg2",
+            "port": "out",
+            "metadata": {
+                "x": 0,
+                "y": 432
+            }
+        },
+        "portalfile": {
+            "process": "strings/CompileString_667tt",
+            "port": "out",
+            "metadata": {
+                "x": 0,
+                "y": 540
+            }
+        }
+    },
+    "groups": [],
+    "processes": {
+        "core/ReadEnv_2mde7": {
+            "component": "core/ReadEnv",
+            "metadata": {
+                "label": "core/ReadEnv",
+                "x": -468,
+                "y": 432
+            }
+        },
+        "core/Repeat_ktvob": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "core/Repeat",
+                "x": -324,
+                "y": 324
+            }
+        },
+        "packets/DoNotDisconnect_uev3m": {
+            "component": "packets/DoNotDisconnect",
+            "metadata": {
+                "label": "packets/DoNotDisconnect",
+                "x": -324,
+                "y": 432
+            }
+        },
+        "strings/CompileString_pjcg2": {
+            "component": "strings/CompileString",
+            "metadata": {
+                "label": "strings/CompileString",
+                "x": -144,
+                "y": 432
+            }
+        },
+        "strings/CompileString_667tt": {
+            "component": "strings/CompileString",
+            "metadata": {
+                "label": "strings/CompileString",
+                "x": -144,
+                "y": 540
+            }
+        },
+        "core/Repeat_r65df": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "core/Repeat",
+                "x": -324,
+                "y": 540
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "core/Repeat_r65df",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/CompileString_667tt",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Repeat_ktvob",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/CompileString_pjcg2",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/ReadEnv_2mde7",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "packets/DoNotDisconnect_uev3m",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "packets/DoNotDisconnect_uev3m",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/CompileString_pjcg2",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "packets/DoNotDisconnect_uev3m",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/CompileString_667tt",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "/",
+            "tgt": {
+                "process": "strings/CompileString_pjcg2",
+                "port": "delimiter"
+            }
+        },
+        {
+            "data": "/",
+            "tgt": {
+                "process": "strings/CompileString_667tt",
+                "port": "delimiter"
+            }
+        }
+    ]
+}
