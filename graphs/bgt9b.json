@@ -66,6 +66,7 @@
             "name": "Street Lights",
             "nodes": [
                 "core/RunInterval_5f3rf",
+                "ingress-table/DetectAttack_ahdoi",
                 "ingress-table/Pulsate_qo650",
                 "strings/ParseJson_l8zh"
             ],
@@ -175,8 +176,8 @@
             "component": "ingress-table/DetermineWinner",
             "metadata": {
                 "label": "BlueOrGreen",
-                "x": 792,
-                "y": 648
+                "x": 864,
+                "y": 540
             }
         },
         "ingress-table/Pulsate_qo650": {
@@ -199,8 +200,8 @@
             "component": "core/Output",
             "metadata": {
                 "label": "LogErrors",
-                "x": 180,
-                "y": 612
+                "x": 324,
+                "y": 1044
             }
         },
         "ConfigPaths": {
