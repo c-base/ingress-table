@@ -168,8 +168,8 @@
             "component": "ingress-table/PrepareMessage",
             "metadata": {
                 "label": "PrepareMessage",
-                "x": 1008,
-                "y": 648
+                "x": 1044,
+                "y": 468
             }
         },
         "ingress-table/DetermineWinner_z8u0g": {
@@ -218,6 +218,32 @@
                 "label": "ingress-table/DetectAttack",
                 "x": 612,
                 "y": 756
+            }
+        },
+        "ingress-table/TableLights_9jw9e": {
+            "component": "ingress-table/TableLights",
+            "metadata": {
+                "label": "TableLights",
+                "x": 1224,
+                "y": 684,
+                "device": "/dev/ttyACM0",
+                "baudrate": 115200
+            }
+        },
+        "core/Output_eava9": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "core/Output",
+                "x": 1296,
+                "y": 828
+            }
+        },
+        "ingress-table/ConvertStreetLight_luj6x": {
+            "component": "ingress-table/ConvertStreetLight",
+            "metadata": {
+                "label": "ingress-table/ConvertStreetLight",
+                "x": 1008,
+                "y": 864
             }
         }
     },
@@ -553,6 +579,202 @@
             "metadata": {}
         },
         {
+            "src": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_eava9",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/DetermineWinner_z8u0g",
+                "port": "blue"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "floorblue"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/DetermineWinner_z8u0g",
+                "port": "green"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "floorgreen"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "redone"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greenone"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "blueone"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "redtwo"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greentwo"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "bluetwo"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "redthree"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greenthree"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "bluethree"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "redfour"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greenfour"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "bluefour"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
             "data": "ingress",
             "tgt": {
                 "process": "websocket/ListenConnections_9f5av",
@@ -578,13 +800,6 @@
             "tgt": {
                 "process": "strings/ParseJson_l8zh",
                 "port": "in"
-            }
-        },
-        {
-            "data": 50,
-            "tgt": {
-                "process": "core/RunInterval_5f3rf",
-                "port": "interval"
             }
         },
         {
@@ -620,6 +835,13 @@
             "tgt": {
                 "process": "ConfigPaths",
                 "port": "portalfile"
+            }
+        },
+        {
+            "data": 1000,
+            "tgt": {
+                "process": "core/RunInterval_5f3rf",
+                "port": "interval"
             }
         }
     ]
