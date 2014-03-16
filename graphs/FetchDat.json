@@ -74,6 +74,14 @@
                 "x": 1404,
                 "y": -468
             }
+        },
+        "mainportal": {
+            "process": "core/Repeat_whep1",
+            "port": "out",
+            "metadata": {
+                "x": 1404,
+                "y": 684
+            }
         }
     },
     "groups": [
@@ -295,6 +303,14 @@
                 "label": "core/Merge",
                 "x": 288,
                 "y": -468
+            }
+        },
+        "core/Repeat_whep1": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "MainPortal",
+                "x": 792,
+                "y": 684
             }
         }
     },
@@ -700,6 +716,19 @@
             },
             "metadata": {
                 "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_wx95o",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Repeat_whep1",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
             }
         },
         {
