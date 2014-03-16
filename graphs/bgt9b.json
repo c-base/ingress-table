@@ -183,7 +183,7 @@
             "component": "ingress-table/Pulsate",
             "metadata": {
                 "label": "Pulsate",
-                "x": 612,
+                "x": 792,
                 "y": 864
             }
         },
@@ -209,6 +209,14 @@
                 "label": "ConfigPaths",
                 "x": -144,
                 "y": 504
+            }
+        },
+        "ingress-table/DetectAttack_ahdoi": {
+            "component": "ingress-table/DetectAttack",
+            "metadata": {
+                "label": "ingress-table/DetectAttack",
+                "x": 612,
+                "y": 756
             }
         }
     },
@@ -503,6 +511,43 @@
             "tgt": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "portalconfig"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "ingress-table/DetectAttack_ahdoi",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "mainportal"
+            },
+            "tgt": {
+                "process": "ingress-table/DetectAttack_ahdoi",
+                "port": "portal"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/DetectAttack_ahdoi",
+                "port": "color"
+            },
+            "tgt": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
             },
             "metadata": {}
         },
