@@ -27,6 +27,8 @@ PF0 Red1
 PB7 Green1
 PD1 Blue1
 
+PA2 -> SSI0Clk => Portallights Clock (CKI)
+
 J4
 ---
 
@@ -51,4 +53,6 @@ PE5 Blue4
 
 PA6 Green Bottom
 PA7 Blue Bottom
+
+PA5 -> SSI0Tx => Portallights Data (SDI)
 ```
