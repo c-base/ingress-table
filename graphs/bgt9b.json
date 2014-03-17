@@ -224,8 +224,8 @@
             "component": "ingress-table/TableLights",
             "metadata": {
                 "label": "TableLights",
-                "x": 1224,
-                "y": 684,
+                "x": 1188,
+                "y": 864,
                 "device": "/dev/ttyACM0",
                 "baudrate": 115200
             }
@@ -233,15 +233,15 @@
         "core/Output_eava9": {
             "component": "core/Output",
             "metadata": {
-                "label": "core/Output",
-                "x": 1296,
-                "y": 828
+                "label": "LogTableErrors",
+                "x": 1332,
+                "y": 864
             }
         },
         "ingress-table/ConvertStreetLight_luj6x": {
             "component": "ingress-table/ConvertStreetLight",
             "metadata": {
-                "label": "ingress-table/ConvertStreetLight",
+                "label": "ConvertStreets",
                 "x": 1008,
                 "y": 864
             }
@@ -620,45 +620,6 @@
         {
             "src": {
                 "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redone"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greenone"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "blueone"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
                 "port": "street2"
             },
             "tgt": {
@@ -690,45 +651,6 @@
             "tgt": {
                 "process": "ingress-table/TableLights_9jw9e",
                 "port": "bluetwo"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redthree"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greenthree"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "bluethree"
             },
             "metadata": {
                 "route": 7
