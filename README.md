@@ -23,7 +23,7 @@ The status information is then transmitted to a microcontroller that shows porta
 J2
 ---
 
-PF0 Red1
+(was PF0 Red1) but is also connected to reset btn
 PB7 Green1
 PB6 Blue1
 
@@ -47,6 +47,7 @@ PF1 Blue3
 
 J1
 ---
+PB4 Red1
 PB5 Red4
 PE4 Green4
 PE5 Blue4
