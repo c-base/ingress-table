@@ -46,8 +46,7 @@ class StateToColor extends noflo.Component
       return if idx is -1
 
       @states[idx] = @stateToRgb state
-      console.log "[#{idx}, #{@rgb2hex(@states[idx])}]"
-      @outPorts.color.send "[#{idx}, #{@rgb2hex(@states[idx])}]"
+      @outPorts.color.send "[#{idx}, \"#{@rgb2hex(@states[idx])}\"]"
       @outPorts.colors.send @states
 
       @previousStates[state.guid] = state
@@ -107,7 +106,7 @@ class StateToColor extends noflo.Component
       idx = @portals.indexOf state.guid
       continue if idx is -1
       @calculateBlink state, idx
-      @outPorts.color.send "[#{idx}, #{@rgb2hex(@states[idx])}]"
+      @outPorts.color.send "[#{idx}, \"#{@rgb2hex(@states[idx])}\"]"
       changed = true
 
     @outPorts.colors.send @states if changed
