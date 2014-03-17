@@ -93,6 +93,7 @@
             "nodes": [
                 "core/Output_eava9",
                 "ingress-table/ConvertStreetLight_luj6x",
+                "ingress-table/PortalLights_qssgn",
                 "ingress-table/TableLights_9jw9e"
             ],
             "metadata": {
@@ -269,6 +270,15 @@
                 "label": "ConvertStreets",
                 "x": 1008,
                 "y": 1008
+            }
+        },
+        "ingress-table/PortalLights_qssgn": {
+            "component": "ingress-table/PortalLights",
+            "metadata": {
+                "label": "ingress-table/PortalLights",
+                "x": 1008,
+                "y": 864,
+                "device": "/dev/ttyACM1"
             }
         }
     },
@@ -809,6 +819,32 @@
             },
             "metadata": {
                 "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "color"
+            },
+            "tgt": {
+                "process": "ingress-table/PortalLights_qssgn",
+                "port": "pixel"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/PortalLights_qssgn",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_eava9",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
             }
         },
         {
