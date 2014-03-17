@@ -39,8 +39,44 @@
             }
         },
         {
-            "name": "Communications",
+            "name": "Street Lights",
             "nodes": [
+                "core/RunInterval_5f3rf",
+                "ingress-table/DetectAttack_ahdoi",
+                "ingress-table/Pulsate_qo650",
+                "strings/ParseJson_l8zh"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Table Lights",
+            "nodes": [
+                "core/Output_eava9",
+                "ingress-table/ConvertStreetLight_luj6x",
+                "ingress-table/TableLights_9jw9e"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Data Retrieval",
+            "nodes": [
+                "ConfigPaths",
+                "core/Output_qmkan",
+                "core/Repeat_x0tsf",
+                "ingress-table/FetchDat_7edo2"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Web Version",
+            "nodes": [
+                "PrepareMessage",
                 "core/Drop_z1l5r",
                 "strings/Jsonify_urxeq",
                 "webserver/Server_uovn0",
@@ -55,20 +91,9 @@
             "name": "Portal Status",
             "nodes": [
                 "ingress-table/CalculateState_xkyq7",
+                "ingress-table/DetermineWinner_z8u0g",
                 "ingress-table/StabilizePortal_sg4x0",
                 "ingress-table/StateToColor_ifaav"
-            ],
-            "metadata": {
-                "description": ""
-            }
-        },
-        {
-            "name": "Street Lights",
-            "nodes": [
-                "core/RunInterval_5f3rf",
-                "ingress-table/DetectAttack_ahdoi",
-                "ingress-table/Pulsate_qo650",
-                "strings/ParseJson_l8zh"
             ],
             "metadata": {
                 "description": ""
@@ -80,16 +105,16 @@
             "component": "core/Repeat",
             "metadata": {
                 "label": "Start",
-                "x": -144,
-                "y": 648
+                "x": -180,
+                "y": 684
             }
         },
         "ingress-table/FetchDat_7edo2": {
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 36,
-                "y": 504
+                "x": 0,
+                "y": 540
             }
         },
         "ingress-table/StateToColor_ifaav": {
@@ -104,40 +129,40 @@
             "component": "webserver/Server",
             "metadata": {
                 "label": "HTTPServer",
-                "x": 0,
-                "y": 324
+                "x": 1188,
+                "y": 540
             }
         },
         "websocket/ListenConnections_9f5av": {
             "component": "websocket/ListenConnections",
             "metadata": {
                 "label": "WebSocketConnection",
-                "x": 324,
-                "y": 324
+                "x": 1296,
+                "y": 576
             }
         },
         "websocket/SendMessage_9oy1f": {
             "component": "websocket/SendMessage",
             "metadata": {
                 "label": "SendToTable",
-                "x": 1296,
-                "y": 252
+                "x": 1440,
+                "y": 684
             }
         },
         "strings/Jsonify_urxeq": {
             "component": "strings/Jsonify",
             "metadata": {
                 "label": "Stringify",
-                "x": 1152,
-                "y": 324
+                "x": 1296,
+                "y": 684
             }
         },
         "core/Drop_z1l5r": {
             "component": "core/Drop",
             "metadata": {
                 "label": "IgnoreHTTP",
-                "x": 324,
-                "y": 180
+                "x": 1440,
+                "y": 540
             }
         },
         "ingress-table/CalculateState_xkyq7": {
@@ -168,15 +193,15 @@
             "component": "ingress-table/PrepareMessage",
             "metadata": {
                 "label": "PrepareMessage",
-                "x": 1044,
-                "y": 468
+                "x": 1008,
+                "y": 540
             }
         },
         "ingress-table/DetermineWinner_z8u0g": {
             "component": "ingress-table/DetermineWinner",
             "metadata": {
                 "label": "BlueOrGreen",
-                "x": 864,
+                "x": 792,
                 "y": 540
             }
         },
@@ -200,16 +225,16 @@
             "component": "core/Output",
             "metadata": {
                 "label": "LogErrors",
-                "x": 324,
-                "y": 1044
+                "x": 108,
+                "y": 864
             }
         },
         "ConfigPaths": {
             "component": "ingress-table/ConfigPaths",
             "metadata": {
                 "label": "ConfigPaths",
-                "x": -144,
-                "y": 504
+                "x": -180,
+                "y": 540
             }
         },
         "ingress-table/DetectAttack_ahdoi": {
@@ -234,7 +259,7 @@
             "component": "core/Output",
             "metadata": {
                 "label": "LogTableErrors",
-                "x": 1332,
+                "x": 1440,
                 "y": 864
             }
         },
@@ -706,19 +731,6 @@
             },
             "metadata": {
                 "route": 3
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redone"
-            },
-            "metadata": {
-                "route": 1
             }
         },
         {
