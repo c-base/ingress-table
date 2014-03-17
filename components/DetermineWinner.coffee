@@ -40,12 +40,12 @@ class DetermineWinner extends noflo.Component
         continue
 
     if them > us
-      @outPorts.green.send 255
+      @outPorts.green.send 200
       @outPorts.blue.send 0
       return [[0, 255, 0]]
     if us > them
       @outPorts.green.send 0
-      @outPorts.blue.send 255
+      @outPorts.blue.send 200
       return [[0, 0, 255]]
     return [[0, 0, 0]]
 
