@@ -862,13 +862,6 @@
             }
         },
         {
-            "data": "8000",
-            "tgt": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "wait"
-            }
-        },
-        {
             "data": "[255,255,255]",
             "tgt": {
                 "process": "strings/ParseJson_l8zh",
@@ -922,6 +915,13 @@
             "tgt": {
                 "process": "core/RunInterval_5f3rf",
                 "port": "interval"
+            }
+        },
+        {
+            "data": "10000",
+            "tgt": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "wait"
             }
         }
     ]
