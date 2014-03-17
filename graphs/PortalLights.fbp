@@ -1,6 +1,6 @@
 INPORT=ledchain.IN:PIXEL
 
-'6' -> PIN ledchain(LedChainWS)
+'19' -> PIN ledchain(LedChainWS)
 '50' -> PIXELS ledchain
 #'[29, "0xFF00FF"]' -> IN ledchain
 'true' -> SHOW ledchain
