@@ -28,6 +28,9 @@ class StateToColor extends noflo.Component
       colors:
         datatype: 'array'
         required: yes
+      color:
+        datatype: 'string'
+        required: no
       states:
         datatype: 'object'
         required: no
@@ -43,6 +46,8 @@ class StateToColor extends noflo.Component
       return if idx is -1
 
       @states[idx] = @stateToRgb state
+      console.log "[#{idx}, #{@rgb2hex(@states[idx])}]"
+      @outPorts.color.send "[#{idx}, #{@rgb2hex(@states[idx])}]"
       @outPorts.colors.send @states
 
       @previousStates[state.guid] = state
@@ -51,6 +56,7 @@ class StateToColor extends noflo.Component
 
     @inPorts.state.on 'disconnect', =>
       @outPorts.colors.disconnect()
+      @outPorts.color.disconnect()
       @outPorts.states.disconnect()
 
   teamToRgb: (state) ->
@@ -101,12 +107,17 @@ class StateToColor extends noflo.Component
       idx = @portals.indexOf state.guid
       continue if idx is -1
       @calculateBlink state, idx
+      @outPorts.color.send "[#{idx}, #{@rgb2hex(@states[idx])}]"
       changed = true
 
     @outPorts.colors.send @states if changed
 
   startBlinking: ->
     @blinking = setInterval @blinkStep, @blink
+
+  rgb2hex: ([red, green, blue]) ->
+    rgb = blue | (green << 8) | (red << 16)
+    '0x' + (0x1000000 + rgb).toString(16).slice(1).toUpperCase()
 
   shutdown: ->
     clearInterval @blinking if @blinking

@@ -42,7 +42,8 @@
   },
   "microflo": {
     "graphs": {
-      "TableLights": "graphs/TableLights.fbp"
+      "TableLights": "graphs/TableLights.fbp",
+      "PortalLights": "graphs/PortalLights.fbp"
     }
   },
   "author": "",
