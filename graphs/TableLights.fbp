@@ -24,7 +24,7 @@ Board(TivaC) PF0 -> PIN RedOne(PseudoPwmWrite)
 '300' -> PERIOD RedOne
 Board(TivaC) PB7 -> PIN GreenOne(PseudoPwmWrite)
 '300' -> PERIOD GreenOne
-Board(TivaC) PD1 -> PIN BlueOne(PseudoPwmWrite)
+Board(TivaC) PB6 -> PIN BlueOne(PseudoPwmWrite)
 '300' -> PERIOD BlueOne
 
 Board(TivaC) PF3 -> PIN RedTwo(PseudoPwmWrite)

@@ -25,7 +25,7 @@ J2
 
 PF0 Red1
 PB7 Green1
-PD1 Blue1
+PB6 Blue1
 
 PA2 -> SSI0Clk => Portallights Clock (CKI)
 
