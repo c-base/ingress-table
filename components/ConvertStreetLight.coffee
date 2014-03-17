@@ -28,6 +28,7 @@ class ConvertStreetLight extends noflo.Component
 
   convertLight: (light, colors) ->
     for color, idx in colors
+      continue unless @outPorts.ports["street#{light}"].isAttached idx
       @outPorts.ports["street#{light}"].send color, idx
 
   convert: (data) ->
