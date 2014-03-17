@@ -709,6 +709,84 @@
             }
         },
         {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "redone"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greenone"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "blueone"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "redthree"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greenthree"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "bluethree"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
             "data": "ingress",
             "tgt": {
                 "process": "websocket/ListenConnections_9f5av",
