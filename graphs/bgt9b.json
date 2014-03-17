@@ -51,17 +51,6 @@
             }
         },
         {
-            "name": "Table Lights",
-            "nodes": [
-                "core/Output_eava9",
-                "ingress-table/ConvertStreetLight_luj6x",
-                "ingress-table/TableLights_9jw9e"
-            ],
-            "metadata": {
-                "description": ""
-            }
-        },
-        {
             "name": "Data Retrieval",
             "nodes": [
                 "ConfigPaths",
@@ -98,6 +87,18 @@
             "metadata": {
                 "description": ""
             }
+        },
+        {
+            "name": "Table Lights",
+            "nodes": [
+                "core/Output_eava9",
+                "ingress-table/ConvertStreetLight_luj6x",
+                "ingress-table/PortalLights_iazw",
+                "ingress-table/TableLights_9jw9e"
+            ],
+            "metadata": {
+                "description": ""
+            }
         }
     ],
     "processes": {
@@ -106,7 +107,7 @@
             "metadata": {
                 "label": "Start",
                 "x": -180,
-                "y": 684
+                "y": 756
             }
         },
         "ingress-table/FetchDat_7edo2": {
@@ -186,7 +187,7 @@
             "metadata": {
                 "label": "StreetColor",
                 "x": 324,
-                "y": 864
+                "y": 1008
             }
         },
         "PrepareMessage": {
@@ -210,7 +211,7 @@
             "metadata": {
                 "label": "Pulsate",
                 "x": 792,
-                "y": 864
+                "y": 1008
             }
         },
         "core/RunInterval_5f3rf": {
@@ -226,7 +227,7 @@
             "metadata": {
                 "label": "LogErrors",
                 "x": 108,
-                "y": 864
+                "y": 1008
             }
         },
         "ConfigPaths": {
@@ -240,8 +241,8 @@
         "ingress-table/DetectAttack_ahdoi": {
             "component": "ingress-table/DetectAttack",
             "metadata": {
-                "label": "ingress-table/DetectAttack",
-                "x": 612,
+                "label": "DetectAttacks",
+                "x": 684,
                 "y": 756
             }
         },
@@ -249,8 +250,8 @@
             "component": "ingress-table/TableLights",
             "metadata": {
                 "label": "TableLights",
-                "x": 1188,
-                "y": 864,
+                "x": 1260,
+                "y": 1008,
                 "device": "/dev/ttyACM0",
                 "baudrate": 115200
             }
@@ -268,7 +269,16 @@
             "metadata": {
                 "label": "ConvertStreets",
                 "x": 1008,
-                "y": 864
+                "y": 1008
+            }
+        },
+        "ingress-table/PortalLights_iazw": {
+            "component": "ingress-table/PortalLights",
+            "metadata": {
+                "label": "PortalLights",
+                "x": 1008,
+                "y": 864,
+                "device": "/dev/ttyACM1"
             }
         }
     },
@@ -736,32 +746,6 @@
         {
             "src": {
                 "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greenone"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "blueone"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
                 "port": "street3"
             },
             "tgt": {
@@ -796,6 +780,58 @@
             },
             "metadata": {
                 "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "greenone"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "blueone"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/PortalLights_iazw",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Output_eava9",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "color"
+            },
+            "tgt": {
+                "process": "ingress-table/PortalLights_iazw",
+                "port": "pixel"
+            },
+            "metadata": {
+                "route": 5
             }
         },
         {
@@ -862,7 +898,14 @@
             }
         },
         {
-            "data": 1000,
+            "data": false,
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
+                "port": "upload"
+            }
+        },
+        {
+            "data": 20,
             "tgt": {
                 "process": "core/RunInterval_5f3rf",
                 "port": "interval"
@@ -871,7 +914,7 @@
         {
             "data": false,
             "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
+                "process": "ingress-table/PortalLights_iazw",
                 "port": "upload"
             }
         }
