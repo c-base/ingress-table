@@ -1,6 +1,6 @@
 INPORT=FloorBlue.ONTIME:FLOORBLUE
 INPORT=FloorGreen.ONTIME:FLOORGREEN
-#INPORT=RedOne.ONTIME:REDONE
+INPORT=RedOne.ONTIME:REDONE
 INPORT=GreenOne.ONTIME:GREENONE
 INPORT=BlueOne.ONTIME:BLUEONE
 INPORT=RedTwo.ONTIME:REDTWO
@@ -20,7 +20,7 @@ Board(TivaC) PA6 -> PIN FloorGreen(PseudoPwmWrite)
 '220' -> PERIOD FloorGreen
 
 # Street lights
-Board(TivaC) PF0 -> PIN RedOne(PseudoPwmWrite)
+Board(TivaC) PB4 -> PIN RedOne(PseudoPwmWrite)
 '220' -> PERIOD RedOne
 Board(TivaC) PB7 -> PIN GreenOne(PseudoPwmWrite)
 '220' -> PERIOD GreenOne
