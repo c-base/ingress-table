@@ -93,7 +93,7 @@
             "nodes": [
                 "core/Output_eava9",
                 "ingress-table/ConvertStreetLight_luj6x",
-                "ingress-table/PortalLights_iazw",
+                "ingress-table/PortalLights_qssgn",
                 "ingress-table/TableLights_9jw9e"
             ],
             "metadata": {
@@ -272,10 +272,10 @@
                 "y": 1008
             }
         },
-        "ingress-table/PortalLights_iazw": {
+        "ingress-table/PortalLights_qssgn": {
             "component": "ingress-table/PortalLights",
             "metadata": {
-                "label": "PortalLights",
+                "label": "ingress-table/PortalLights",
                 "x": 1008,
                 "y": 864,
                 "device": "/dev/ttyACM1"
@@ -789,6 +789,19 @@
             },
             "tgt": {
                 "process": "ingress-table/TableLights_9jw9e",
+                "port": "redone"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "ingress-table/TableLights_9jw9e",
                 "port": "greenone"
             },
             "metadata": {
@@ -810,7 +823,20 @@
         },
         {
             "src": {
-                "process": "ingress-table/PortalLights_iazw",
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "color"
+            },
+            "tgt": {
+                "process": "ingress-table/PortalLights_qssgn",
+                "port": "pixel"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/PortalLights_qssgn",
                 "port": "error"
             },
             "tgt": {
@@ -819,19 +845,6 @@
             },
             "metadata": {
                 "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "color"
-            },
-            "tgt": {
-                "process": "ingress-table/PortalLights_iazw",
-                "port": "pixel"
-            },
-            "metadata": {
-                "route": 5
             }
         },
         {
@@ -909,13 +922,6 @@
             "tgt": {
                 "process": "core/RunInterval_5f3rf",
                 "port": "interval"
-            }
-        },
-        {
-            "data": false,
-            "tgt": {
-                "process": "ingress-table/PortalLights_iazw",
-                "port": "upload"
             }
         }
     ]
