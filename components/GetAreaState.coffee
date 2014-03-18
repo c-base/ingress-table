@@ -67,6 +67,7 @@ class GetAreaState extends noflo.AsyncComponent
 
     req.on 'error', (err) =>
       callback err
+    req.setTimeout 1000, -> req.abort()
     req.end()
 
 exports.getComponent = -> new GetAreaState
