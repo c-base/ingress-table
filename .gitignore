@@ -1,3 +1,4 @@
 /node_modules/
+/components/*/
 flowhub.json
 server.json

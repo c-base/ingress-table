@@ -16,7 +16,12 @@
     "noflo-packets": "^0.1.2"
   },
   "devDependencies": {
-    "coffee-script": "~1.7.1"
+    "coffee-script": "~1.7.1",
+    "grunt": "^0.4.4",
+    "component": "^0.19.7",
+    "component-json": "^0.1.4",
+    "component-coffee": "^0.1.4",
+    "grunt-exec": "^0.4.5"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

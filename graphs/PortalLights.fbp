@@ -1,9 +1,10 @@
 INPORT=ledchain.IN:PIXEL
+INPORT=ledchain.SHOW:SHOW
 
-'19' -> PIN ledchain(LedChainWS)
+'2' -> PINDATA ledchain(LedChainWS)
+'3' -> PINCLK ledchain
 '50' -> PIXELS ledchain
-#'[29, "0xFF00FF"]' -> IN ledchain
-'true' -> SHOW ledchain
+#'true' -> SHOW ledchain
 
 #INPORT=ledchain.IN:PIXEL
 #OUTPORT=ledchain.READY:READY
