@@ -9,6 +9,29 @@ We have a NoFlo graph that periodically pulls portal status information from a c
 
 The status information is then transmitted to a microcontroller that shows portal owners, attack notifications, etc. using the LEDs.
 
+## Starting and Stopping the Service
+
+This is the configuration file for supervisord (needs to be installed through apt-get install supervisor):. Filename: /etc/supervisor/conf.d/ingress-table.conf
+
+    [program:ingress_table]
+    command=node ./node_modules/.bin/noflo graphs/bgt9b.json
+    directory=/home/ubuntu/ingress-table
+    stdout_logfile=/home/ubuntu/ingress_table_output.txt
+    redirect_stderr=true
+    autostart=true
+    user=ubuntu
+    stopwaitsecs=2
+
+The stopwaitsecs=2 is there because we need to do a kill -9 after the service is stopped.
+
+You can start/stop/look at status the service using these commands:
+
+    supervisorctl start ingress_table
+    supervisorctl stop ingress_table
+    supervisorctl status
+
+
+
 ## Hardware
 
 * Beaglebone Black running NoFlo
