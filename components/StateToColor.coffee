@@ -92,7 +92,7 @@ class StateToColor extends noflo.Component
           unless val
             other[index] = 0
             continue
-          other[index] = Math.floor val * 1.2
+          other[index] = 200
 
     if @states[idx].join(',') is other.join(',')
       @states[idx] = base
