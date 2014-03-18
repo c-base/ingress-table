@@ -92,6 +92,7 @@
             "name": "Table Lights",
             "nodes": [
                 "core/Output_eava9",
+                "core/RunInterval_82o32",
                 "ingress-table/ConvertStreetLight_luj6x",
                 "ingress-table/PortalLights_qssgn",
                 "ingress-table/TableLights_9jw9e"
@@ -276,9 +277,17 @@
             "component": "ingress-table/PortalLights",
             "metadata": {
                 "label": "ingress-table/PortalLights",
-                "x": 1008,
+                "x": 1260,
                 "y": 864,
                 "device": "/dev/ttyACM1"
+            }
+        },
+        "core/RunInterval_82o32": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "UpdateLights",
+                "x": 1008,
+                "y": 864
             }
         }
     },
@@ -848,6 +857,30 @@
             }
         },
         {
+            "src": {
+                "process": "core/RunInterval_82o32",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/PortalLights_qssgn",
+                "port": "show"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Repeat_x0tsf",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RunInterval_82o32",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
             "data": "ingress",
             "tgt": {
                 "process": "websocket/ListenConnections_9f5av",
@@ -922,6 +955,13 @@
             "tgt": {
                 "process": "ingress-table/StabilizePortal_sg4x0",
                 "port": "wait"
+            }
+        },
+        {
+            "data": 500,
+            "tgt": {
+                "process": "core/RunInterval_82o32",
+                "port": "interval"
             }
         }
     ]
