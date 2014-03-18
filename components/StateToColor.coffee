@@ -60,12 +60,12 @@ class StateToColor extends noflo.Component
 
   teamToRgb: (state) ->
     if state.team is 'RESISTANCE'
-      return [0, 0, 128]
+      return [0, 0, 96]
     if state.team is 'ALIENS'
-      return [0, 128, 0]
+      return [0, 96, 0]
 
     # Neutral or third faction?
-    return [128, 128, 128]
+    return [96, 96, 96]
 
   stateToRgb: (state) ->
     base = @teamToRgb state
@@ -78,12 +78,12 @@ class StateToColor extends noflo.Component
     unless @states[idx]
       @states[idx] = base
     other = base.slice()
-    random = -> Math.floor(Math.random() * 128) + 1
+    random = -> Math.floor(Math.random() * 96) + 1
     switch state.state
       when 'ownerchange'
-        other = [128,128,128]
+        other = [96,96,96]
       when 'attack'
-        other = [128, 0, 0]
+        other = [96, 0, 0]
       when 'disco'
         other = [random(), random(), random()]
       else
