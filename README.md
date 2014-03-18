@@ -24,10 +24,11 @@ This is the configuration file for supervisord (needs to be installed through ap
 
 The stopwaitsecs=2 is there because we need to do a kill -9 after the service is stopped.
 
-You can start/stop the service using these commands:
+You can start/stop/look at status the service using these commands:
 
     supervisorctl start ingress_table
     supervisorctl stop ingress_table
+    supervisorctl status
 
 
 
