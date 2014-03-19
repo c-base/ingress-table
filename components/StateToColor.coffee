@@ -65,7 +65,7 @@ class StateToColor extends noflo.Component
       return [0, 96, 0]
 
     # Neutral or third faction?
-    return [128, 96, 00]
+    return [128, 96, 0]
 
   stateToRgb: (state) ->
     base = @teamToRgb state
