@@ -52,7 +52,7 @@ to control them. We use three IRF-820 MOSFETs per RGB strip.
 This is the circuit for one channel only, you must build this 5 times. Here is an example of how you could
 put in on a perfboard:
 
-![](https://github.com/c-base/ingress-table/blob/8ff081f4ea03c158d300b17b2abb8601b72aa9ce/RGB-Channel%20Breadboard-Example.png)
+![](https://github.com/c-base/ingress-table/blob/8ff081f4ea03c158d300b17b2abb8601b72aa9ce/RGB-Channel%20Breadboard-Example.png?raw=true)
 
 
 ### LED strip i/o pins
