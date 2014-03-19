@@ -35,22 +35,36 @@ You can start/stop/look at status the service using these commands:
 ## Hardware
 
 * Beaglebone Black running NoFlo
-* Launchpad Tiva running MicroFlo
-* Individually controllable LEDs for portals
-* LED strips for street and floor lighting
+* Arduino Leonardo running Microflo for controlling the WS2801-based LED strand (portal lights)
+* 50 individually controllable LEDs for portals (based on the WS2801 controller chip)
+* 5 LED strips for streets (map background) and floor lighting
+* Launchpad Tiva running MicroFlo for controlling the 5 RGB-LED strips
 * USB chargers for agents running out of battery
 
-## LED strip i/o pins
+### LED driver circuit
+
+The RGB-LED strips we use run on 12 Volts DC and have one shared plus pole and an individual
+minus pole for each color. They cannot be driven by the Tiva itself so we use an N-Channel MOSFET
+to control them. We use three IRF-820 MOSFETs per RGB strip.
+  
+![](https://raw.githubusercontent.com/c-base/ingress-table/master/RGB-Channel%20Schematic.png)
+
+This is the circuit for one channel only, you must build this 5 times.
+
+![](https://raw.githubusercontent.com/c-base/ingress-table/master/RGB-Channel%20Breadboard-Example.png)
+
+
+### LED strip i/o pins
+
 
 ```
 J2
 ---
 
-(was PF0 Red1) but is also connected to reset btn
 PB7 Green1
 PB6 Blue1
 
-PA2 -> SSI0Clk => Portallights Clock (CKI)
+PA2 -> SSI0Clk => Portallights Clock (CKI), not used at the moment
 
 J4
 ---
@@ -78,7 +92,7 @@ PE5 Blue4
 PA6 Green Bottom
 PA7 Blue Bottom
 
-PA5 -> SSI0Tx => Portallights Data (SDI)
+PA5 -> SSI0Tx => Portallights Data (SDI), not used at the moment
 ```
 
 **Note**: out-of-the box on the Tiva the pins PB6, PB7, PD0, PD1 can't be used. You [can disconnect the R9 and R10 resistors](http://e2e.ti.com/support/microcontrollers/tiva_arm/f/908/t/290329.aspx) to make them usable.
