@@ -45,13 +45,14 @@ You can start/stop/look at status the service using these commands:
 
 The RGB-LED strips we use run on 12 Volts DC and have one shared plus pole and an individual
 minus pole for each color. They cannot be driven by the Tiva itself so we use an N-Channel MOSFET
-to control them. We use three IRF-820 MOSFETs per RGB strip.
+to control them. We use three [IRF540N MOSFETs](http://www.irf.com/product-info/datasheets/data/irf540n.pdf) (named Q1, Q2, Q3) per RGB strip.
   
 ![](https://raw.githubusercontent.com/c-base/ingress-table/master/RGB-Channel%20Schematic.png)
 
-This is the circuit for one channel only, you must build this 5 times.
+This is the circuit for one channel only, you must build this 5 times. Here is an example of how you could
+put in on a perfboard:
 
-![](https://raw.githubusercontent.com/c-base/ingress-table/master/RGB-Channel%20Breadboard-Example.png)
+![](https://github.com/c-base/ingress-table/blob/8ff081f4ea03c158d300b17b2abb8601b72aa9ce/RGB-Channel%20Breadboard-Example.png?raw=true)
 
 
 ### LED strip i/o pins
