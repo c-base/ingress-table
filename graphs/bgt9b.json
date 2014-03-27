@@ -916,7 +916,7 @@
             }
         },
         {
-            "data": "INGRESS_TABLE_ROOT",
+            "data": "NOFLO_PROJECT_ROOT",
             "tgt": {
                 "process": "ConfigPaths",
                 "port": "envvar"
