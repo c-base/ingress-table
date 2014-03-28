@@ -8,7 +8,7 @@
     "noflo-core": "~0.1.4",
     "noflo-filesystem": "~1.0.5",
     "noflo-webserver": "~0.0.4",
-    "noflo-websocket": "~0.1.1",
+    "noflo-websocket": "~0.1.3",
     "noflo-strings": "^0.1.6",
     "noflo-objects": "^0.1.9",
     "microflo": "git://github.com/jonnor/microflo.git",
