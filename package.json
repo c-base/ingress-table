@@ -4,7 +4,7 @@
   "description": "Ingress Table with NoFlo",
   "main": "index.js",
   "dependencies": {
-    "noflo": "~0.4.4",
+    "noflo": "~0.5.0",
     "noflo-core": "~0.1.3",
     "noflo-filesystem": "~1.0.4",
     "noflo-nodejs": "~0.0.3",
