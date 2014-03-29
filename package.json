@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "noflo": "~0.5.0",
-    "noflo-core": "~0.1.4",
+    "noflo-core": "~0.1.5",
     "noflo-filesystem": "~1.0.5",
     "noflo-webserver": "~0.0.4",
     "noflo-websocket": "~0.1.3",
