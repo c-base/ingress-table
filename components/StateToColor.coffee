@@ -27,7 +27,7 @@ class StateToColor extends noflo.Component
     @outPorts = new noflo.OutPorts
       colors:
         datatype: 'array'
-        required: yes
+        required: no
       color:
         datatype: 'string'
         required: no

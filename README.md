@@ -1,4 +1,4 @@
-Ingress Table
+Ingress Table [![Build Status](https://travis-ci.org/c-base/ingress-table.svg?branch=master)](https://travis-ci.org/c-base/ingress-table)
 =============
 
 The software side of a "physical Intel map", built with [NoFlo](http://noflojs.org) and [MicroFlo](http://microflo.org).
