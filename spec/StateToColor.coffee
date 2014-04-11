@@ -20,6 +20,10 @@ describe 'StateToColor component', ->
     portalConfig = JSON.parse fs.readFileSync path.resolve(__dirname, '../portals.json'), 'utf-8'
     portals.send portalConfig.portals
 
+  afterEach ->
+    # Stop blinking
+    c.shutdown()
+
   describe 'receiving a neutral portal', ->
     it 'should set the color correctly', (done) ->
       color.on 'data', (color) ->
