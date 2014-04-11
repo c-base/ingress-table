@@ -1,0 +1,31 @@
+{
+  "name": "ingress-table",
+  "description": "Physical Intel Map",
+  "author": "Henri Bergius <henri.bergius@iki.fi>",
+  "repo": "bergie/ingress-table",
+  "version": "0.1.0",
+  "dependencies": {
+    "noflo/noflo": "*",
+    "noflo/noflo-websocket": "*",
+    "noflo/noflo-strings": "*",
+    "noflo/noflo-objects": "*",
+    "noflo/noflo-core": "*"
+  },
+  "noflo": {
+    "components": {
+      "SetLEDColor": "components/SetLEDColor.coffee"
+    },
+    "graphs": {
+      "Ingress_Table": "graphs/Ingress_Table.json",
+      "gj4vv": "graphs/gv4vv.json"
+    }
+  },
+  "main": "index.js",
+  "scripts": [
+    "index.js",
+    "components/SetLEDColor.coffee"
+  ],
+  "json": [
+    "component.json"
+  ]
+}
