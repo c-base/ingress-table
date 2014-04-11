@@ -11,25 +11,12 @@ The status information is then transmitted to a microcontroller that shows porta
 
 ## Starting and Stopping the Service
 
-This is the configuration file for supervisord (needs to be installed through apt-get install supervisor):. Filename: /etc/supervisor/conf.d/ingress-table.conf
+Copy noflo.init to /etc/init.d/noflo.sh and create the links at /etc/rc2.d/S90noflo.sh and /etc/rc2.d/K10noflo.sh
+pointing to the init script.
 
-    [program:ingress_table]
-    command=node ./node_modules/.bin/noflo graphs/bgt9b.json
-    directory=/home/ubuntu/ingress-table
-    stdout_logfile=/home/ubuntu/ingress_table_output.txt
-    redirect_stderr=true
-    autostart=true
-    user=ubuntu
-    stopwaitsecs=2
+The init script needs timeout to work: https://github.com/pshved/timeout. Copy timeout to /home/pi/timeout and make it executable.
 
-The stopwaitsecs=2 is there because we need to do a kill -9 after the service is stopped.
-
-You can start/stop/look at status the service using these commands:
-
-    supervisorctl start ingress_table
-    supervisorctl stop ingress_table
-    supervisorctl status
-
+Now you can start/stop the service using /etc/init.d/noflo.sh {start|stop}
 
 
 ## Hardware
