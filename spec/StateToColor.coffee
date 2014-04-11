@@ -34,3 +34,54 @@ describe 'StateToColor component', ->
         guid: portalConfig.mainportal
         team: 'NEUTRAL'
         state: 'stable'
+
+  describe 'receiving a Resistance portal under attack', ->
+    it 'should set the color correctly', (done) ->
+      expected = [
+        "[30, \"0x000040\"]"
+        "[30, \"0x600000\"]"
+        "[30, \"0x000040\"]"
+        "[30, \"0x600000\"]"
+      ]
+      color.on 'data', (color) ->
+        chai.expect(color).to.equal expected.shift()
+        done() unless expected.length
+
+      state.send
+        guid: portalConfig.mainportal
+        team: 'RESISTANCE'
+        state: 'attack'
+
+  describe 'receiving a portal that has been recently captured', ->
+    it 'should set the color correctly', (done) ->
+      expected = [
+        "[30, \"0x000040\"]"
+        "[30, \"0x404040\"]"
+        "[30, \"0x000040\"]"
+        "[30, \"0x404040\"]"
+      ]
+      color.on 'data', (color) ->
+        chai.expect(color).to.equal expected.shift()
+        done() unless expected.length
+
+      state.send
+        guid: portalConfig.mainportal
+        team: 'RESISTANCE'
+        state: 'ownerchange'
+
+  describe 'receiving a portal that is L8 green', ->
+    it 'should set the color correctly', (done) ->
+      expected = [
+        "[30, \"0x004000\"]"
+        "[30, \"0x00C800\"]"
+        "[30, \"0x004000\"]"
+        "[30, \"0x00C800\"]"
+      ]
+      color.on 'data', (color) ->
+        chai.expect(color).to.equal expected.shift()
+        done() unless expected.length
+
+      state.send
+        guid: portalConfig.mainportal
+        team: 'ALIENS'
+        state: 'bad'
