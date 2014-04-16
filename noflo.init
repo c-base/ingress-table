@@ -1,0 +1,35 @@
+#!/bin/bash
+# /etc/init.d/noflo.sh
+# needs the tool 'timeout': https://github.com/pshved/timeout
+# Starts and stops the Noflo service and kills the process if it needs more
+# than MEMLIMIT kilobytes of memory.
+
+NODE=/opt/node/bin/node
+NOFLO_PROJECT_ROOT=/home/pi/Projects/ingress-table
+SERVER_JS_FILE=$NOFLO_PROJECT_ROOT/node_modules/.bin/noflo
+NOFLO_GRAPH=$NOFLO_PROJECT_ROOT/graphs/bgt9b.json
+USER=pi
+OUT=/home/pi/nodejs.log
+PIDFILE=/var/run/noflo.pid
+TIMEOUT_PATH=/home/pi/timeout
+MEMLIMIT=400000
+
+case "$1" in
+
+start)
+    echo "starting node: $NODE $SERVER_JS_FILE"
+        cd $NOFLO_PROJECT_ROOT
+    (while true; do sudo -u $USER NOFLO_PROJECT_ROOT=$NOFLO_PROJECT_ROOT $TIMEOUT_PATH -m $MEMLIMIT $NODE --trace-gc --trace-gc-verbose $SERVER_JS_FILE $NOFLO_GRAPH > $OUT 2>$OUT ; sleep 10; done) &
+    echo $! > $PIDFILE
+    ;;
+
+stop)
+    kill `cat $PIDFILE`
+    ;;
+
+*)
+    echo "usage: $0 (start|stop)"
+esac
+
+exit 0
+
