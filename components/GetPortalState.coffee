@@ -65,7 +65,6 @@ class GetPortalState extends noflo.AsyncComponent
         @outPorts.state.beginGroup id
         @outPorts.state.send portalState
         @outPorts.state.endGroup()
-        @outPorts.state.disconnect()
         do callback
 
     req.on 'error', (err) =>

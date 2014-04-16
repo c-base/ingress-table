@@ -62,7 +62,6 @@ class GetAreaState extends noflo.AsyncComponent
         unless res.statusCode is 200
           return callback new Error "Server responded with #{res.statusCode}"
         @outPorts.states.send portalStates
-        @outPorts.states.disconnect()
         do callback
 
     req.on 'error', (err) =>
