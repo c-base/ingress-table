@@ -31,9 +31,19 @@
   "main": "index.js",
   "scripts": [
     "index.js",
-    "components/SetLEDColor.coffee"
+    "components/SetLEDColor.coffee",
+    "components/CalculateState.coffee",
+    "components/ConvertStreetLight.coffee",
+    "components/DetectAttack.coffee",
+    "components/DetermineWinner.coffee",
+    "components/Pulsate.coffee",
+    "components/SetPortalColor.coffee",
+    "components/StabilizePortal.coffee",
+    "components/StateToColor.coffee"
   ],
   "json": [
-    "component.json"
+    "component.json",
+    "graphs/Ingress_Table.json",
+    "graphs/gj4vv.json"
   ]
 }
