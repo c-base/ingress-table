@@ -13,11 +13,19 @@
   },
   "noflo": {
     "components": {
-      "SetLEDColor": "components/SetLEDColor.coffee"
+      "CalculateState": "components/CalculateState.coffee",
+      "ConvertStreetLight": "components/ConvertStreetLight.coffee",
+      "DetectAttack": "components/DetectAttack.coffee",
+      "DetermineWinner": "components/DetermineWinner.coffee",
+      "Pulsate": "components/Pulsate.coffee",
+      "SetLEDColor": "components/SetLEDColor.coffee",
+      "SetPortalColor": "components/SetPortalColor.coffee",
+      "StabilizePortal": "components/StabilizePortal.coffee",
+      "StateToColor": "components/StateToColor.coffee"
     },
     "graphs": {
       "Ingress_Table": "graphs/Ingress_Table.json",
-      "gj4vv": "graphs/gv4vv.json"
+      "gj4vv": "graphs/gj4vv.json"
     }
   },
   "main": "index.js",

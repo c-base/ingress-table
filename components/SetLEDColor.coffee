@@ -1,5 +1,7 @@
 noflo = require "noflo"
 
+# @runtime noflo-browser
+
 class SetLEDColor extends noflo.Component
   icon: 'lightbulb-o'
   constructor: () ->

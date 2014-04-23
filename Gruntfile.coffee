@@ -3,6 +3,13 @@ module.exports = ->
   @initConfig
     pkg: @file.readJSON 'package.json'
 
+    # Updating the package manifest files
+    noflo_manifest:
+      update:
+        files:
+          'component.json': ['graphs/*', 'components/*']
+          'package.json': ['graphs/*', 'components/*']
+
     # CoffeeScript compilation
     coffee:
       spec:
@@ -77,6 +84,7 @@ module.exports = ->
             level: 'warn'
 
   # Grunt plugins used for building
+  @loadNpmTasks 'grunt-noflo-manifest'
   @loadNpmTasks 'grunt-contrib-coffee'
   @loadNpmTasks 'grunt-exec'
   @loadNpmTasks 'grunt-combine'
@@ -90,6 +98,6 @@ module.exports = ->
   @loadNpmTasks 'grunt-coffeelint'
 
   # Our local tasks
-  @registerTask 'build', ['exec:install', 'exec:build', 'combine', 'uglify']
+  @registerTask 'build', ['noflo_manifest', 'exec:install', 'exec:build', 'combine', 'uglify']
   @registerTask 'test', ['coffeelint', 'build', 'cafemocha', 'connect', 'mocha_phantomjs']
   @registerTask 'default', ['test']

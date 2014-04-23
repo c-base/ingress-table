@@ -1,6 +1,8 @@
 http = require 'http'
 noflo = require 'noflo'
 
+# @runtime noflo-nodejs
+
 class GetPortalState extends noflo.AsyncComponent
   description: 'Get the state of an individual Ingress portal'
   icon: 'fire'

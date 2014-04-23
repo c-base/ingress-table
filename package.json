@@ -32,7 +32,8 @@
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-phantomjs": "^0.4.3",
     "mocha": "^1.18.2",
-    "grunt-combine": "^0.8.3"
+    "grunt-combine": "^0.8.3",
+    "grunt-noflo-manifest": "^0.1.1"
   },
   "scripts": {
     "test": "grunt test"
@@ -44,8 +45,8 @@
       "ConvertStreetLight": "components/ConvertStreetLight.coffee",
       "DetectAttack": "components/DetectAttack.coffee",
       "DetermineWinner": "components/DetermineWinner.coffee",
-      "GetPortalState": "components/GetPortalState.coffee",
       "GetAreaState": "components/GetAreaState.coffee",
+      "GetPortalState": "components/GetPortalState.coffee",
       "Pulsate": "components/Pulsate.coffee",
       "StabilizePortal": "components/StabilizePortal.coffee",
       "StateToColor": "components/StateToColor.coffee"
@@ -53,7 +54,8 @@
     "graphs": {
       "ConfigPaths": "graphs/ConfigPaths.json",
       "FetchDat": "graphs/FetchDat.json",
-      "PrepareMessage": "graphs/PrepareMessage.json"
+      "PrepareMessage": "graphs/PrepareMessage.json",
+      "bgt9b": "graphs/bgt9b.json"
     }
   },
   "microflo": {
