@@ -99,5 +99,5 @@ module.exports = ->
 
   # Our local tasks
   @registerTask 'build', ['noflo_manifest', 'exec:install', 'exec:build', 'combine', 'uglify']
-  @registerTask 'test', ['coffeelint', 'build', 'cafemocha', 'connect', 'mocha_phantomjs']
+  @registerTask 'test', ['coffeelint', 'cafemocha'] #, 'connect', 'mocha_phantomjs']
   @registerTask 'default', ['test']
