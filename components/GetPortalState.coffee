@@ -1,4 +1,4 @@
-http = require 'http'
+http = require 'https'
 noflo = require 'noflo'
 
 # @runtime noflo-nodejs
@@ -49,6 +49,7 @@ class GetPortalState extends noflo.AsyncComponent
       hostname: @hostname
       auth: "#{@login.username}:#{@login.password}"
       path: "/api/table/portals/#{id}/1"
+      port: 443
     , (res) =>
       unless res.statusCode is 200
         return callback new Error "Server responded with #{res.statusCode}"

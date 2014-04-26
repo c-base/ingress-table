@@ -1,4 +1,4 @@
-http = require 'http'
+http = require 'https'
 noflo = require 'noflo'
 
 # @runtime noflo-nodejs
@@ -49,6 +49,7 @@ class GetAreaState extends noflo.AsyncComponent
       hostname: @hostname
       auth: "#{@login.username}:#{@login.password}"
       path: "/api/table/area/#{area.minLatE6}/#{area.minLonE6}/#{area.maxLatE6}/#{area.maxLonE6}"
+      port: 443
     , (res) =>
       body = ''
       res.on 'data', (chunk) ->
