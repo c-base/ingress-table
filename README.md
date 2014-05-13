@@ -32,7 +32,7 @@ Now you can start/stop the service using /etc/init.d/noflo.sh {start|stop}
 
 The RGB-LED strips we use run on 12 Volts DC and have one shared plus pole and an individual
 minus pole for each color. They cannot be driven by the Tiva itself so we use an N-Channel MOSFET
-to control them. We use three [IRF540N MOSFETs](http://www.irf.com/product-info/datasheets/data/irf540n.pdf) (named Q1, Q2, Q3) per RGB strip.
+to control them. We use three [IRL540N MOSFETs](http://www.irf.com/product-info/datasheets/data/irl540n.pdf) (named Q1, Q2, Q3) per RGB strip.
   
 ![](https://raw.githubusercontent.com/c-base/ingress-table/master/RGB-Channel%20Schematic.png)
 
