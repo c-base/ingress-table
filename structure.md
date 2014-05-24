@@ -6,7 +6,7 @@ This file lists all wooden and metal parts that are needed to build the table
 
 4x Table Legs, 78x78x?
 4x Sideboards, 1000x135x18 with beveled corners for vertical mounting
-4x Naplayersupports, 944x60x18 with beveled corners for horizontal mounting
+4x Maplayersupports, 944x60x18 with beveled corners for horizontal mounting
 1x Baselayer 1000x1000x15
 
 ### Screws
@@ -17,4 +17,8 @@ This file lists all wooden and metal parts that are needed to build the table
 
 ### Metal
 
-...to be continued...
+4x metal Cornerpieces
+
+### Plugs
+
+8x wallmountable USB-Plug Neutrik
