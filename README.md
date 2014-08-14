@@ -11,7 +11,7 @@ The status information is then transmitted to a microcontroller that shows porta
 
 ## Starting and Stopping the Service
 
-Copy noflo.init to /etc/init.d/noflo.sh and create the links at /etc/rc2.d/S90noflo.sh and /etc/rc2.d/K10noflo.sh
+Copy `noflo.init` to `/etc/init.d/noflo.sh` and create the links at `/etc/rc2.d/S90noflo.sh` and `/etc/rc2.d/K10noflo.sh`
 pointing to the init script.
 
 The init script needs timeout to work: https://github.com/pshved/timeout. Copy timeout to /home/pi/timeout and make it executable.
