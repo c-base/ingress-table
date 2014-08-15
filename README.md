@@ -84,3 +84,10 @@ PA5 -> SSI0Tx => Portallights Data (SDI), not used at the moment
 ```
 
 **Note**: out-of-the box on the Tiva the pins PB6, PB7, PD0, PD1 can't be used. You [can disconnect the R9 and R10 resistors](http://e2e.ti.com/support/microcontrollers/tiva_arm/f/908/t/290329.aspx) to make them usable.
+
+## Flashing and resetting the Arduino
+
+Resetting the MCU:
+   stty -F /dev/ttyACM1 1200
+
+   make upload SERIALPORT=/dev/ttyACM1 BAUDRATE=57600 MODEL=leonardo GRAPH=../ingress-table/graphs/PortalLights.fbp
