@@ -5,6 +5,7 @@ fs = require 'fs'
 path = require 'path'
 
 describe 'StateToColor component', ->
+  @timeout 4000
   c = null
   state = null
   color = null
