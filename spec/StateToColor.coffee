@@ -28,7 +28,7 @@ describe 'StateToColor component', ->
   describe 'receiving a neutral portal', ->
     it 'should set the color correctly', (done) ->
       color.on 'data', (color) ->
-        chai.expect(color).to.equal "[30, \"0x403000\"]"
+        chai.expect(color).to.equal "[37, \"0x000000\"]"
         done()
 
       state.send
@@ -39,10 +39,10 @@ describe 'StateToColor component', ->
   describe 'receiving a Resistance portal under attack', ->
     it 'should set the color correctly', (done) ->
       expected = [
-        "[30, \"0x000040\"]"
-        "[30, \"0x600000\"]"
-        "[30, \"0x000040\"]"
-        "[30, \"0x600000\"]"
+        "[37, \"0x000040\"]"
+        "[37, \"0x600000\"]"
+        "[37, \"0x000040\"]"
+        "[37, \"0x600000\"]"
       ]
       color.on 'data', (color) ->
         chai.expect(color).to.equal expected.shift()
@@ -56,10 +56,10 @@ describe 'StateToColor component', ->
   describe 'receiving a portal that has been recently captured', ->
     it 'should set the color correctly', (done) ->
       expected = [
-        "[30, \"0x000040\"]"
-        "[30, \"0x404040\"]"
-        "[30, \"0x000040\"]"
-        "[30, \"0x404040\"]"
+        "[37, \"0x000040\"]"
+        "[37, \"0x404040\"]"
+        "[37, \"0x000040\"]"
+        "[37, \"0x404040\"]"
       ]
       color.on 'data', (color) ->
         chai.expect(color).to.equal expected.shift()
@@ -73,10 +73,10 @@ describe 'StateToColor component', ->
   describe 'receiving a portal that is L8 green', ->
     it 'should set the color correctly', (done) ->
       expected = [
-        "[30, \"0x004000\"]"
-        "[30, \"0x00C800\"]"
-        "[30, \"0x004000\"]"
-        "[30, \"0x00C800\"]"
+        "[37, \"0x004000\"]"
+        "[37, \"0x00C800\"]"
+        "[37, \"0x004000\"]"
+        "[37, \"0x00C800\"]"
       ]
       color.on 'data', (color) ->
         chai.expect(color).to.equal expected.shift()
