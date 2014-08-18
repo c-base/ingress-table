@@ -274,7 +274,7 @@
                 "label": "TableLights",
                 "x": 1260,
                 "y": 1008,
-                "device": "/dev/ttyACM0",
+                "device": "/dev/ttyACM1",
                 "baudrate": 115200
             }
         },
@@ -284,7 +284,7 @@
                 "label": "ingress-table/PortalLights",
                 "x": 1260,
                 "y": 864,
-                "device": "/dev/ttyACM1"
+                "device": "/dev/ttyACM0"
             }
         }
     },
