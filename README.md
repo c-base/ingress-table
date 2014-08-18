@@ -88,6 +88,7 @@ PA5 -> SSI0Tx => Portallights Data (SDI), not used at the moment
 ## Flashing and resetting the Arduino
 
 Resetting the MCU:
+
    stty -F /dev/ttyACM1 1200
 
    make upload SERIALPORT=/dev/ttyACM1 BAUDRATE=57600 MODEL=leonardo GRAPH=../ingress-table/graphs/PortalLights.fbp
