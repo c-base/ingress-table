@@ -43,14 +43,17 @@ class CalculateState extends noflo.Component
     # We have a previous state to compare with
 
     if newState.team isnt previous.team
+      console.log "Portal #{newState.guid} switched from #{previous.team} to #{newState.team}"
       state.state = 'ownerchange'
       return state
 
     if newState.level > previous.level and newState.level isnt 8
+      console.log "Portal #{newState.guid} (#{newState.team}) upgraded"
       state.state = 'upgraded'
       return state
 
     if newState.level < previous.level or newState.health < previous.health
+      console.log "Portal #{newState.guid} (#{newState.team}) under attack"
       state.state = 'attack'
       return state
 
@@ -63,10 +66,12 @@ class CalculateState extends noflo.Component
       return state
 
     if newState.level is 8 and newState.team is 'NEUTRAL'
+      console.log "Portal #{newState.guid} (#{newState.team}) has disco"
       state.state = 'disco'
       return state
 
     if newState.level > 8
+      console.log "Portal #{newState.guid} (#{newState.team}) plays calvinball"
       state.state = 'calvinball'
       return state
 

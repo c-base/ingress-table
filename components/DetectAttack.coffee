@@ -28,6 +28,7 @@ class DetectAttack extends noflo.Component
       return unless state.guid is @id
 
       if state.state is 'attack'
+        console.log 'Main portal under attack, RED floor'
         @outPorts.color.send [255, 0, 0]
         return
       if state.state is 'disco'
