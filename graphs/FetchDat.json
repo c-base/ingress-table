@@ -753,13 +753,6 @@
             }
         },
         {
-            "data": 10000,
-            "tgt": {
-                "process": "core/RunInterval_z62hi",
-                "port": "interval"
-            }
-        },
-        {
             "data": 60000,
             "tgt": {
                 "process": "core/RunInterval_a6amz",
