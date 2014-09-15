@@ -26,7 +26,7 @@ describe 'GetPortalState component', ->
     c.outPorts.error.attach error
     portalConfig = JSON.parse fs.readFileSync path.resolve(__dirname, '../portals.json'), 'utf-8'
 
-  describe 'getting portal information', ->
+  describe.skip 'getting portal information', ->
     it 'should be able to retrieve it', (done) ->
       return done() unless process.env.API_HOST
       return done() unless process.env.API_USERNAME
