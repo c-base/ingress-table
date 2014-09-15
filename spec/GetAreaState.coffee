@@ -50,6 +50,8 @@ describe 'GetAreaState component', ->
               led: led
               guid: null
               state: 'unused'
+              team: ''
+              level: ''
           return unless guid
           data = null
           for state in portalStates
@@ -61,11 +63,15 @@ describe 'GetAreaState component', ->
               led: led
               guid: guid
               state: 'missing'
+              team: ''
+              level: ''
             return
           portals.push
             led: led
             guid: guid
             state: 'found'
+            team: data.team
+            level: "L#{data.level}"
 
           chai.expect(data).to.have.keys [
             'guid'
@@ -82,9 +88,9 @@ describe 'GetAreaState component', ->
 
         for portal in portals
           if portal.guid is portalConfig.mainportal
-            console.log "LED #{portal.led} (c-base #{portal.guid}) is #{portal.state}"
+            console.log "LED #{portal.led} (c-base #{portal.guid}) is #{portal.state} #{portal.level} #{portal.team}"
             continue
-          console.log "LED #{portal.led} (#{portal.guid}) is #{portal.state}"
+          console.log "LED #{portal.led} (#{portal.guid}) is #{portal.state} #{portal.level} #{portal.team}"
         done()
 
       area.send portalConfig.area
