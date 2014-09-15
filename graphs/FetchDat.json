@@ -1,8 +1,6 @@
 {
     "properties": {
-        "name": "FetchData",
-        "id": "FetchDat",
-        "project": "ingress-table",
+        "name": "FetchDat",
         "environment": {
             "type": "noflo-nodejs",
             "content": ""
@@ -14,7 +12,9 @@
             "port": "in",
             "metadata": {
                 "x": -72,
-                "y": 72
+                "y": 72,
+                "width": 72,
+                "height": 72
             }
         },
         "poll": {
@@ -22,7 +22,9 @@
             "port": "in",
             "metadata": {
                 "x": -72,
-                "y": 468
+                "y": 468,
+                "width": 72,
+                "height": 72
             }
         },
         "apiconfig": {
@@ -30,7 +32,9 @@
             "port": "in",
             "metadata": {
                 "x": -72,
-                "y": -180
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -40,7 +44,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 252
+                "y": 252,
+                "width": 72,
+                "height": 72
             }
         },
         "state": {
@@ -48,7 +54,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 0
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "apierror": {
@@ -56,7 +64,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 396
+                "y": 396,
+                "width": 72,
+                "height": 72
             }
         },
         "configerror": {
@@ -64,7 +74,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "missingconfig": {
@@ -72,7 +84,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": -468
+                "y": -468,
+                "width": 72,
+                "height": 72
             }
         },
         "mainportal": {
@@ -80,7 +94,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -114,8 +130,7 @@
             "name": "Scheduling",
             "nodes": [
                 "core/Repeat_ghioo",
-                "core/RunInterval_a6amz",
-                "core/RunInterval_z62hi"
+                "core/RunInterval_a6amz"
             ],
             "metadata": {
                 "description": ""
@@ -126,10 +141,8 @@
             "nodes": [
                 "core/Merge_lqryg",
                 "ingress-table/GetAreaState_sohnu",
-                "ingress-table/GetPortalState_fvy0f",
                 "objects/SplitArray_5f4ly",
-                "strings/SendString_3ssea",
-                "strings/SendString_si8hf"
+                "strings/SendString_3ssea"
             ],
             "metadata": {
                 "description": ""
@@ -142,7 +155,9 @@
             "metadata": {
                 "label": "ReadHostConf",
                 "x": 72,
-                "y": -180
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/ParseJson_uopal": {
@@ -150,7 +165,9 @@
             "metadata": {
                 "label": "ParseHostConf",
                 "x": 252,
-                "y": -180
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/GetObjectKey_gkwul": {
@@ -158,7 +175,9 @@
             "metadata": {
                 "label": "Hostname",
                 "x": 468,
-                "y": -288
+                "y": -288,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/GetObjectKey_y3u7c": {
@@ -166,23 +185,9 @@
             "metadata": {
                 "label": "Login",
                 "x": 468,
-                "y": -180
-            }
-        },
-        "strings/SendString_si8hf": {
-            "component": "strings/SendString",
-            "metadata": {
-                "label": "TriggerCbaseFetch",
-                "x": 720,
-                "y": -108
-            }
-        },
-        "ingress-table/GetPortalState_fvy0f": {
-            "component": "ingress-table/GetPortalState",
-            "metadata": {
-                "label": "GetCbase",
-                "x": 1080,
-                "y": -108
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/SplitArray_5f4ly": {
@@ -190,7 +195,9 @@
             "metadata": {
                 "label": "IndividualPortals",
                 "x": 1080,
-                "y": 108
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/GetAreaState_sohnu": {
@@ -198,7 +205,9 @@
             "metadata": {
                 "label": "GetPortals",
                 "x": 936,
-                "y": 108
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/SendString_3ssea": {
@@ -206,7 +215,9 @@
             "metadata": {
                 "label": "TriggerAreaFetch",
                 "x": 720,
-                "y": 108
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/GetObjectKey_5jjkz": {
@@ -214,7 +225,9 @@
             "metadata": {
                 "label": "PortalIds",
                 "x": 468,
-                "y": 252
+                "y": 252,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/GetObjectKey_v6uzr": {
@@ -222,7 +235,9 @@
             "metadata": {
                 "label": "Area",
                 "x": 468,
-                "y": 144
+                "y": 144,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/GetObjectKey_wx95o": {
@@ -230,15 +245,9 @@
             "metadata": {
                 "label": "MainPortal",
                 "x": 468,
-                "y": 36
-            }
-        },
-        "core/RunInterval_z62hi": {
-            "component": "core/RunInterval",
-            "metadata": {
-                "label": "MainPortalTimer",
-                "x": 468,
-                "y": 432
+                "y": 36,
+                "width": 72,
+                "height": 72
             }
         },
         "core/RunInterval_a6amz": {
@@ -246,7 +255,9 @@
             "metadata": {
                 "label": "FetchTimer",
                 "x": 468,
-                "y": 540
+                "y": 468,
+                "width": 72,
+                "height": 72
             }
         },
         "filesystem/ReadFile_cpmsi": {
@@ -254,7 +265,9 @@
             "metadata": {
                 "label": "ReadPortalConf",
                 "x": 72,
-                "y": 72
+                "y": 72,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/ParseJson_9qdty": {
@@ -262,7 +275,9 @@
             "metadata": {
                 "label": "ParsePortalConf",
                 "x": 252,
-                "y": 72
+                "y": 72,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Repeat_ghioo": {
@@ -270,7 +285,9 @@
             "metadata": {
                 "label": "StartTimers",
                 "x": 288,
-                "y": 468
+                "y": 468,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_lqryg": {
@@ -278,7 +295,9 @@
             "metadata": {
                 "label": "States",
                 "x": 1260,
-                "y": 0
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_ppjmj": {
@@ -286,7 +305,9 @@
             "metadata": {
                 "label": "APIErrors",
                 "x": 1260,
-                "y": 396
+                "y": 396,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_9ko07": {
@@ -294,7 +315,9 @@
             "metadata": {
                 "label": "ConfigErrors",
                 "x": 792,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_tfnbb": {
@@ -302,7 +325,9 @@
             "metadata": {
                 "label": "core/Merge",
                 "x": 288,
-                "y": -468
+                "y": -468,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Repeat_whep1": {
@@ -310,7 +335,9 @@
             "metadata": {
                 "label": "MainPortal",
                 "x": 792,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -408,71 +435,6 @@
         },
         {
             "src": {
-                "process": "objects/GetObjectKey_wx95o",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/SendString_si8hf",
-                "port": "string"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "core/RunInterval_z62hi",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/SendString_si8hf",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_y3u7c",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/GetPortalState_fvy0f",
-                "port": "login"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_gkwul",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/GetPortalState_fvy0f",
-                "port": "hostname"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "strings/SendString_si8hf",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/GetPortalState_fvy0f",
-                "port": "id"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
                 "process": "objects/GetObjectKey_gkwul",
                 "port": "out"
             },
@@ -555,19 +517,6 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "core/RunInterval_z62hi",
-                "port": "start"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "core/Repeat_ghioo",
-                "port": "out"
-            },
-            "tgt": {
                 "process": "core/RunInterval_a6amz",
                 "port": "start"
             },
@@ -590,33 +539,7 @@
         },
         {
             "src": {
-                "process": "ingress-table/GetPortalState_fvy0f",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "core/Merge_lqryg",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
                 "process": "ingress-table/GetAreaState_sohnu",
-                "port": "error"
-            },
-            "tgt": {
-                "process": "core/Merge_ppjmj",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/GetPortalState_fvy0f",
                 "port": "error"
             },
             "tgt": {
@@ -750,13 +673,6 @@
             "tgt": {
                 "process": "objects/GetObjectKey_5jjkz",
                 "port": "key"
-            }
-        },
-        {
-            "data": 10000,
-            "tgt": {
-                "process": "core/RunInterval_z62hi",
-                "port": "interval"
             }
         },
         {
