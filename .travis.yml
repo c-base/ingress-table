@@ -1,10 +1,8 @@
 language: node_js
 node_js:
-- 0.1
+- '0.10'
 before_script:
 - npm install -g grunt-cli
-env:
-  global:
-  - secure: tYug8+NfeOodBdYGhk4OlP/RU2vqJNfOCeF1ZazFku7FyR3zRwF6E6O1YpsXcxtDfdFTDlunUb/SVj0kLi0/ukM+QoMWxqHUoK6FdWW4hvjQzvjFwJCku6X3siPh+i07iD9LpXfox1knUGTea/1v/Sc+a2H+JxrEcTRxvVW1DFA=
-  - secure: Me8/deGdSerpkQs7CbS6hDUxl53EhIE+mYpEvZSbonWzKizub39lr7PAn/9Q1c4cv1RQQoTuE9Ny3az8LKwDqztdsj7I37YMmrApaES8WHIdqmG0TimbBwFNfdQsez1styz0ef6Jsqu9QUD67bMDfQ4yNDuwIjTp06QYkEP6Bug=
-  - secure: Ty3GR8c2rNsSTWJI3vWMRqehVieOmgKebPeCAKVFqSDRzoUIhKdwKIIr8GwZQwQRNQea3amU/D8JhyRcYskpOyETHDk6M5A69151bWgd2v5gy5SYrDyjMre9roJSiObOAqP+VPpQ7WFYjsma8PLAqm6i5yMdQKmnIbh3+kOSWnc=
+before_install:
+- openssl aes-256-cbc -K $encrypted_b877c04c0554_key -iv $encrypted_b877c04c0554_iv
+  -in cookie.txt.enc -out cookie.txt -d

@@ -22,22 +22,11 @@ module.exports = ->
         ext: '.js'
 
     # Browser version building
-    exec:
-      install:
-        command: 'node ./node_modules/component/bin/component install'
+    noflo_browser:
       build:
-        command: 'node ./node_modules/component/bin/component build -u component-json,component-coffee -o browser -n ingress-table -c'
+        files:
+          'browser/ingress-table.js': ['component.json']
 
-    # Fix broken Component aliases, as mentioned in
-    # https://github.com/anthonyshort/component-coffee/issues/3
-    combine:
-      browser:
-        input: 'browser/ingress-table.js'
-        output: 'browser/ingress-table.js'
-        tokens: [
-          token: '.coffee"'
-          string: '.js"'
-        ]
     # JavaScript minification for the browser
     uglify:
       options:
@@ -51,27 +40,12 @@ module.exports = ->
       files: ['spec/*.coffee', 'components/*.coffee']
       tasks: ['test']
 
-    # Run a server for the tests so we can actually do AJAX
-    connect:
-      test:
-        options:
-          port: 9000
-
     # BDD tests on Node.js
     cafemocha:
       nodejs:
         src: ['spec/*.coffee']
         options:
           reporter: 'spec'
-
-    # BDD tests on browser
-    mocha_phantomjs:
-      options:
-        output: 'spec/result.xml'
-        reporter: 'spec'
-      all:
-        options:
-          urls: ['http://localhost:9000/spec/runner.html']
 
     # Coding standards
     coffeelint:
@@ -85,19 +59,16 @@ module.exports = ->
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-noflo-manifest'
+  @loadNpmTasks 'grunt-noflo-browser'
   @loadNpmTasks 'grunt-contrib-coffee'
-  @loadNpmTasks 'grunt-exec'
-  @loadNpmTasks 'grunt-combine'
   @loadNpmTasks 'grunt-contrib-uglify'
 
   # Grunt plugins used for testing
-  @loadNpmTasks 'grunt-contrib-connect'
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-cafe-mocha'
-  @loadNpmTasks 'grunt-mocha-phantomjs'
   @loadNpmTasks 'grunt-coffeelint'
 
   # Our local tasks
-  @registerTask 'build', ['noflo_manifest', 'exec:install', 'exec:build', 'combine', 'uglify']
-  @registerTask 'test', ['coffeelint', 'cafemocha'] #, 'connect', 'mocha_phantomjs']
+  @registerTask 'build', ['noflo_manifest', 'noflo_browser', 'uglify']
+  @registerTask 'test', ['coffeelint', 'cafemocha']
   @registerTask 'default', ['test']

@@ -1,52 +1,48 @@
 noflo = require 'noflo'
 chai = require 'chai' unless chai
-GetAreaState = require '../components/GetAreaState.coffee'
+GetPortalStates = require '../components/GetPortalStates.coffee'
 fs = require 'fs'
 path = require 'path'
 
-describe 'GetAreaState component', ->
+describe 'GetPortalStates component', ->
   c = null
-  area = null
-  hostname = null
-  login = null
+  portals = null
+  cookie = null
+  username = null
   states = null
   error = null
   portalConfig = null
+  cookieData = null
   beforeEach ->
-    c = GetAreaState.getComponent()
-    area = noflo.internalSocket.createSocket()
-    hostname = noflo.internalSocket.createSocket()
-    login = noflo.internalSocket.createSocket()
+    c = GetPortalStates.getComponent()
+    portals = noflo.internalSocket.createSocket()
+    cookie = noflo.internalSocket.createSocket()
+    username = noflo.internalSocket.createSocket()
     states = noflo.internalSocket.createSocket()
     error = noflo.internalSocket.createSocket()
-    c.inPorts.area.attach area
-    c.inPorts.hostname.attach hostname
-    c.inPorts.login.attach login
+    c.inPorts.portals.attach portals
+    c.inPorts.auth.attach cookie
+    c.inPorts.username.attach username
     c.outPorts.states.attach states
     c.outPorts.error.attach error
     portalConfig = JSON.parse fs.readFileSync path.resolve(__dirname, '../portals.json'), 'utf-8'
+    cookieData = fs.readFileSync path.resolve(__dirname, '../cookie.txt'), 'utf-8'
 
   describe 'getting area information', ->
     it 'should be able to return data for all configured portals', (done) ->
-      return done() unless process.env.API_HOST
-      return done() unless process.env.API_USERNAME
-      return done() unless process.env.API_PASSWORD
-
-      hostname.send process.env.API_HOST
-      login.send
-        username: process.env.API_USERNAME
-        password: process.env.API_PASSWORD
-
+      @timeout 10000
       error.on 'data', (data) ->
+        console.log data
         chai.expect(true).to.equal false
         done()
 
-      portals = []
+      portalData = []
       states.on 'data', (portalStates) ->
         chai.expect(portalStates).to.be.an 'array'
         portalConfig.portals.forEach (guid, led) ->
           unless guid
-            portals.push
+            portalData.push
+              title: 'Unused'
               led: led
               guid: null
               state: 'unused'
@@ -59,21 +55,23 @@ describe 'GetAreaState component', ->
             data = state
             break
           unless data
-            portals.push
+            portalData.push
+              title: 'Unknown'
               led: led
               guid: guid
               state: 'missing'
               team: ''
               level: ''
             return
-          portals.push
+          portalData.push
+            title: data.title
             led: led
             guid: guid
             state: 'found'
             team: data.team
             level: "L#{data.level}"
 
-          chai.expect(data).to.have.keys [
+          chai.expect(data).to.include.keys [
             'guid'
             'health'
             'level'
@@ -86,11 +84,10 @@ describe 'GetAreaState component', ->
           chai.expect(data.team).to.be.a 'string'
           chai.expect(data.team).to.match /RESISTANCE|ALIENS|NEUTRAL/
 
-        for portal in portals
-          if portal.guid is portalConfig.mainportal
-            console.log "LED #{portal.led} (c-base #{portal.guid}) is #{portal.state} #{portal.level} #{portal.team}"
-            continue
-          console.log "LED #{portal.led} (#{portal.guid}) is #{portal.state} #{portal.level} #{portal.team}"
+        for portal in portalData
+          console.log "LED #{portal.led} (#{portal.guid}, #{portal.title}) is #{portal.state} #{portal.level} #{portal.team}"
         done()
 
-      area.send portalConfig.area
+      cookie.send cookieData
+      username.send process.env.API_USER or 'bergius'
+      portals.send portalConfig.portals

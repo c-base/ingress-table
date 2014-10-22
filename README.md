@@ -1,4 +1,4 @@
-Ingress Table [![Build Status](https://travis-ci.org/c-base/ingress-table.svg?branch=master)](https://travis-ci.org/c-base/ingress-table)
+Ingress Table [![Build Status](https://travis-ci.org/c-base/ingress-table.svg?branch=master)](https://travis-ci.org/c-base/ingress-table) [![Dependency Status](https://www.versioneye.com/user/projects/542712fd75d3720e03000053/badge.svg?style=flat)](https://www.versioneye.com/user/projects/542712fd75d3720e03000053)
 =============
 
 The software side of a "physical Intel map", built with [NoFlo](http://noflojs.org) and [MicroFlo](http://microflo.org). Please read the [introductory blog post](http://bergie.iki.fi/blog/ingress-table/) for more information. The actual table can be seen live at the [c-base](http://c-base.org/) space station in Berlin.
