@@ -84,7 +84,7 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": -468,
+                "y": -144,
                 "width": 72,
                 "height": 72
             }
@@ -106,7 +106,6 @@
             "nodes": [
                 "filesystem/ReadFile_cpmsi",
                 "objects/GetObjectKey_5jjkz",
-                "objects/GetObjectKey_v6uzr",
                 "objects/GetObjectKey_wx95o",
                 "strings/ParseJson_9qdty"
             ],
@@ -117,10 +116,7 @@
         {
             "name": "ApiConfig",
             "nodes": [
-                "filesystem/ReadFile_1p6x8",
-                "objects/GetObjectKey_gkwul",
-                "objects/GetObjectKey_y3u7c",
-                "strings/ParseJson_uopal"
+                "filesystem/ReadFile_1p6x8"
             ],
             "metadata": {
                 "description": ""
@@ -137,10 +133,9 @@
             }
         },
         {
-            "name": "FetchData",
+            "name": "Fetch Data",
             "nodes": [
-                "core/Merge_lqryg",
-                "ingress-table/GetAreaState_sohnu",
+                "ingress-table/GetPortalStates_z07s9",
                 "objects/SplitArray_5f4ly",
                 "strings/SendString_3ssea"
             ],
@@ -160,51 +155,11 @@
                 "height": 72
             }
         },
-        "strings/ParseJson_uopal": {
-            "component": "strings/ParseJson",
-            "metadata": {
-                "label": "ParseHostConf",
-                "x": 252,
-                "y": -180,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "objects/GetObjectKey_gkwul": {
-            "component": "objects/GetObjectKey",
-            "metadata": {
-                "label": "Hostname",
-                "x": 468,
-                "y": -288,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "objects/GetObjectKey_y3u7c": {
-            "component": "objects/GetObjectKey",
-            "metadata": {
-                "label": "Login",
-                "x": 468,
-                "y": -180,
-                "width": 72,
-                "height": 72
-            }
-        },
         "objects/SplitArray_5f4ly": {
             "component": "objects/SplitArray",
             "metadata": {
                 "label": "IndividualPortals",
                 "x": 1080,
-                "y": 108,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/GetAreaState_sohnu": {
-            "component": "ingress-table/GetAreaState",
-            "metadata": {
-                "label": "GetPortals",
-                "x": 936,
                 "y": 108,
                 "width": 72,
                 "height": 72
@@ -225,17 +180,7 @@
             "metadata": {
                 "label": "PortalIds",
                 "x": 468,
-                "y": 252,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "objects/GetObjectKey_v6uzr": {
-            "component": "objects/GetObjectKey",
-            "metadata": {
-                "label": "Area",
-                "x": 468,
-                "y": 144,
+                "y": 216,
                 "width": 72,
                 "height": 72
             }
@@ -324,8 +269,8 @@
             "component": "core/Merge",
             "metadata": {
                 "label": "core/Merge",
-                "x": 288,
-                "y": -468,
+                "x": 468,
+                "y": -180,
                 "width": 72,
                 "height": 72
             }
@@ -339,48 +284,19 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "ingress-table/GetPortalStates_z07s9": {
+            "component": "ingress-table/GetPortalStates",
+            "metadata": {
+                "label": "ingress-table/GetPortalStates",
+                "x": 900,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "connections": [
-        {
-            "src": {
-                "process": "filesystem/ReadFile_1p6x8",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/ParseJson_uopal",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "strings/ParseJson_uopal",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "objects/GetObjectKey_gkwul",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "strings/ParseJson_uopal",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "objects/GetObjectKey_y3u7c",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
         {
             "src": {
                 "process": "filesystem/ReadFile_cpmsi",
@@ -413,63 +329,11 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "objects/GetObjectKey_v6uzr",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "strings/ParseJson_9qdty",
-                "port": "out"
-            },
-            "tgt": {
                 "process": "objects/GetObjectKey_5jjkz",
                 "port": "in"
             },
             "metadata": {
                 "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_gkwul",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/GetAreaState_sohnu",
-                "port": "hostname"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_y3u7c",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/GetAreaState_sohnu",
-                "port": "login"
-            },
-            "metadata": {
-                "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_v6uzr",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/SendString_3ssea",
-                "port": "string"
-            },
-            "metadata": {
-                "route": 5
             }
         },
         {
@@ -483,32 +347,6 @@
             },
             "metadata": {
                 "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "strings/SendString_3ssea",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/GetAreaState_sohnu",
-                "port": "area"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/GetAreaState_sohnu",
-                "port": "states"
-            },
-            "tgt": {
-                "process": "objects/SplitArray_5f4ly",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 5
             }
         },
         {
@@ -539,59 +377,7 @@
         },
         {
             "src": {
-                "process": "ingress-table/GetAreaState_sohnu",
-                "port": "error"
-            },
-            "tgt": {
-                "process": "core/Merge_ppjmj",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_gkwul",
-                "port": "missed"
-            },
-            "tgt": {
-                "process": "core/Merge_9ko07",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_y3u7c",
-                "port": "missed"
-            },
-            "tgt": {
-                "process": "core/Merge_9ko07",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
                 "process": "objects/GetObjectKey_wx95o",
-                "port": "missed"
-            },
-            "tgt": {
-                "process": "core/Merge_9ko07",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "objects/GetObjectKey_v6uzr",
                 "port": "missed"
             },
             "tgt": {
@@ -655,16 +441,74 @@
             }
         },
         {
-            "data": "mainportal",
+            "src": {
+                "process": "strings/SendString_3ssea",
+                "port": "out"
+            },
             "tgt": {
-                "process": "objects/GetObjectKey_wx95o",
-                "port": "key"
+                "process": "ingress-table/GetPortalStates_z07s9",
+                "port": "portals"
+            },
+            "metadata": {
+                "route": 5
             }
         },
         {
-            "data": "area",
+            "src": {
+                "process": "ingress-table/GetPortalStates_z07s9",
+                "port": "states"
+            },
             "tgt": {
-                "process": "objects/GetObjectKey_v6uzr",
+                "process": "objects/SplitArray_5f4ly",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/GetPortalStates_z07s9",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "core/Merge_ppjmj",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "filesystem/ReadFile_1p6x8",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/GetPortalStates_z07s9",
+                "port": "auth"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "objects/GetObjectKey_5jjkz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_3ssea",
+                "port": "string"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "data": "mainportal",
+            "tgt": {
+                "process": "objects/GetObjectKey_wx95o",
                 "port": "key"
             }
         },
@@ -676,24 +520,31 @@
             }
         },
         {
-            "data": 60000,
+            "data": "bergius",
+            "tgt": {
+                "process": "ingress-table/GetPortalStates_z07s9",
+                "port": "username"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "objects/GetObjectKey_5jjkz",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": false,
+            "tgt": {
+                "process": "objects/GetObjectKey_wx95o",
+                "port": "sendgroup"
+            }
+        },
+        {
+            "data": 7000,
             "tgt": {
                 "process": "core/RunInterval_a6amz",
                 "port": "interval"
-            }
-        },
-        {
-            "data": "login",
-            "tgt": {
-                "process": "objects/GetObjectKey_y3u7c",
-                "port": "key"
-            }
-        },
-        {
-            "data": "hostname",
-            "tgt": {
-                "process": "objects/GetObjectKey_gkwul",
-                "port": "key"
             }
         }
     ]

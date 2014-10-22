@@ -1,8 +1,6 @@
 {
     "properties": {
-        "name": "Ingress Table",
-        "id": "bgt9b",
-        "project": "ingress-table",
+        "name": "bgt9b",
         "environment": {
             "type": "noflo-nodejs"
         }
@@ -105,7 +103,9 @@
             "metadata": {
                 "label": "Start",
                 "x": -180,
-                "y": 756
+                "y": 756,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/FetchDat_7edo2": {
@@ -113,7 +113,9 @@
             "metadata": {
                 "label": "FetchData",
                 "x": 0,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/StateToColor_ifaav": {
@@ -121,7 +123,9 @@
             "metadata": {
                 "label": "ToRGB",
                 "x": 612,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "webserver/Server_uovn0": {
@@ -129,7 +133,9 @@
             "metadata": {
                 "label": "HTTPServer",
                 "x": 1188,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "websocket/ListenConnections_9f5av": {
@@ -137,7 +143,9 @@
             "metadata": {
                 "label": "WebSocketConnection",
                 "x": 1296,
-                "y": 576
+                "y": 576,
+                "width": 72,
+                "height": 72
             }
         },
         "websocket/SendMessage_9oy1f": {
@@ -145,7 +153,9 @@
             "metadata": {
                 "label": "SendToTable",
                 "x": 1440,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/Jsonify_urxeq": {
@@ -153,7 +163,9 @@
             "metadata": {
                 "label": "Stringify",
                 "x": 1296,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Drop_z1l5r": {
@@ -161,7 +173,9 @@
             "metadata": {
                 "label": "IgnoreHTTP",
                 "x": 1440,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/CalculateState_xkyq7": {
@@ -169,7 +183,9 @@
             "metadata": {
                 "label": "WatchState",
                 "x": 324,
-                "y": 576
+                "y": 576,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/StabilizePortal_sg4x0": {
@@ -177,7 +193,9 @@
             "metadata": {
                 "label": "Stabilize",
                 "x": 468,
-                "y": 576
+                "y": 576,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/ParseJson_l8zh": {
@@ -185,7 +203,9 @@
             "metadata": {
                 "label": "StreetColor",
                 "x": 324,
-                "y": 1008
+                "y": 1008,
+                "width": 72,
+                "height": 72
             }
         },
         "PrepareMessage": {
@@ -193,7 +213,9 @@
             "metadata": {
                 "label": "PrepareMessage",
                 "x": 1008,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/DetermineWinner_z8u0g": {
@@ -201,7 +223,9 @@
             "metadata": {
                 "label": "BlueOrGreen",
                 "x": 792,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/Pulsate_qo650": {
@@ -209,7 +233,9 @@
             "metadata": {
                 "label": "Pulsate",
                 "x": 792,
-                "y": 1008
+                "y": 1008,
+                "width": 72,
+                "height": 72
             }
         },
         "core/RunInterval_5f3rf": {
@@ -217,7 +243,9 @@
             "metadata": {
                 "label": "PulseInterval",
                 "x": 324,
-                "y": 756
+                "y": 756,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Output_qmkan": {
@@ -225,7 +253,9 @@
             "metadata": {
                 "label": "LogErrors",
                 "x": 108,
-                "y": 1008
+                "y": 1008,
+                "width": 72,
+                "height": 72
             }
         },
         "ConfigPaths": {
@@ -233,7 +263,9 @@
             "metadata": {
                 "label": "ConfigPaths",
                 "x": -180,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/DetectAttack_ahdoi": {
@@ -241,7 +273,9 @@
             "metadata": {
                 "label": "DetectAttacks",
                 "x": 684,
-                "y": 756
+                "y": 756,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Output_eava9": {
@@ -249,7 +283,9 @@
             "metadata": {
                 "label": "LogTableErrors",
                 "x": 1440,
-                "y": 864
+                "y": 864,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/ConvertStreetLight_luj6x": {
@@ -257,7 +293,9 @@
             "metadata": {
                 "label": "ConvertStreets",
                 "x": 1008,
-                "y": 1008
+                "y": 1008,
+                "width": 72,
+                "height": 72
             }
         },
         "core/RunInterval_82o32": {
@@ -265,7 +303,9 @@
             "metadata": {
                 "label": "UpdateLights",
                 "x": 1008,
-                "y": 864
+                "y": 864,
+                "width": 72,
+                "height": 72
             }
         },
         "ingress-table/TableLights_9jw9e": {
@@ -275,7 +315,9 @@
                 "x": 1260,
                 "y": 1008,
                 "device": "/dev/ttyACM1",
-                "baudrate": 115200
+                "baudrate": 115200,
+                "width": 72,
+                "height": 144
             }
         },
         "ingress-table/PortalLights_qssgn": {
@@ -284,7 +326,9 @@
                 "label": "ingress-table/PortalLights",
                 "x": 1260,
                 "y": 864,
-                "device": "/dev/ttyACM0"
+                "device": "/dev/ttyACM0",
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -297,8 +341,7 @@
             "tgt": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "poll"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -568,8 +611,7 @@
             "tgt": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "apiconfig"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -579,8 +621,7 @@
             "tgt": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "portalconfig"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -616,8 +657,7 @@
             "tgt": {
                 "process": "ingress-table/Pulsate_qo650",
                 "port": "colors"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -915,13 +955,6 @@
             }
         },
         {
-            "data": "server.json",
-            "tgt": {
-                "process": "ConfigPaths",
-                "port": "serverfile"
-            }
-        },
-        {
             "data": "portals.json",
             "tgt": {
                 "process": "ConfigPaths",
@@ -968,6 +1001,13 @@
             "tgt": {
                 "process": "websocket/SendMessage_9oy1f",
                 "port": "buffer"
+            }
+        },
+        {
+            "data": "cookie.txt",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "serverfile"
             }
         }
     ]
