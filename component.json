@@ -39,7 +39,9 @@
     "components/Pulsate.coffee",
     "components/SetPortalColor.coffee",
     "components/StabilizePortal.coffee",
-    "components/StateToColor.coffee"
+    "components/StateToColor.coffee",
+    "graphs/Ingress_Table.json",
+    "graphs/gj4vv.json"
   ],
   "json": [
     "component.json",

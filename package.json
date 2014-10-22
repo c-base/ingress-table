@@ -38,8 +38,7 @@
       "ConvertStreetLight": "components/ConvertStreetLight.coffee",
       "DetectAttack": "components/DetectAttack.coffee",
       "DetermineWinner": "components/DetermineWinner.coffee",
-      "GetAreaState": "components/GetAreaState.coffee",
-      "GetPortalState": "components/GetPortalState.coffee",
+      "GetPortalStates": "components/GetPortalStates.coffee",
       "Pulsate": "components/Pulsate.coffee",
       "StabilizePortal": "components/StabilizePortal.coffee",
       "StateToColor": "components/StateToColor.coffee"
