@@ -80,7 +80,7 @@
             }
         },
         "missingconfig": {
-            "process": "core/Merge_tfnbb",
+            "process": "FileErrors",
             "port": "out",
             "metadata": {
                 "x": 1404,
@@ -135,7 +135,7 @@
         {
             "name": "Fetch Data",
             "nodes": [
-                "ingress-table/GetPortalStates_z07s9",
+                "GetPortals",
                 "objects/SplitArray_5f4ly",
                 "strings/SendString_3ssea"
             ],
@@ -265,10 +265,10 @@
                 "height": 72
             }
         },
-        "core/Merge_tfnbb": {
+        "FileErrors": {
             "component": "core/Merge",
             "metadata": {
-                "label": "core/Merge",
+                "label": "FileErrors",
                 "x": 468,
                 "y": -180,
                 "width": 72,
@@ -285,10 +285,10 @@
                 "height": 72
             }
         },
-        "ingress-table/GetPortalStates_z07s9": {
+        "GetPortals": {
             "component": "ingress-table/GetPortalStates",
             "metadata": {
-                "label": "ingress-table/GetPortalStates",
+                "label": "GetPortals",
                 "x": 900,
                 "y": 108,
                 "width": 72,
@@ -407,7 +407,7 @@
                 "port": "error"
             },
             "tgt": {
-                "process": "core/Merge_tfnbb",
+                "process": "FileErrors",
                 "port": "in"
             },
             "metadata": {
@@ -420,7 +420,7 @@
                 "port": "error"
             },
             "tgt": {
-                "process": "core/Merge_tfnbb",
+                "process": "FileErrors",
                 "port": "in"
             },
             "metadata": {
@@ -446,7 +446,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "ingress-table/GetPortalStates_z07s9",
+                "process": "GetPortals",
                 "port": "portals"
             },
             "metadata": {
@@ -455,7 +455,7 @@
         },
         {
             "src": {
-                "process": "ingress-table/GetPortalStates_z07s9",
+                "process": "GetPortals",
                 "port": "states"
             },
             "tgt": {
@@ -468,7 +468,7 @@
         },
         {
             "src": {
-                "process": "ingress-table/GetPortalStates_z07s9",
+                "process": "GetPortals",
                 "port": "error"
             },
             "tgt": {
@@ -485,7 +485,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "ingress-table/GetPortalStates_z07s9",
+                "process": "GetPortals",
                 "port": "auth"
             },
             "metadata": {
@@ -522,7 +522,7 @@
         {
             "data": "bergius",
             "tgt": {
-                "process": "ingress-table/GetPortalStates_z07s9",
+                "process": "GetPortals",
                 "port": "username"
             }
         },
