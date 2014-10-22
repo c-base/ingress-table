@@ -10,11 +10,6 @@ loginPath = '/_ah/login'
 xsrfPath = '/xsrftoken'
 updateInterval = 60 * 60 * 12 * 1000
 
-# FIXME: Query on removed portals causes failure for Ingress API call. List removed portals here
-removedPortals = [
-  'b5f1d7ad29ec4ba7a19f4187a5931dce.16'
-]
-
 getRequestOptions = (method, host, path) ->
   return options =
     host: host
@@ -54,10 +49,6 @@ getPortals = (portals, username, cookie, xsrf, callback) ->
     'Cookie': cookie
     'X-XsrfToken': xsrf
     'Content-Type': 'application/json'
-
-  for p in removedPortals
-    continue if portals.indexOf(p) is -1
-    portals.splice portals.indexOf(p), 1
 
   data =
     params: [portals]
