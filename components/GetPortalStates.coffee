@@ -23,6 +23,8 @@ obtainCookie = (auth, callback) ->
     auth: auth
   options = getRequestOptions 'GET', apiHost, cookiePath
   req = https.request options, (res) ->
+    unless res.headers['set-cookie']
+      return callback new Error 'No cookie received'
     callback null, res.headers['set-cookie']
   req.setTimeout 2000
   req.end()
@@ -125,18 +127,25 @@ exports.getComponent = ->
         return callback err if err
         c.cookie = cookie
         obtainXsrf c.cookie, (err, xsrf) ->
-          return callback err if err
+          if err
+            c.cookie = null
+            return callback err
           c.xsrf = xsrf.xsrf
           c.xsrfValid = xsrf.timeout
           getPortals guids, c.params.username, c.cookie, c.xsrf, (err, states) ->
-            return callback err if err
+            if err
+              c.cookie = null
+              c.xsrf = null
+              return callback err
             out.send states
             do callback
       return
 
     unless hasXsrf c
       obtainXsrf c.cookie, (err, xsrf) ->
-        return callback err if err
+        if err
+          c.cookie = null
+          return callback err
         c.xsrf = xsrf.xsrf
         c.xsrfValid = xsrf.timeout
         getPortals guids, c.params.username, c.cookie, c.xsrf, (err, states) ->
