@@ -38,7 +38,9 @@ class CalculateState extends noflo.Component
       state: 'stable'
 
     previous = previousStates[newState.guid]
-    return state unless previous
+    unless previous
+      console.log "Portal #{newState.title} is L#{newState.level} #{newState.team}"
+      return state
 
     # We have a previous state to compare with
 
