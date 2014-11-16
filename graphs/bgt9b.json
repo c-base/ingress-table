@@ -1076,7 +1076,7 @@
             }
         },
         {
-            "data": "c-beam.cbrp3.c-base.org",
+            "data": "10.0.1.17",
             "tgt": {
                 "process": "PortalToCbeam",
                 "port": "broker"
