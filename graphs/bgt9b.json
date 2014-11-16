@@ -95,6 +95,16 @@
             "metadata": {
                 "description": ""
             }
+        },
+        {
+            "name": "c-beam",
+            "nodes": [
+                "PortalToCbeam",
+                "PortalToMessage"
+            ],
+            "metadata": {
+                "description": ""
+            }
         }
     ],
     "processes": {
@@ -327,6 +337,26 @@
                 "x": 1260,
                 "y": 864,
                 "device": "/dev/ttyACM0",
+                "width": 72,
+                "height": 72
+            }
+        },
+        "PortalToCbeam": {
+            "component": "mqtt/SendMessage",
+            "metadata": {
+                "label": "PortalToCbeam",
+                "x": 792,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "PortalToMessage": {
+            "component": "ingress-table/PortalToMessage",
+            "metadata": {
+                "label": "PortalToMessage",
+                "x": 324,
+                "y": 360,
                 "width": 72,
                 "height": 72
             }
@@ -920,6 +950,41 @@
             }
         },
         {
+            "src": {
+                "process": "PortalToMessage",
+                "port": "topic"
+            },
+            "tgt": {
+                "process": "PortalToCbeam",
+                "port": "topic"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "PortalToMessage",
+                "port": "message"
+            },
+            "tgt": {
+                "process": "PortalToCbeam",
+                "port": "message"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "ingress-table/FetchDat_7edo2",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "PortalToMessage",
+                "port": "portal"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
             "data": "ingress",
             "tgt": {
                 "process": "websocket/ListenConnections_9f5av",
@@ -1008,6 +1073,13 @@
             "tgt": {
                 "process": "ConfigPaths",
                 "port": "serverfile"
+            }
+        },
+        {
+            "data": "c-beam.cbrp3.c-base.org",
+            "tgt": {
+                "process": "PortalToCbeam",
+                "port": "broker"
             }
         }
     ]
