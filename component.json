@@ -17,6 +17,7 @@
       "ConvertStreetLight": "components/ConvertStreetLight.coffee",
       "DetectAttack": "components/DetectAttack.coffee",
       "DetermineWinner": "components/DetermineWinner.coffee",
+      "PortalToMessage": "components/PortalToMessage.coffee",
       "Pulsate": "components/Pulsate.coffee",
       "SetLEDColor": "components/SetLEDColor.coffee",
       "SetPortalColor": "components/SetPortalColor.coffee",
@@ -41,7 +42,8 @@
     "components/StabilizePortal.coffee",
     "components/StateToColor.coffee",
     "graphs/Ingress_Table.json",
-    "graphs/gj4vv.json"
+    "graphs/gj4vv.json",
+    "components/PortalToMessage.coffee"
   ],
   "json": [
     "component.json",

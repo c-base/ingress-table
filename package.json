@@ -12,7 +12,8 @@
     "noflo-strings": "^0.1.6",
     "noflo-objects": "^0.1.9",
     "microflo": "git://github.com/jonnor/microflo.git",
-    "noflo-packets": "^0.1.3"
+    "noflo-packets": "^0.1.3",
+    "noflo-mqtt": "~0.1.0"
   },
   "devDependencies": {
     "noflo-nodejs": "~0.0.6",
@@ -39,6 +40,7 @@
       "DetectAttack": "components/DetectAttack.coffee",
       "DetermineWinner": "components/DetermineWinner.coffee",
       "GetPortalStates": "components/GetPortalStates.coffee",
+      "PortalToMessage": "components/PortalToMessage.coffee",
       "Pulsate": "components/Pulsate.coffee",
       "StabilizePortal": "components/StabilizePortal.coffee",
       "StateToColor": "components/StateToColor.coffee"
