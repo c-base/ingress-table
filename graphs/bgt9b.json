@@ -233,7 +233,7 @@
             "metadata": {
                 "label": "BlueOrGreen",
                 "x": 792,
-                "y": 540,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -1080,6 +1080,20 @@
             "tgt": {
                 "process": "PortalToCbeam",
                 "port": "broker"
+            }
+        },
+        {
+            "data": true,
+            "tgt": {
+                "process": "PortalToCbeam",
+                "port": "retain"
+            }
+        },
+        {
+            "data": 0,
+            "tgt": {
+                "process": "PortalToCbeam",
+                "port": "qos"
             }
         }
     ]
