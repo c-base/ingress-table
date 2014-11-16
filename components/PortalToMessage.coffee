@@ -17,20 +17,20 @@ exports.getComponent = ->
     forwardGroups: true
   , (data, groups, out) ->
     previous = c.previousData[data.guid]
-    c.previousData[data.guid] = data
 
     send = ->
       topic = "ingress/status/#{data.guid}"
       console.log "Sending #{data.title} to #{topic}"
       out.topic.send topic
       out.message.send JSON.stringify data
+      c.previousData[data.guid] = data
 
     unless previous
       do send
       return
 
     interval = 5*60*1000
-    if previous.updated and previous.updated.getTime() + interval < data.updated.getTime()
+    if previous.updated and data.updated and data.updated.getTime() - previous.updated.getTime() > interval
       # Send every 5min anyway
       do send
       return
