@@ -30,7 +30,7 @@ exports.getComponent = ->
       return
 
     interval = 5*60*1000
-    if previous.updated and previous.updated.getTime() + interval < data.updated.getTime()
+    if previous.updated and data.updated and data.updated.getTime() - previous.updated.getTime() > interval
       # Send every 5min anyway
       do send
       return
