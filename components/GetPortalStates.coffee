@@ -77,6 +77,7 @@ normalizeResult = (result) ->
   for guid, val of result
     portal = val.externalApiPortal
     portal.guid = guid
+    portal.updated = new Date
     switch portal.controllingFaction
       when 'Resistance'
         portal.team = 'RESISTANCE'
