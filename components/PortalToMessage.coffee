@@ -20,7 +20,7 @@ exports.getComponent = ->
 
     send = ->
       topic = "ingress/status/#{data.guid}"
-      console.log "Sending #{data.title} to #{topic}"
+      #console.log "Sending #{data.title} to #{topic}"
       out.topic.send topic
       out.message.send JSON.stringify data
       c.previousData[data.guid] = data
