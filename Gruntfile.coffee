@@ -70,5 +70,5 @@ module.exports = ->
 
   # Our local tasks
   @registerTask 'build', ['noflo_manifest', 'noflo_browser', 'uglify']
-  @registerTask 'test', ['coffeelint', 'cafemocha']
+  @registerTask 'test', ['coffeelint', 'build', 'cafemocha']
   @registerTask 'default', ['test']
