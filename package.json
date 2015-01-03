@@ -72,7 +72,7 @@
         "description": "Handles street and ambient LED lights",
         "type": "microflo",
         "protocol": "microflo",
-        "address": "serial://dev/ttyACM0"
+        "address": "serial:///dev/ttyACM0"
       }
     ]
   },
