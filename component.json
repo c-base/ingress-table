@@ -22,7 +22,8 @@
       "SetLEDColor": "components/SetLEDColor.coffee",
       "SetPortalColor": "components/SetPortalColor.coffee",
       "StabilizePortal": "components/StabilizePortal.coffee",
-      "StateToColor": "components/StateToColor.coffee"
+      "StateToColor": "components/StateToColor.coffee",
+      "StateToTransmission": "components/StateToTransmission.coffee"
     },
     "graphs": {
       "Ingress_Table": "graphs/Ingress_Table.json",
@@ -43,7 +44,8 @@
     "components/StateToColor.coffee",
     "graphs/Ingress_Table.json",
     "graphs/gj4vv.json",
-    "components/PortalToMessage.coffee"
+    "components/PortalToMessage.coffee",
+    "components/StateToTransmission.coffee"
   ],
   "json": [
     "component.json",

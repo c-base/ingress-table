@@ -48,7 +48,8 @@
       "PortalToMessage": "components/PortalToMessage.coffee",
       "Pulsate": "components/Pulsate.coffee",
       "StabilizePortal": "components/StabilizePortal.coffee",
-      "StateToColor": "components/StateToColor.coffee"
+      "StateToColor": "components/StateToColor.coffee",
+      "StateToTransmission": "components/StateToTransmission.coffee"
     },
     "graphs": {
       "ConfigPaths": "graphs/ConfigPaths.json",
