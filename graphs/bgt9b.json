@@ -330,10 +330,10 @@
                 "height": 144
             }
         },
-        "ingress-table/PortalLights_qssgn": {
+        "PortalLights": {
             "component": "ingress-table/PortalLights",
             "metadata": {
-                "label": "ingress-table/PortalLights",
+                "label": "PortalLights",
                 "x": 1260,
                 "y": 864,
                 "device": "/dev/ttyACM0",
@@ -916,7 +916,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "ingress-table/PortalLights_qssgn",
+                "process": "PortalLights",
                 "port": "show"
             },
             "metadata": {
@@ -925,7 +925,7 @@
         },
         {
             "src": {
-                "process": "ingress-table/PortalLights_qssgn",
+                "process": "PortalLights",
                 "port": "error"
             },
             "tgt": {
@@ -942,7 +942,7 @@
                 "port": "color"
             },
             "tgt": {
-                "process": "ingress-table/PortalLights_qssgn",
+                "process": "PortalLights",
                 "port": "pixel"
             },
             "metadata": {
@@ -957,8 +957,7 @@
             "tgt": {
                 "process": "PortalToCbeam",
                 "port": "topic"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -968,8 +967,7 @@
             "tgt": {
                 "process": "PortalToCbeam",
                 "port": "message"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
