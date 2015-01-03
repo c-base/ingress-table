@@ -4,7 +4,9 @@
         "environment": {
             "type": "noflo-nodejs",
             "content": ""
-        }
+        },
+        "description": "Fetch portal state data from Ingress API",
+        "icon": "fire"
     },
     "inports": {
         "portalconfig": {

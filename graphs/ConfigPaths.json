@@ -1,11 +1,11 @@
 {
     "properties": {
         "name": "ConfigPaths",
-        "id": "ConfigPaths",
-        "project": "ingress-table",
         "environment": {
             "type": "noflo-nodejs"
-        }
+        },
+        "description": "Read Ingress Table configuration files",
+        "icon": "file"
     },
     "inports": {
         "envvar": {
@@ -13,7 +13,9 @@
             "port": "key",
             "metadata": {
                 "x": -612,
-                "y": 432
+                "y": 432,
+                "width": 72,
+                "height": 72
             }
         },
         "serverfile": {
@@ -21,7 +23,9 @@
             "port": "in",
             "metadata": {
                 "x": -612,
-                "y": 324
+                "y": 324,
+                "width": 72,
+                "height": 72
             }
         },
         "portalfile": {
@@ -29,7 +33,9 @@
             "port": "in",
             "metadata": {
                 "x": -612,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -39,7 +45,9 @@
             "port": "error",
             "metadata": {
                 "x": -324,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         },
         "serverfile": {
@@ -47,7 +55,9 @@
             "port": "out",
             "metadata": {
                 "x": 0,
-                "y": 432
+                "y": 432,
+                "width": 72,
+                "height": 72
             }
         },
         "portalfile": {
@@ -55,7 +65,9 @@
             "port": "out",
             "metadata": {
                 "x": 0,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -66,7 +78,9 @@
             "metadata": {
                 "label": "core/ReadEnv",
                 "x": -468,
-                "y": 432
+                "y": 432,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Repeat_ktvob": {
@@ -74,7 +88,9 @@
             "metadata": {
                 "label": "core/Repeat",
                 "x": -324,
-                "y": 324
+                "y": 324,
+                "width": 72,
+                "height": 72
             }
         },
         "packets/DoNotDisconnect_uev3m": {
@@ -82,7 +98,9 @@
             "metadata": {
                 "label": "packets/DoNotDisconnect",
                 "x": -324,
-                "y": 432
+                "y": 432,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/CompileString_pjcg2": {
@@ -90,7 +108,9 @@
             "metadata": {
                 "label": "strings/CompileString",
                 "x": -144,
-                "y": 432
+                "y": 432,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/CompileString_667tt": {
@@ -98,7 +118,9 @@
             "metadata": {
                 "label": "strings/CompileString",
                 "x": -144,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Repeat_r65df": {
@@ -106,7 +128,9 @@
             "metadata": {
                 "label": "core/Repeat",
                 "x": -324,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -119,8 +143,7 @@
             "tgt": {
                 "process": "strings/CompileString_667tt",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -130,8 +153,7 @@
             "tgt": {
                 "process": "strings/CompileString_pjcg2",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -154,8 +176,7 @@
             "tgt": {
                 "process": "strings/CompileString_pjcg2",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -165,8 +186,7 @@
             "tgt": {
                 "process": "strings/CompileString_667tt",
                 "port": "in"
-            },
-            "metadata": {}
+            }
         },
         {
             "data": "/",
