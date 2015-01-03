@@ -65,6 +65,7 @@
         "description": "Handles portal LED strip",
         "type": "microflo",
         "protocol": "microflo",
+        "graph": "./graphs/PortalLights.fbp",
         "address": "serial:///dev/ttyACM1"
       },
       {
@@ -73,6 +74,7 @@
         "description": "Handles street and ambient LED lights",
         "type": "microflo",
         "protocol": "microflo",
+        "graph": "./graphs/TableLights.fbp",
         "address": "serial:///dev/ttyACM0"
       }
     ]
