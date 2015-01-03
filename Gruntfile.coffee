@@ -57,7 +57,11 @@ module.exports = ->
             value: 80
             level: 'warn'
 
+    exec:
+      build_arduino: 'make -f ./node_modules/microflo/Makefile build-arduino-min GRAPH=graphs/PortalLights.fbp MICROFLO_SOURCE_DIR=./node_modules/microflo/microflo'
+
   # Grunt plugins used for building
+  @loadNpmTasks 'grunt-exec'
   @loadNpmTasks 'grunt-noflo-manifest'
   @loadNpmTasks 'grunt-noflo-browser'
   @loadNpmTasks 'grunt-contrib-coffee'
@@ -69,6 +73,7 @@ module.exports = ->
   @loadNpmTasks 'grunt-coffeelint'
 
   # Our local tasks
+  @registerTask 'microflo', ['exec:build_arduino']
   @registerTask 'build', ['noflo_manifest', 'noflo_browser', 'uglify']
   @registerTask 'test', ['coffeelint', 'build', 'cafemocha']
   @registerTask 'default', ['test']
