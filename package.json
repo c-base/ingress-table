@@ -17,7 +17,8 @@
     "noflo-objects": "^0.1.9",
     "microflo": "^0.3.14",
     "noflo-packets": "^0.1.3",
-    "noflo-mqtt": "~0.1.0"
+    "noflo-mqtt": "~0.1.0",
+    "noflo-runtime": "~0.1.2"
   },
   "devDependencies": {
     "chai": "^1.9.1",
