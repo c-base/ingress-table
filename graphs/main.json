@@ -1,0 +1,544 @@
+{
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "noflo-nodejs"
+        }
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [
+        {
+            "name": "c-beam",
+            "nodes": [
+                "LogMqttErrors",
+                "PortalToMessage",
+                "SendToCbeam"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Data Retrieval",
+            "nodes": [
+                "ConfigPaths",
+                "LogApiErrors",
+                "FetchData",
+                "Repeat"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Street Lights",
+            "nodes": [
+                "PulseInterval",
+                "DetectAttack",
+                "Pulsate",
+                "StreetColor"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        }
+    ],
+    "processes": {
+        "FetchData": {
+            "component": "ingress-table/FetchDat",
+            "metadata": {
+                "label": "FetchData",
+                "x": 468,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "LogApiErrors": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "LogApiErrors",
+                "x": 648,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ConfigPaths": {
+            "component": "ingress-table/ConfigPaths",
+            "metadata": {
+                "label": "ConfigPaths",
+                "x": 288,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Repeat": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": 288,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "PortalToMessage": {
+            "component": "ingress-table/PortalToMessage",
+            "metadata": {
+                "label": "PortalToMessage",
+                "x": 828,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "SendToCbeam": {
+            "component": "mqtt/SendMessage",
+            "metadata": {
+                "label": "SendToCbeam",
+                "x": 1044,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "LogMqttErrors": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "LogMqttErrors",
+                "x": 1188,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "StreetColor": {
+            "component": "strings/ParseJson",
+            "metadata": {
+                "label": "StreetColor",
+                "x": 828,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "Pulsate": {
+            "component": "ingress-table/Pulsate",
+            "metadata": {
+                "label": "Pulsate",
+                "x": 1188,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "PulseInterval": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "PulseInterval",
+                "x": 828,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "DetectAttack": {
+            "component": "ingress-table/DetectAttack",
+            "metadata": {
+                "label": "DetectAttack",
+                "x": 1044,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ConvertStrets": {
+            "component": "ingress-table/ConvertStreetLight",
+            "metadata": {
+                "label": "ConvertStrets",
+                "x": 1404,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "BlueOrGreen": {
+            "component": "ingress-table/DetermineWinner",
+            "metadata": {
+                "label": "BlueOrGreen",
+                "x": 1188,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "CalculateState": {
+            "component": "ingress-table/CalculateState",
+            "metadata": {
+                "label": "CalculateState",
+                "x": 828,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "StateToLights": {
+            "component": "ingress-table/StateToTransmission",
+            "metadata": {
+                "label": "StateToLights",
+                "x": 1044,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "apierror"
+            },
+            "tgt": {
+                "process": "LogApiErrors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "configerror"
+            },
+            "tgt": {
+                "process": "LogApiErrors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "missingconfig"
+            },
+            "tgt": {
+                "process": "LogApiErrors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConfigPaths",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "LogApiErrors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConfigPaths",
+                "port": "portalfile"
+            },
+            "tgt": {
+                "process": "FetchData",
+                "port": "portalconfig"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ConfigPaths",
+                "port": "serverfile"
+            },
+            "tgt": {
+                "process": "FetchData",
+                "port": "apiconfig"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "Repeat",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "FetchData",
+                "port": "poll"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "PortalToMessage",
+                "port": "portal"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "PortalToMessage",
+                "port": "topic"
+            },
+            "tgt": {
+                "process": "SendToCbeam",
+                "port": "topic"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "PortalToMessage",
+                "port": "message"
+            },
+            "tgt": {
+                "process": "SendToCbeam",
+                "port": "message"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "SendToCbeam",
+                "port": "error"
+            },
+            "tgt": {
+                "process": "LogMqttErrors",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "StreetColor",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Pulsate",
+                "port": "colors"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "PulseInterval",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "Pulsate",
+                "port": "step"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "Repeat",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "PulseInterval",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "mainportal"
+            },
+            "tgt": {
+                "process": "DetectAttack",
+                "port": "portal"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "DetectAttack",
+                "port": "color"
+            },
+            "tgt": {
+                "process": "Pulsate",
+                "port": "colors"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "Pulsate",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "ConvertStrets",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "CalculateState",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "CalculateState",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "DetectAttack",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "CalculateState",
+                "port": "state"
+            },
+            "tgt": {
+                "process": "StateToLights",
+                "port": "state"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "FetchData",
+                "port": "portals"
+            },
+            "tgt": {
+                "process": "StateToLights",
+                "port": "portals"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "StateToLights",
+                "port": "states"
+            },
+            "tgt": {
+                "process": "BlueOrGreen",
+                "port": "states"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "NOFLO_PROJECT_ROOT",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "envvar"
+            }
+        },
+        {
+            "data": "cookie.txt",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "serverfile"
+            }
+        },
+        {
+            "data": "portals.json",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "portalfile"
+            }
+        },
+        {
+            "data": "start",
+            "tgt": {
+                "process": "Repeat",
+                "port": "in"
+            }
+        },
+        {
+            "data": true,
+            "tgt": {
+                "process": "SendToCbeam",
+                "port": "retain"
+            }
+        },
+        {
+            "data": "10.0.1.17",
+            "tgt": {
+                "process": "SendToCbeam",
+                "port": "broker"
+            }
+        },
+        {
+            "data": 0,
+            "tgt": {
+                "process": "SendToCbeam",
+                "port": "qos"
+            }
+        },
+        {
+            "data": "[255,255,255]",
+            "tgt": {
+                "process": "StreetColor",
+                "port": "in"
+            }
+        },
+        {
+            "data": 20,
+            "tgt": {
+                "process": "PulseInterval",
+                "port": "interval"
+            }
+        }
+    ]
+}
