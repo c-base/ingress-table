@@ -27,10 +27,13 @@ Convert STREET4[2] -> BLUEFOUR StreetLights
 loadGraph = (graphDef, callback) ->
   noflo.graph.loadFBP graphDef, (graph) ->
     loader.listComponents ->
+      console.log 'Registering test graph to NoFlo'
       loader.registerGraph 'ingress-table', 'SimulateStreets', graph, ->
+        console.log 'Loading the test graph as component'
         loader.load 'SimulateStreets', (err, inst) ->
           return callback err if err
           inst.once 'ready', ->
+            console.log 'Graph is ready'
             callback null, inst
 
 loadGraph fbp, (err, inst) ->
@@ -43,16 +46,21 @@ loadGraph fbp, (err, inst) ->
   inst.inPorts.step.attach step
   inst.inPorts.colors.attach colors
 
+  currentColor = 'white'
   setInterval ->
+    console.log "#{currentColor} step"
     step.send true
   , 60
 
   setTimeout ->
+    currentColor = 'red'
     colors.send [255,0,0]
     setTimeout ->
+      currentColor = 'white'
       colors.send [255,255,255]
       setTimeout ->
+        console.log 'DONE'
         process.exit 0
-      , 1000
-    , 1000
-  , 1000
+      , 10000
+    , 10000
+  , 10000
