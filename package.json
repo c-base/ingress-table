@@ -56,7 +56,25 @@
       "FetchDat": "graphs/FetchDat.json",
       "PrepareMessage": "graphs/PrepareMessage.json",
       "bgt9b": "graphs/bgt9b.json"
-    }
+    },
+    "runtimes": [
+      {
+        "id": "PortalLights",
+        "label": "Portal Lights",
+        "description": "Handles portal LED strip",
+        "type": "microflo",
+        "protocol": "microflo",
+        "address": "serial:///dev/ttyACM1"
+      },
+      {
+        "id": "StreetLights",
+        "label": "Street Lights",
+        "description": "Handles street and ambient LED lights",
+        "type": "microflo",
+        "protocol": "microflo",
+        "address": "serial://dev/ttyACM0"
+      }
+    ]
   },
   "microflo": {
     "graphs": {
