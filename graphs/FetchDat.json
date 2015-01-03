@@ -1,8 +1,6 @@
 {
     "properties": {
-        "name": "FetchData",
-        "id": "FetchDat",
-        "project": "ingress-table",
+        "name": "FetchDat",
         "environment": {
             "type": "noflo-nodejs",
             "content": ""
@@ -16,7 +14,9 @@
             "port": "in",
             "metadata": {
                 "x": -72,
-                "y": 72
+                "y": 72,
+                "width": 72,
+                "height": 72
             }
         },
         "poll": {
@@ -24,7 +24,9 @@
             "port": "in",
             "metadata": {
                 "x": -72,
-                "y": 468
+                "y": 468,
+                "width": 72,
+                "height": 72
             }
         },
         "apiconfig": {
@@ -32,7 +34,9 @@
             "port": "in",
             "metadata": {
                 "x": -72,
-                "y": -180
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -42,7 +46,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 252
+                "y": 252,
+                "width": 72,
+                "height": 72
             }
         },
         "state": {
@@ -50,7 +56,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 0
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "apierror": {
@@ -58,7 +66,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 396
+                "y": 396,
+                "width": 72,
+                "height": 72
             }
         },
         "configerror": {
@@ -66,7 +76,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "missingconfig": {
@@ -84,7 +96,9 @@
             "port": "out",
             "metadata": {
                 "x": 1404,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -114,8 +128,7 @@
             "name": "Scheduling",
             "nodes": [
                 "core/Repeat_ghioo",
-                "core/RunInterval_a6amz",
-                "core/RunInterval_z62hi"
+                "core/RunInterval_a6amz"
             ],
             "metadata": {
                 "description": ""
@@ -126,8 +139,7 @@
             "nodes": [
                 "GetPortals",
                 "objects/SplitArray_5f4ly",
-                "strings/SendString_3ssea",
-                "strings/SendString_si8hf"
+                "strings/SendString_3ssea"
             ],
             "metadata": {
                 "description": ""
@@ -140,7 +152,9 @@
             "metadata": {
                 "label": "ReadHostConf",
                 "x": 72,
-                "y": -180
+                "y": -180,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/SplitArray_5f4ly": {
@@ -148,7 +162,9 @@
             "metadata": {
                 "label": "IndividualPortals",
                 "x": 1080,
-                "y": 108
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/SendString_3ssea": {
@@ -156,7 +172,9 @@
             "metadata": {
                 "label": "TriggerAreaFetch",
                 "x": 720,
-                "y": 108
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "objects/GetObjectKey_5jjkz": {
@@ -174,15 +192,9 @@
             "metadata": {
                 "label": "MainPortal",
                 "x": 468,
-                "y": 36
-            }
-        },
-        "core/RunInterval_z62hi": {
-            "component": "core/RunInterval",
-            "metadata": {
-                "label": "MainPortalTimer",
-                "x": 468,
-                "y": 432
+                "y": 36,
+                "width": 72,
+                "height": 72
             }
         },
         "core/RunInterval_a6amz": {
@@ -190,7 +202,9 @@
             "metadata": {
                 "label": "FetchTimer",
                 "x": 468,
-                "y": 540
+                "y": 468,
+                "width": 72,
+                "height": 72
             }
         },
         "filesystem/ReadFile_cpmsi": {
@@ -198,7 +212,9 @@
             "metadata": {
                 "label": "ReadPortalConf",
                 "x": 72,
-                "y": 72
+                "y": 72,
+                "width": 72,
+                "height": 72
             }
         },
         "strings/ParseJson_9qdty": {
@@ -206,7 +222,9 @@
             "metadata": {
                 "label": "ParsePortalConf",
                 "x": 252,
-                "y": 72
+                "y": 72,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Repeat_ghioo": {
@@ -214,7 +232,9 @@
             "metadata": {
                 "label": "StartTimers",
                 "x": 288,
-                "y": 468
+                "y": 468,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_lqryg": {
@@ -222,7 +242,9 @@
             "metadata": {
                 "label": "States",
                 "x": 1260,
-                "y": 0
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_ppjmj": {
@@ -230,7 +252,9 @@
             "metadata": {
                 "label": "APIErrors",
                 "x": 1260,
-                "y": 396
+                "y": 396,
+                "width": 72,
+                "height": 72
             }
         },
         "core/Merge_9ko07": {
@@ -238,7 +262,9 @@
             "metadata": {
                 "label": "ConfigErrors",
                 "x": 792,
-                "y": 540
+                "y": 540,
+                "width": 72,
+                "height": 72
             }
         },
         "FileErrors": {
@@ -256,7 +282,9 @@
             "metadata": {
                 "label": "MainPortal",
                 "x": 792,
-                "y": 684
+                "y": 684,
+                "width": 72,
+                "height": 72
             }
         },
         "GetPortals": {
@@ -318,19 +346,6 @@
             "tgt": {
                 "process": "strings/SendString_3ssea",
                 "port": "in"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "core/Repeat_ghioo",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "core/RunInterval_z62hi",
-                "port": "start"
             },
             "metadata": {
                 "route": 2
