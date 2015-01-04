@@ -39,10 +39,12 @@ loadGraph (err, inst) ->
   inst.inPorts.show.attach show
   inst.start()
 
+  # TODO: don't send until runtime hits running state
+
   setPortal = (id, color) ->
     val = "[#{id}, \"#{rgb2hex(color)}\"]"
-    pixel.send val
     console.log "Sending #{val}"
+    pixel.send val
 
   setPortals = (color) ->
     for portal,idx in portals.portals
