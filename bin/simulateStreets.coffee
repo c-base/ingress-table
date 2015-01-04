@@ -50,7 +50,7 @@ loadGraph fbp, (err, inst) ->
   setInterval ->
     console.log "#{currentColor} step"
     step.send true
-  , 60
+  , 500
 
   inst.network.on 'data', (data) ->
     return if data.id.indexOf('STREET') is -1
