@@ -47,6 +47,12 @@ loadGraph (err, inst) ->
   setPortals = (color) ->
     for portal,idx in portals.portals
       continue unless portal
+      if idx is 37
+        if color[2] is 64
+          setPortal idx, [0, 0, 200]
+        else
+          setPortal idx, [0, 0, 64]
+        continue
       setPortal idx, color
     show.send true
 
