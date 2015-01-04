@@ -63,6 +63,7 @@
         "id": "PortalLights",
         "label": "Portal Lights",
         "description": "Handles portal LED strip",
+        "icon": "lightbulb-o",
         "type": "microflo",
         "protocol": "microflo",
         "graph": "./graphs/PortalLights.fbp",
@@ -71,6 +72,7 @@
       {
         "id": "StreetLights",
         "label": "Street Lights",
+        "icon": "lightbulb-o",
         "description": "Handles street and ambient LED lights",
         "type": "microflo",
         "protocol": "microflo",
