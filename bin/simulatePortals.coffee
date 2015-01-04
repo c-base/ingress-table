@@ -38,7 +38,9 @@ loadGraph (err, inst) ->
   inst.start()
 
   setPortal = (id, color) ->
-    pixel.send "[#{id}, \"#{rgb2hex(color)}\"]"
+    val = "[#{id}, \"#{rgb2hex(color)}\"]"
+    pixel.send val
+    console.log "Sending #{val}"
     show.send true
 
   console.log 'c-base blue'
@@ -52,6 +54,10 @@ loadGraph (err, inst) ->
       setTimeout ->
         console.log 'c-base white'
         setPortal 37, [64, 64, 64]
+        setTimeout ->
+          console.log "DONE"
+          process.exit 0
+        , 5000
       , 5000
     , 5000
   , 5000
