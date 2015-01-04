@@ -62,7 +62,7 @@
       {
         "id": "PortalLights",
         "label": "Portal Lights",
-        "description": "Handles portal LED strip",
+        "description": "Handles portal LED strip (Arduino)",
         "icon": "lightbulb-o",
         "type": "microflo",
         "protocol": "microflo",
@@ -73,7 +73,7 @@
         "id": "StreetLights",
         "label": "Street Lights",
         "icon": "lightbulb-o",
-        "description": "Handles street and ambient LED lights",
+        "description": "Handles street and ambient LED lights (Tiva)",
         "type": "microflo",
         "protocol": "microflo",
         "graph": "./graphs/TableLights.fbp",
