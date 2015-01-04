@@ -62,7 +62,7 @@ module.exports = ->
             level: 'warn'
 
     exec:
-      build_arduino: "#{microflo_make} GRAPH=graphs/PortalLights.fbp build-arduino-min"
+      build_arduino: "#{microflo_make} GRAPH=graphs/PortalLights.fbp LIBRARY=arduino-standard build-arduino"
       build_tiva: "#{microflo_make} STELLARIS_GRAPH=graphs/TableLights.fbp build-stellaris"
 
   # Grunt plugins used for building
