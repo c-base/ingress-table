@@ -1,3 +1,7 @@
+microflo_make = "make -f ./node_modules/microflo/Makefile \
+  MICROFLO_SOURCE_DIR=`pwd`/node_modules/microflo/microflo \
+  MICROFLO=./node_modules/.bin/microflo"
+
 module.exports = ->
   # Project configuration
   @initConfig
@@ -58,7 +62,8 @@ module.exports = ->
             level: 'warn'
 
     exec:
-      build_arduino: 'make -f ./node_modules/microflo/Makefile build-arduino-min GRAPH=graphs/PortalLights.fbp MICROFLO_SOURCE_DIR=./node_modules/microflo/microflo'
+      build_arduino: "#{microflo_make} GRAPH=graphs/PortalLights.fbp build-arduino-min"
+      build_tiva: "#{microflo_make} STELLARIS_GRAPH=graphs/TableLights.fbp build-stellaris"
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
