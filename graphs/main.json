@@ -71,8 +71,8 @@
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 504,
-                "y": 108,
+                "x": 468,
+                "y": 216,
                 "width": 72,
                 "height": 72
             }
@@ -82,7 +82,7 @@
             "metadata": {
                 "label": "LogApiErrors",
                 "x": 648,
-                "y": 576,
+                "y": -72,
                 "width": 72,
                 "height": 72
             }
@@ -91,7 +91,7 @@
             "component": "ingress-table/ConfigPaths",
             "metadata": {
                 "label": "ConfigPaths",
-                "x": 288,
+                "x": 252,
                 "y": -72,
                 "width": 72,
                 "height": 72
@@ -101,8 +101,8 @@
             "component": "core/Repeat",
             "metadata": {
                 "label": "Repeat",
-                "x": 288,
-                "y": 360,
+                "x": 252,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -142,7 +142,7 @@
             "metadata": {
                 "label": "StreetColor",
                 "x": 828,
-                "y": 576,
+                "y": 108,
                 "width": 72,
                 "height": 72
             }
@@ -152,7 +152,7 @@
             "metadata": {
                 "label": "Pulsate",
                 "x": 1188,
-                "y": 576,
+                "y": 108,
                 "width": 72,
                 "height": 72
             }
@@ -162,7 +162,7 @@
             "metadata": {
                 "label": "PulseInterval",
                 "x": 828,
-                "y": 360,
+                "y": 216,
                 "width": 72,
                 "height": 72
             }
@@ -171,8 +171,8 @@
             "component": "ingress-table/DetectAttack",
             "metadata": {
                 "label": "DetectAttack",
-                "x": 1044,
-                "y": 360,
+                "x": 1008,
+                "y": 324,
                 "width": 72,
                 "height": 72
             }
@@ -182,7 +182,7 @@
             "metadata": {
                 "label": "ConvertStrets",
                 "x": 1368,
-                "y": 576,
+                "y": -36,
                 "width": 72,
                 "height": 72
             }
@@ -192,7 +192,7 @@
             "metadata": {
                 "label": "BlueOrGreen",
                 "x": 1188,
-                "y": 180,
+                "y": 504,
                 "width": 72,
                 "height": 72
             }
@@ -202,7 +202,7 @@
             "metadata": {
                 "label": "CalculateState",
                 "x": 828,
-                "y": 180,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -212,7 +212,7 @@
             "metadata": {
                 "label": "StateToLights",
                 "x": 1044,
-                "y": 108,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -221,8 +221,8 @@
             "component": "runtime/PortalLights",
             "metadata": {
                 "label": "PortalLights",
-                "x": 1548,
-                "y": -72,
+                "x": 1584,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -231,8 +231,8 @@
             "component": "runtime/StreetLights",
             "metadata": {
                 "label": "StreetLights",
-                "x": 1548,
-                "y": 504,
+                "x": 1620,
+                "y": -72,
                 "width": 72,
                 "height": 132
             }
@@ -390,8 +390,7 @@
             "tgt": {
                 "process": "Pulsate",
                 "port": "colors"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
@@ -440,8 +439,7 @@
             "tgt": {
                 "process": "Pulsate",
                 "port": "colors"
-            },
-            "metadata": {}
+            }
         },
         {
             "src": {
