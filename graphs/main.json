@@ -42,6 +42,28 @@
             "metadata": {
                 "description": ""
             }
+        },
+        {
+            "name": "Portal Status",
+            "nodes": [
+                "BlueOrGreen",
+                "CalculateState",
+                "StateToLights"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Ingress Table",
+            "nodes": [
+                "ConvertStrets",
+                "PortalLights",
+                "StreetLights"
+            ],
+            "metadata": {
+                "description": ""
+            }
         }
     ],
     "processes": {
@@ -159,7 +181,7 @@
             "component": "ingress-table/ConvertStreetLight",
             "metadata": {
                 "label": "ConvertStrets",
-                "x": 1404,
+                "x": 1368,
                 "y": 576,
                 "width": 72,
                 "height": 72
@@ -170,7 +192,7 @@
             "metadata": {
                 "label": "BlueOrGreen",
                 "x": 1188,
-                "y": 108,
+                "y": 180,
                 "width": 72,
                 "height": 72
             }
@@ -193,6 +215,26 @@
                 "y": 108,
                 "width": 72,
                 "height": 72
+            }
+        },
+        "PortalLights": {
+            "component": "runtime/PortalLights",
+            "metadata": {
+                "label": "PortalLights",
+                "x": 1548,
+                "y": -72,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "StreetLights": {
+            "component": "runtime/StreetLights",
+            "metadata": {
+                "label": "StreetLights",
+                "x": 1548,
+                "y": 504,
+                "width": 72,
+                "height": 132
             }
         }
     },
@@ -475,7 +517,204 @@
                 "process": "BlueOrGreen",
                 "port": "states"
             },
-            "metadata": {}
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "redone"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "greenone"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "blueone"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "redtwo"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "redthree"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "greenthree"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "bluethree"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "redfour"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "greenfour"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "bluefour"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "BlueOrGreen",
+                "port": "green"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "floorgreen"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "BlueOrGreen",
+                "port": "blue"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "floorblue"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "StateToLights",
+                "port": "light"
+            },
+            "tgt": {
+                "process": "PortalLights",
+                "port": "pixel"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "greentwo"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "bluetwo"
+            },
+            "metadata": {
+                "route": 7
+            }
         },
         {
             "data": "NOFLO_PROJECT_ROOT",
