@@ -52,15 +52,23 @@ loadGraph fbp, (err, inst) ->
     step.send true
   , 60
 
+  inst.network.on 'data', (data) ->
+    return if data.id.indexOf('STREET') is -1
+    console.log data.id, data.data
+
   setTimeout ->
     currentColor = 'red'
     colors.send [255,0,0]
     setTimeout ->
-      currentColor = 'white'
-      colors.send [255,255,255]
+      currentColor = 'green'
+      colors.send [0,255,0]
       setTimeout ->
-        console.log 'DONE'
-        process.exit 0
+        currentColor = 'blue'
+        colors.send [0,0,255]
+        setTimeout ->
+          console.log 'DONE'
+          process.exit 0
+        , 10000
       , 10000
     , 10000
   , 10000
