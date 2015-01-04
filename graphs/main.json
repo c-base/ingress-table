@@ -71,7 +71,7 @@
             "component": "ingress-table/FetchDat",
             "metadata": {
                 "label": "FetchData",
-                "x": 468,
+                "x": 504,
                 "y": 108,
                 "width": 72,
                 "height": 72
@@ -92,7 +92,7 @@
             "metadata": {
                 "label": "ConfigPaths",
                 "x": 288,
-                "y": 108,
+                "y": -72,
                 "width": 72,
                 "height": 72
             }
@@ -102,7 +102,7 @@
             "metadata": {
                 "label": "Repeat",
                 "x": 288,
-                "y": 324,
+                "y": 360,
                 "width": 72,
                 "height": 72
             }
@@ -575,6 +575,45 @@
         },
         {
             "src": {
+                "process": "StateToLights",
+                "port": "light"
+            },
+            "tgt": {
+                "process": "PortalLights",
+                "port": "pixel"
+            },
+            "metadata": {
+                "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "greentwo"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ConvertStrets",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "StreetLights",
+                "port": "bluetwo"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
                 "process": "ConvertStrets",
                 "port": "street3"
             },
@@ -654,19 +693,6 @@
         {
             "src": {
                 "process": "BlueOrGreen",
-                "port": "green"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "floorgreen"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "BlueOrGreen",
                 "port": "blue"
             },
             "tgt": {
@@ -679,41 +705,15 @@
         },
         {
             "src": {
-                "process": "StateToLights",
-                "port": "light"
-            },
-            "tgt": {
-                "process": "PortalLights",
-                "port": "pixel"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street2"
+                "process": "BlueOrGreen",
+                "port": "green"
             },
             "tgt": {
                 "process": "StreetLights",
-                "port": "greentwo"
+                "port": "floorgreen"
             },
             "metadata": {
                 "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street2"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "bluetwo"
-            },
-            "metadata": {
-                "route": 7
             }
         },
         {
