@@ -2,6 +2,8 @@
 #// vim: set filetype=coffee:
 noflo = require 'noflo'
 path = require 'path'
+fs = require 'fs'
+portals = JSON.parse fs.readFileSync path.resolve(__dirname, '../portals.json'), 'utf-8'
 
 loader = new noflo.ComponentLoader path.resolve __dirname, '../'
 rgb2hex = ([red, green, blue]) ->
@@ -41,19 +43,24 @@ loadGraph (err, inst) ->
     val = "[#{id}, \"#{rgb2hex(color)}\"]"
     pixel.send val
     console.log "Sending #{val}"
+
+  setPortals = (color) ->
+    for portal,idx in portals.portals
+      continue unless portal
+      setPortal idx, color
     show.send true
 
-  console.log 'c-base blue'
-  setPortal 37, [0, 0, 64]
+  console.log 'portals blue'
+  setPortals [0, 0, 64]
   setTimeout ->
-    console.log 'c-base green'
-    setPortal 37, [0, 64, 0]
+    console.log 'portals green'
+    setPortals [0, 64, 0]
     setTimeout ->
-      console.log 'c-base red'
-      setPortal 37, [96, 0, 0]
+      console.log 'portals red'
+      setPortals [96, 0, 0]
       setTimeout ->
-        console.log 'c-base white'
-        setPortal 37, [64, 64, 64]
+        console.log 'portals white'
+        setPortals [64, 64, 64]
         setTimeout ->
           console.log "DONE"
           process.exit 0
