@@ -31,7 +31,17 @@ loadGraph = (graphDef, callback) ->
       loader.registerGraph 'ingress-table', 'SimulateStreets', graph, ->
         console.log 'Loading the test graph as component'
         loader.load 'SimulateStreets', (err, inst) ->
+          console.log 'Loaded the test graph. Waiting for ready state'
           return callback err if err
+
+          remoteSub = inst.network.getNode 'StreetLights'
+          remoteSub.component.runtime.on 'connected', ->
+            console.log "Remote subgraph connected"
+          remoteSub.component.runtime.on 'error', (e) ->
+            console.log "Remote subgraph error", e
+          remoteSub.component.runtime.on 'runtime', (msg) ->
+            console.log "RECEIVED #{msg.command} from runtime"
+
           inst.once 'ready', ->
             console.log 'Graph is ready'
             callback null, inst
