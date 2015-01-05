@@ -26,7 +26,14 @@ loadGraph = (callback) ->
 
       inst.once 'ready', ->
         console.log 'Graph is ready'
-        callback null, inst
+        inst.start()
+
+      callbackRan = false
+      inst.runtime.on 'execution', (state) ->
+        console.log 'execution state changed', state
+        if not callbackRan and state.running
+          callbackRan = true
+          callback null, inst
 
 loadGraph (err, inst) ->
   if err
@@ -37,7 +44,6 @@ loadGraph (err, inst) ->
   show = noflo.internalSocket.createSocket()
   inst.inPorts.pixel.attach pixel
   inst.inPorts.show.attach show
-  inst.start()
 
   # TODO: don't send until runtime hits running state
 
