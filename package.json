@@ -77,7 +77,7 @@
         "type": "microflo",
         "protocol": "microflo",
         "graph": "./graphs/TableLights.fbp",
-        "address": "serial:///dev/ttyACM1"
+        "address": "simulator://"
       }
     ]
   },
