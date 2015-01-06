@@ -35,8 +35,20 @@ loadGraph (err, inst) ->
 
   pixel = noflo.internalSocket.createSocket()
   show = noflo.internalSocket.createSocket()
+  ready = noflo.internalSocket.createSocket()
+  shown = noflo.internalSocket.createSocket()
+  pixelset = noflo.internalSocket.createSocket()
   inst.inPorts.pixel.attach pixel
   inst.inPorts.show.attach show
+  inst.outPorts.ready.attach ready
+  inst.outPorts.shown.attach shown
+  inst.outPorts.pixelset.attach pixelset
+  ready.on 'data', (data) ->
+    console.log "READY", data
+  shown.on 'data', (data) ->
+    console.log "SHOWN", data
+  pixelset.on 'data', (data) ->
+    console.log "PIXELSET", data
   inst.start()
 
   # TODO: don't send until runtime hits running state
@@ -56,22 +68,24 @@ loadGraph (err, inst) ->
           setPortal idx, [0, 0, 64]
         continue
       setPortal idx, color
+    console.log 'Sending SHOW'
     show.send true
 
-  console.log 'portals blue'
-  setPortals [0, 0, 64]
   setTimeout ->
-    console.log 'portals green'
-    setPortals [0, 64, 0]
+    console.log 'portals blue'
+    setPortals [0, 0, 64]
     setTimeout ->
-      console.log 'portals red'
-      setPortals [96, 0, 0]
+      console.log 'portals green'
+      setPortals [0, 64, 0]
       setTimeout ->
-        console.log 'portals white'
-        setPortals [64, 64, 64]
+        console.log 'portals red'
+        setPortals [96, 0, 0]
         setTimeout ->
-          console.log "DONE"
-          process.exit 0
+          console.log 'portals white'
+          setPortals [64, 64, 64]
+          setTimeout ->
+            console.log "DONE"
+          , 5000
         , 5000
       , 5000
     , 5000
