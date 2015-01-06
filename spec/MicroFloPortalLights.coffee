@@ -24,7 +24,7 @@ describe 'MicroFlo Portal Lights', ->
       id: "2ef763ff-1f28-49b8-b58f-5c6a5c23af25"
       graph: "./graphs/PortalLights.fbp",
 
-    it 'should have ports', (done) ->
+    it.skip 'should have ports', (done) ->
       @timeout 100000
       runtime = new Runtime
       runtime.setDefinition def
