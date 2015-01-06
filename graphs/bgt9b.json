@@ -87,20 +87,22 @@
             }
         },
         {
-            "name": "Table Lights",
+            "name": "c-beam",
             "nodes": [
-                "core/Output_eava9",
-                "ingress-table/ConvertStreetLight_luj6x"
+                "PortalToCbeam",
+                "PortalToMessage"
             ],
             "metadata": {
                 "description": ""
             }
         },
         {
-            "name": "c-beam",
+            "name": "Table Lights",
             "nodes": [
-                "PortalToCbeam",
-                "PortalToMessage"
+                "PortalLights",
+                "core/RunInterval_82o32",
+                "ingress-table/ConvertStreetLight_luj6x",
+                "ingress-table/TableLights_9jw9e"
             ],
             "metadata": {
                 "description": ""
@@ -288,16 +290,6 @@
                 "height": 72
             }
         },
-        "core/Output_eava9": {
-            "component": "core/Output",
-            "metadata": {
-                "label": "LogTableErrors",
-                "x": 1440,
-                "y": 864,
-                "width": 72,
-                "height": 72
-            }
-        },
         "ingress-table/ConvertStreetLight_luj6x": {
             "component": "ingress-table/ConvertStreetLight",
             "metadata": {
@@ -322,7 +314,7 @@
             "component": "runtime/StreetLights",
             "metadata": {
                 "label": "TableLights",
-                "x": 1260,
+                "x": 1404,
                 "y": 1008,
                 "device": "/dev/ttyACM1",
                 "baudrate": 115200,
@@ -334,7 +326,7 @@
             "component": "runtime/PortalLights",
             "metadata": {
                 "label": "PortalLights",
-                "x": 1260,
+                "x": 1404,
                 "y": 864,
                 "device": "/dev/ttyACM0",
                 "width": 72,
@@ -899,19 +891,6 @@
         },
         {
             "src": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "error"
-            },
-            "tgt": {
-                "process": "core/Output_eava9",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
                 "process": "core/RunInterval_82o32",
                 "port": "out"
             },
@@ -921,19 +900,6 @@
             },
             "metadata": {
                 "route": 0
-            }
-        },
-        {
-            "src": {
-                "process": "PortalLights",
-                "port": "error"
-            },
-            "tgt": {
-                "process": "core/Output_eava9",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
             }
         },
         {
@@ -1043,13 +1009,6 @@
             "tgt": {
                 "process": "core/RunInterval_82o32",
                 "port": "interval"
-            }
-        },
-        {
-            "data": false,
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "upload"
             }
         },
         {
