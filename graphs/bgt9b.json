@@ -319,7 +319,7 @@
             }
         },
         "ingress-table/TableLights_9jw9e": {
-            "component": "ingress-table/TableLights",
+            "component": "runtime/StreetLights",
             "metadata": {
                 "label": "TableLights",
                 "x": 1260,
@@ -331,7 +331,7 @@
             }
         },
         "PortalLights": {
-            "component": "ingress-table/PortalLights",
+            "component": "runtime/PortalLights",
             "metadata": {
                 "label": "PortalLights",
                 "x": 1260,
