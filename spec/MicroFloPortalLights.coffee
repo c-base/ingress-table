@@ -1,9 +1,10 @@
 noflo = require 'noflo'
+chai = require 'chai'
 
 device = "simulator://"
 #device = "serial:///dev/ttyACM0"
 
-Runtime = require 'noflo-runtime/src/RemoteSubGraph'
+Runtime = require('noflo-runtime/src/RemoteSubGraph').RemoteSubGraph
 
 describe 'MicroFlo Portal Lights', ->
   runtime = null
@@ -21,11 +22,15 @@ describe 'MicroFlo Portal Lights', ->
       protocol: "microflo"
       address: device
       id: "2ef763ff-1f28-49b8-b58f-5c6a5c23af25"
+      graph: "./graphs/PortalLights.fbp",
 
     it 'should have ports', (done) ->
-      runtime = new Runtime def
+      @timeout 100000
+      runtime = new Runtime
+      runtime.setDefinition def
       checkPorts = () ->
-        chai.expect(runtime.inPorts.ports['in']).to.be.an 'object'
+        console.log runtime.inPorts
+        chai.expect(runtime.inPorts.ports['pixel']).to.be.an 'object'
         chai.expect(runtime.inPorts.ports['show']).to.be.an 'object'
         chai.expect(runtime.outPorts.ports['shown']).to.be.an 'object'
         done()
@@ -47,11 +52,11 @@ describe 'MicroFlo Portal Lights', ->
       ###
       input = [ 30, "0xFF00FF" ]
 
-      it 'should respond with the same data', (done) ->
+      it.skip 'should respond with the same data', (done) ->
         insocket = noflo.internalSocket.createSocket()
         output = noflo.internalSocket.createSocket()
-        runtime.inPorts["in"].attach insocket
-        runtime.outPorts["out"].attach output
+        runtime.inPorts["pixel"].attach insocket
+        runtime.outPorts["pixelset"].attach output
         output.once 'data', (data) ->
           chai.expect(data).to.deep.equal input
         done()
