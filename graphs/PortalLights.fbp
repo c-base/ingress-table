@@ -2,16 +2,18 @@
 
 INPORT=ledchain.IN:PIXEL
 INPORT=ledchain.SHOW:SHOW
+OUTPORT=ledchain.PIXELSET:PIXELSET
 OUTPORT=ledchain.READY:READY
 OUTPORT=ledchain.SHOWN:SHOWN
 
-'2' -> PINDATA ledchain(LedChainWS)
-'3' -> PINCLK ledchain
+#'2' -> PINDATA ledchain(LedChainWS)
+#'3' -> PINCLK ledchain
+'true' -> HWSPI ledchain(LedChainWS)
 '50' -> PIXELS ledchain
+#'[37, "0x404040"]' -> IN ledchain
 #'true' -> SHOW ledchain
 
 # Workaround to be able to get the outport data
 # MicroFlo currently subscribe to packets with no destination...
 ledchain SHOWN -> IN dummy(Forward)
 ledchain READY -> IN dummyB(Forward)
-
