@@ -543,7 +543,7 @@
             }
         },
         {
-            "data": "10000",
+            "data": 10000,
             "tgt": {
                 "process": "core/RunInterval_a6amz",
                 "port": "interval"
