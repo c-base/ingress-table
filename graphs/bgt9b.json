@@ -943,13 +943,6 @@
             }
         },
         {
-            "data": "1000",
-            "tgt": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "blink"
-            }
-        },
-        {
             "data": "[255,255,255]",
             "tgt": {
                 "process": "strings/ParseJson_l8zh",
@@ -1038,6 +1031,13 @@
             "tgt": {
                 "process": "core/RunInterval_82o32",
                 "port": "interval"
+            }
+        },
+        {
+            "data": "2000",
+            "tgt": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "blink"
             }
         }
     ]
