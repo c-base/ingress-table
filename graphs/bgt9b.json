@@ -314,19 +314,19 @@
             "component": "runtime/StreetLights",
             "metadata": {
                 "label": "TableLights",
-                "x": 1404,
-                "y": 1008,
+                "x": 1440,
+                "y": 972,
                 "device": "/dev/ttyACM1",
                 "baudrate": 115200,
                 "width": 72,
-                "height": 144
+                "height": 132
             }
         },
         "PortalLights": {
             "component": "runtime/PortalLights",
             "metadata": {
                 "label": "PortalLights",
-                "x": 1404,
+                "x": 1440,
                 "y": 864,
                 "device": "/dev/ttyACM0",
                 "width": 72,
@@ -683,19 +683,6 @@
         },
         {
             "src": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "colors"
-            },
-            "metadata": {
-                "route": 3
-            }
-        },
-        {
-            "src": {
                 "process": "core/Repeat_x0tsf",
                 "port": "out"
             },
@@ -1005,13 +992,6 @@
             }
         },
         {
-            "data": 500,
-            "tgt": {
-                "process": "core/RunInterval_82o32",
-                "port": "interval"
-            }
-        },
-        {
             "data": "NOFLO_PROJECT_ROOT",
             "tgt": {
                 "process": "ConfigPaths",
@@ -1051,6 +1031,13 @@
             "tgt": {
                 "process": "PortalToCbeam",
                 "port": "qos"
+            }
+        },
+        {
+            "data": "1000",
+            "tgt": {
+                "process": "core/RunInterval_82o32",
+                "port": "interval"
             }
         }
     ]
