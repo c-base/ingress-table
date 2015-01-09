@@ -978,13 +978,6 @@
             }
         },
         {
-            "data": "10000",
-            "tgt": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "wait"
-            }
-        },
-        {
             "data": "NOFLO_PROJECT_ROOT",
             "tgt": {
                 "process": "ConfigPaths",
@@ -1038,6 +1031,13 @@
             "tgt": {
                 "process": "ingress-table/StateToColor_ifaav",
                 "port": "blink"
+            }
+        },
+        {
+            "data": "20000",
+            "tgt": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "wait"
             }
         }
     ]
