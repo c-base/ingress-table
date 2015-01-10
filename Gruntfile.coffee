@@ -1,6 +1,9 @@
 microflo_make = "make -f ./node_modules/microflo/Makefile \
-  MICROFLO_SOURCE_DIR=`pwd`/node_modules/microflo/microflo \
-  MICROFLO=./node_modules/.bin/microflo"
+  MICROFLO_SOURCE_DIR=#{process.cwd()}/node_modules/microflo/microflo \
+  MICROFLO=./node_modules/.bin/microflo
+  BUILD_DIR=#{process.cwd()}/build"
+
+#console.log microflo_make
 
 module.exports = ->
   # Project configuration
