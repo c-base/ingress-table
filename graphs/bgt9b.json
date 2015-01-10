@@ -62,14 +62,7 @@
         },
         {
             "name": "Web Version",
-            "nodes": [
-                "PrepareMessage",
-                "core/Drop_z1l5r",
-                "strings/Jsonify_urxeq",
-                "webserver/Server_uovn0",
-                "websocket/ListenConnections_9f5av",
-                "websocket/SendMessage_9oy1f"
-            ],
+            "nodes": [],
             "metadata": {
                 "description": ""
             }
@@ -140,56 +133,6 @@
                 "height": 72
             }
         },
-        "webserver/Server_uovn0": {
-            "component": "webserver/Server",
-            "metadata": {
-                "label": "HTTPServer",
-                "x": 1188,
-                "y": 540,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "websocket/ListenConnections_9f5av": {
-            "component": "websocket/ListenConnections",
-            "metadata": {
-                "label": "WebSocketConnection",
-                "x": 1296,
-                "y": 576,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "websocket/SendMessage_9oy1f": {
-            "component": "websocket/SendMessage",
-            "metadata": {
-                "label": "SendToTable",
-                "x": 1440,
-                "y": 684,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "strings/Jsonify_urxeq": {
-            "component": "strings/Jsonify",
-            "metadata": {
-                "label": "Stringify",
-                "x": 1296,
-                "y": 684,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "core/Drop_z1l5r": {
-            "component": "core/Drop",
-            "metadata": {
-                "label": "IgnoreHTTP",
-                "x": 1440,
-                "y": 540,
-                "width": 72,
-                "height": 72
-            }
-        },
         "ingress-table/CalculateState_xkyq7": {
             "component": "ingress-table/CalculateState",
             "metadata": {
@@ -216,16 +159,6 @@
                 "label": "StreetColor",
                 "x": 324,
                 "y": 1008,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "PrepareMessage": {
-            "component": "ingress-table/PrepareMessage",
-            "metadata": {
-                "label": "PrepareMessage",
-                "x": 1008,
-                "y": 540,
                 "width": 72,
                 "height": 72
             }
@@ -314,20 +247,20 @@
             "component": "runtime/StreetLights",
             "metadata": {
                 "label": "TableLights",
-                "x": 1404,
-                "y": 1008,
+                "x": 1440,
+                "y": 972,
                 "device": "/dev/ttyACM1",
                 "baudrate": 115200,
                 "width": 72,
-                "height": 144
+                "height": 132
             }
         },
         "PortalLights": {
             "component": "runtime/PortalLights",
             "metadata": {
                 "label": "PortalLights",
-                "x": 1404,
-                "y": 864,
+                "x": 1440,
+                "y": 360,
                 "device": "/dev/ttyACM0",
                 "width": 72,
                 "height": 72
@@ -380,45 +313,6 @@
         },
         {
             "src": {
-                "process": "webserver/Server_uovn0",
-                "port": "request"
-            },
-            "tgt": {
-                "process": "core/Drop_z1l5r",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "webserver/Server_uovn0",
-                "port": "server"
-            },
-            "tgt": {
-                "process": "websocket/ListenConnections_9f5av",
-                "port": "server"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "websocket/ListenConnections_9f5av",
-                "port": "connection"
-            },
-            "tgt": {
-                "process": "websocket/SendMessage_9oy1f",
-                "port": "connection"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "state"
             },
@@ -458,64 +352,12 @@
         },
         {
             "src": {
-                "process": "strings/Jsonify_urxeq",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "websocket/SendMessage_9oy1f",
-                "port": "string"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "PrepareMessage",
-                "port": "portals"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "PrepareMessage",
-                "port": "message"
-            },
-            "tgt": {
-                "process": "strings/Jsonify_urxeq",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
                 "process": "ingress-table/StateToColor_ifaav",
                 "port": "states"
             },
             "tgt": {
                 "process": "ingress-table/DetermineWinner_z8u0g",
                 "port": "states"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/DetermineWinner_z8u0g",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "PrepareMessage",
-                "port": "bottomstripes"
             },
             "metadata": {
                 "route": 5
@@ -532,19 +374,6 @@
             },
             "metadata": {
                 "route": null
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "PrepareMessage",
-                "port": "innerstripes"
-            },
-            "metadata": {
-                "route": 3
             }
         },
         {
@@ -679,19 +508,6 @@
             "tgt": {
                 "process": "ingress-table/Pulsate_qo650",
                 "port": "colors"
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "colors"
-            },
-            "metadata": {
-                "route": 3
             }
         },
         {
@@ -949,17 +765,16 @@
             }
         },
         {
-            "data": "ingress",
+            "src": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
             "tgt": {
-                "process": "websocket/ListenConnections_9f5av",
-                "port": "protocol"
-            }
-        },
-        {
-            "data": "1000",
-            "tgt": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "blink"
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": 3
             }
         },
         {
@@ -977,13 +792,6 @@
             }
         },
         {
-            "data": "8001",
-            "tgt": {
-                "process": "webserver/Server_uovn0",
-                "port": "listen"
-            }
-        },
-        {
             "data": "portals.json",
             "tgt": {
                 "process": "ConfigPaths",
@@ -998,31 +806,10 @@
             }
         },
         {
-            "data": "10000",
-            "tgt": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "wait"
-            }
-        },
-        {
-            "data": 500,
-            "tgt": {
-                "process": "core/RunInterval_82o32",
-                "port": "interval"
-            }
-        },
-        {
             "data": "NOFLO_PROJECT_ROOT",
             "tgt": {
                 "process": "ConfigPaths",
                 "port": "envvar"
-            }
-        },
-        {
-            "data": false,
-            "tgt": {
-                "process": "websocket/SendMessage_9oy1f",
-                "port": "buffer"
             }
         },
         {
@@ -1051,6 +838,27 @@
             "tgt": {
                 "process": "PortalToCbeam",
                 "port": "qos"
+            }
+        },
+        {
+            "data": "1000",
+            "tgt": {
+                "process": "core/RunInterval_82o32",
+                "port": "interval"
+            }
+        },
+        {
+            "data": "2000",
+            "tgt": {
+                "process": "ingress-table/StateToColor_ifaav",
+                "port": "blink"
+            }
+        },
+        {
+            "data": "20000",
+            "tgt": {
+                "process": "ingress-table/StabilizePortal_sg4x0",
+                "port": "wait"
             }
         }
     ]
