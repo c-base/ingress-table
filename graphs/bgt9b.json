@@ -260,7 +260,7 @@
             "metadata": {
                 "label": "PortalLights",
                 "x": 1440,
-                "y": 540,
+                "y": 360,
                 "device": "/dev/ttyACM0",
                 "width": 72,
                 "height": 72
