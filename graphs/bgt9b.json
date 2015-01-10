@@ -765,6 +765,19 @@
             }
         },
         {
+            "src": {
+                "process": "ingress-table/Pulsate_qo650",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "ingress-table/ConvertStreetLight_luj6x",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": 3
+            }
+        },
+        {
             "data": "[255,255,255]",
             "tgt": {
                 "process": "strings/ParseJson_l8zh",
