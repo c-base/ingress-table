@@ -108,7 +108,7 @@
             "metadata": {
                 "label": "Start",
                 "x": -180,
-                "y": 756,
+                "y": 360,
                 "width": 72,
                 "height": 72
             }
@@ -127,7 +127,7 @@
             "component": "ingress-table/StateToColor",
             "metadata": {
                 "label": "ToRGB",
-                "x": 612,
+                "x": 648,
                 "y": 540,
                 "width": 72,
                 "height": 72
@@ -237,8 +237,8 @@
             "component": "core/RunInterval",
             "metadata": {
                 "label": "UpdateLights",
-                "x": 1008,
-                "y": 864,
+                "x": 1080,
+                "y": 468,
                 "width": 72,
                 "height": 72
             }
@@ -252,7 +252,7 @@
                 "device": "/dev/ttyACM1",
                 "baudrate": 115200,
                 "width": 72,
-                "height": 132
+                "height": 72
             }
         },
         "PortalLights": {
@@ -296,6 +296,9 @@
             "tgt": {
                 "process": "ingress-table/FetchDat_7edo2",
                 "port": "poll"
+            },
+            "metadata": {
+                "route": 2
             }
         },
         {
@@ -399,7 +402,7 @@
                 "port": "start"
             },
             "metadata": {
-                "route": 0
+                "route": 2
             }
         },
         {
@@ -520,7 +523,7 @@
                 "port": "start"
             },
             "metadata": {
-                "route": 0
+                "route": 2
             }
         },
         {
