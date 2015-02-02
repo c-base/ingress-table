@@ -138,7 +138,9 @@ exports.getComponent = ->
               c.cookie = null
               c.xsrf = null
               return callback err
+            out.beginGroup Date.now()
             out.send states
+            out.endGroup()
             do callback
       return
 
@@ -151,13 +153,17 @@ exports.getComponent = ->
         c.xsrfValid = xsrf.timeout
         getPortals guids, c.params.username, c.cookie, c.xsrf, (err, states) ->
           return callback err if err
+          out.beginGroup Date.now()
           out.send states
+          out.endGroup()
           do callback
       return
 
     getPortals guids, c.params.username, c.cookie, c.xsrf, (err, states) ->
       return callback err if err
+      out.beginGroup Date.now()
       out.send states
+      out.endGroup()
       do callback
 
   c
