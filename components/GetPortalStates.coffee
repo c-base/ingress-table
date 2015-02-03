@@ -22,6 +22,8 @@ obtainCookie = (auth, callback) ->
   cookiePath = loginPath + '?' + querystring.stringify
     auth: auth
   options = getRequestOptions 'GET', apiHost, cookiePath
+  options.headers =
+    'User-Agent': 'ingress-table'
   req = https.request options, (res) ->
     unless res.headers['set-cookie']
       return callback new Error 'No cookie received'
@@ -33,8 +35,14 @@ obtainXsrf = (cookie, callback) ->
   options = getRequestOptions 'GET', apiHost, xsrfPath
   options.headers =
     'Cookie': cookie
+    'User-Agent': 'ingress-table'
   req = https.request options, (res) ->
-    return callback new Error 'XSFR request failed' unless res.statusCode is 200
+    unless res.statusCode is 200
+      data = ''
+      res.on 'data', (chunk) ->
+        data += chunk
+      res.on 'end', ->
+        return callback new Error 'XSFR request failed: ' + data
     data = ''
     res.on 'data', (chunk) ->
       data += chunk
@@ -51,6 +59,7 @@ getPortals = (portals, username, cookie, xsrf, callback) ->
     'Cookie': cookie
     'X-XsrfToken': xsrf
     'Content-Type': 'application/json'
+    'User-Agent': 'ingress-table'
 
   data =
     params: [portals]
