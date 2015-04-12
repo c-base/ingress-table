@@ -3,7 +3,7 @@
   "description": "Physical Intel Map",
   "author": "Henri Bergius <henri.bergius@iki.fi>",
   "repo": "bergie/ingress-table",
-  "version": "0.1.0",
+  "version": "2.0.1",
   "dependencies": {
     "noflo/noflo": "*",
     "noflo/noflo-websocket": "*",
