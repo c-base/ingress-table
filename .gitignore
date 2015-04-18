@@ -3,6 +3,7 @@
 /browser/
 result.xml
 flowhub.json
+.noflo.json
 server.json
 cookie.txt
 cookie.json
