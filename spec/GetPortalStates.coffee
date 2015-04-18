@@ -26,7 +26,7 @@ describe 'GetPortalStates component', ->
     c.outPorts.states.attach states
     c.outPorts.error.attach error
     portalConfig = JSON.parse fs.readFileSync path.resolve(__dirname, '../portals.json'), 'utf-8'
-    cookieData = fs.readFileSync path.resolve(__dirname, '../cookie.txt'), 'utf-8'
+    cookieData = fs.readFileSync path.resolve(__dirname, '../cookie.json'), 'utf-8'
 
   describe 'getting area information', ->
     it 'should be able to return data for all configured portals', (done) ->

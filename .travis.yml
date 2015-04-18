@@ -5,4 +5,4 @@ before_script:
 - npm install -g grunt-cli
 before_install:
 - openssl aes-256-cbc -K $encrypted_b877c04c0554_key -iv $encrypted_b877c04c0554_iv
-  -in cookie.txt.enc -out cookie.txt -d
+  -in cookie.json.enc -out cookie.json -d

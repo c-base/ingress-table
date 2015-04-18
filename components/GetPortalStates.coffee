@@ -1,9 +1,14 @@
 https = require 'https'
 noflo = require 'noflo'
 querystring = require 'querystring'
+googleAuth = require 'google-auth-library'
+googleOAuth2 = new googleAuth().OAuth2
 
 # @runtime noflo-nodejs
 
+authUrl = 'https://www.google.com/accounts/OAuthLogin'
+apiSource = 'com.google.ingress.dev.external'
+apiService = 'ah'
 apiHost = 'betaspike.appspot.com'
 apiPath = '/rpc/externalApi/getPortalInfo/'
 loginPath = '/_ah/login'
@@ -17,6 +22,32 @@ getRequestOptions = (method, host, path) ->
     method: method
     path: path
     agent: false
+
+getAuth = (credentials, callback) ->
+  auth = new googleOAuth2 credentials.client_id, credentials.client_secret
+  auth.credentials = credentials
+  auth.credentials.expiry_date = new Date(credentials.token_expiry).getTime()
+  auth.request
+    method: 'POST'
+    uri: authUrl
+    form:
+      source: apiSource
+      service: apiService
+    headers:
+      'User-Agent': 'ingress-table'
+  , (err, data) ->
+    return callback err if err
+    dict = {}
+    rows = data.split '\n'
+    for r in rows
+      [key, value] = r.split '='
+      continue unless key
+      dict[key] = value
+
+    unless dict.Auth
+      return callback new Error 'Failed to receive auth code'
+
+    callback err, dict.Auth
 
 obtainCookie = (auth, callback) ->
   cookiePath = loginPath + '?' + querystring.stringify
@@ -133,24 +164,30 @@ exports.getComponent = ->
     guids = data.filter (p) -> typeof p is 'string'
 
     unless c.cookie
-      obtainCookie c.params.auth, (err, cookie) ->
+      try
+        credentials = JSON.parse c.params.auth
+      catch e
+        return callback e
+      getAuth credentials, (err, auth) ->
         return callback err if err
-        c.cookie = cookie
-        obtainXsrf c.cookie, (err, xsrf) ->
-          if err
-            c.cookie = null
-            return callback err
-          c.xsrf = xsrf.xsrf
-          c.xsrfValid = xsrf.timeout
-          getPortals guids, c.params.username, c.cookie, c.xsrf, (err, states) ->
+        obtainCookie auth, (err, cookie) ->
+          return callback err if err
+          c.cookie = cookie
+          obtainXsrf c.cookie, (err, xsrf) ->
             if err
               c.cookie = null
-              c.xsrf = null
               return callback err
-            out.beginGroup Date.now()
-            out.send states
-            out.endGroup()
-            do callback
+            c.xsrf = xsrf.xsrf
+            c.xsrfValid = xsrf.timeout
+            getPortals guids, c.params.username, c.cookie, c.xsrf, (err, states) ->
+              if err
+                c.cookie = null
+                c.xsrf = null
+                return callback err
+              out.beginGroup Date.now()
+              out.send states
+              out.endGroup()
+              do callback
       return
 
     unless hasXsrf c
