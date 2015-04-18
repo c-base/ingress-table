@@ -103,6 +103,9 @@ getPortals = (portals, username, cookie, xsrf, callback) ->
       data += chunk
     res.on 'end', ->
       received = JSON.parse data
+      if received.error
+        callback new Error received.error
+        return
       unless res.statusCode is 200
         callback new Error received.exception
         return
