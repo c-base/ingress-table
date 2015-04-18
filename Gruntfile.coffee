@@ -14,33 +14,7 @@ module.exports = ->
     noflo_manifest:
       update:
         files:
-          'component.json': ['graphs/*', 'components/*']
           'package.json': ['graphs/*', 'components/*']
-
-    # CoffeeScript compilation
-    coffee:
-      spec:
-        options:
-          bare: true
-        expand: true
-        cwd: 'spec'
-        src: ['**.coffee']
-        dest: 'spec'
-        ext: '.js'
-
-    # Browser version building
-    noflo_browser:
-      build:
-        files:
-          'browser/ingress-table.js': ['component.json']
-
-    # JavaScript minification for the browser
-    uglify:
-      options:
-        report: 'min'
-      noflo:
-        files:
-          './browser/ingress-table.min.js': ['./browser/ingress-table.js']
 
     # Automated recompilation and testing when developing
     watch:
@@ -71,9 +45,6 @@ module.exports = ->
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
   @loadNpmTasks 'grunt-noflo-manifest'
-  @loadNpmTasks 'grunt-noflo-browser'
-  @loadNpmTasks 'grunt-contrib-coffee'
-  @loadNpmTasks 'grunt-contrib-uglify'
 
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
@@ -82,6 +53,6 @@ module.exports = ->
 
   # Our local tasks
   @registerTask 'microflo', ['exec:build_arduino']
-  @registerTask 'build', ['noflo_manifest', 'noflo_browser', 'uglify']
+  @registerTask 'build', ['noflo_manifest']
   @registerTask 'test', ['coffeelint', 'build', 'cafemocha']
   @registerTask 'default', ['test']
