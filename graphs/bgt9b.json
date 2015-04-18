@@ -252,7 +252,7 @@
                 "device": "/dev/ttyACM1",
                 "baudrate": 115200,
                 "width": 72,
-                "height": 72
+                "height": 132
             }
         },
         "PortalLights": {
@@ -816,13 +816,6 @@
             }
         },
         {
-            "data": "cookie.txt",
-            "tgt": {
-                "process": "ConfigPaths",
-                "port": "serverfile"
-            }
-        },
-        {
             "data": "10.0.1.17",
             "tgt": {
                 "process": "PortalToCbeam",
@@ -862,6 +855,13 @@
             "tgt": {
                 "process": "ingress-table/StabilizePortal_sg4x0",
                 "port": "wait"
+            }
+        },
+        {
+            "data": "cookie.json",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "serverfile"
             }
         }
     ]

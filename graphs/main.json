@@ -722,13 +722,6 @@
             }
         },
         {
-            "data": "cookie.txt",
-            "tgt": {
-                "process": "ConfigPaths",
-                "port": "serverfile"
-            }
-        },
-        {
             "data": "portals.json",
             "tgt": {
                 "process": "ConfigPaths",
@@ -775,6 +768,13 @@
             "tgt": {
                 "process": "PulseInterval",
                 "port": "interval"
+            }
+        },
+        {
+            "data": "cookie.json",
+            "tgt": {
+                "process": "ConfigPaths",
+                "port": "serverfile"
             }
         }
     ]
