@@ -491,7 +491,8 @@
                 "port": "auth"
             },
             "metadata": {
-                "route": 2
+                "route": 2,
+                "secure": true
             }
         },
         {
