@@ -1,6 +1,7 @@
 /node_modules/
 /components/*/
 /browser/
+/.coffee/
 result.xml
 flowhub.json
 .noflo.json
