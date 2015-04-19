@@ -19,7 +19,7 @@ case "$1" in
 start)
     echo "starting node: $NODE $SERVER_JS_FILE"
         cd $NOFLO_PROJECT_ROOT
-    (while true; do sudo -u $USER NOFLO_PROJECT_ROOT=$NOFLO_PROJECT_ROOT $TIMEOUT_PATH -m $MEMLIMIT $NODE --trace-gc --trace-gc-verbose $SERVER_JS_FILE $NOFLO_GRAPH > $OUT 2>$OUT ; sleep 10; done) &
+    (while true; do sudo -u $USER NOFLO_PROJECT_ROOT=$NOFLO_PROJECT_ROOT $TIMEOUT_PATH -m $MEMLIMIT $NODE $SERVER_JS_FILE --cache $NOFLO_GRAPH > $OUT 2>$OUT ; sleep 10; done) &
     echo $! > $PIDFILE
     ;;
 
