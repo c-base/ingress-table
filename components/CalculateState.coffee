@@ -37,6 +37,12 @@ class CalculateState extends noflo.Component
       team: newState.team
       state: 'stable'
 
+    if newState.shards
+      # TODO: We don't get Shard info from the API yet, this is merely a placeholder
+      console.log newState.updated, "Portal #{newState.title} has shards"
+      state.state = 'disco'
+      return state
+
     previous = previousStates[newState.guid]
     unless previous
       console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
