@@ -44,6 +44,19 @@ class CalculateState extends noflo.Component
       console.log newState.updated, "Portal #{newState.title} has shards"
       state.state = 'disco'
       return state
+
+    if newState.level is 8 and newState.team is 'RESISTANCE'
+      console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
+      state.state = 'awesome'
+
+    if newState.level is 8 and newState.team is 'ALIENS'
+      console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
+      state.state = 'bad'
+
+    if newState.level is 8 and newState.team is 'NEUTRAL'
+      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) is L#{newState.level} and has disco"
+      state.state = 'disco'
+      return state
     
     if newState.mods?.length
       # Check if we have "special" mods for triggering disco mode
@@ -56,22 +69,6 @@ class CalculateState extends noflo.Component
       if specialMods
         console.log newState.updated, "Portal #{newState.title} has special disco mods"
         state.state = 'disco'
-        return state
-
-    if newState.level is 8 and newState.team is 'RESISTANCE'
-      console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
-      state.state = 'awesome'
-      return state
-
-    if newState.level is 8 and newState.team is 'ALIENS'
-      console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
-      state.state = 'bad'
-      return state
-
-    if newState.level is 8 and newState.team is 'NEUTRAL'
-      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) is L#{newState.level} and has disco"
-      state.state = 'disco'
-      return state
 
     if newState.level > 8
       console.log newState.updated, "Portal #{newState.title} (#{newState.team}) plays calvinball"

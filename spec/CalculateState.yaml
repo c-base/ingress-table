@@ -27,6 +27,20 @@ cases:
     out:
       equals: 'stable'
 -
+  name: 'setting the portal to L8 RES'
+  assertion: 'should set state as upgraded'
+  inputs:
+    key: 'state'
+    in:
+      title: 'c-base space station'
+      guid: 'a6301120831b46f1be00fa2cb0bce195.16'
+      health: 100
+      level: 8
+      team: 'RESISTANCE'
+  expect:
+    out:
+      equals: 'upgraded'
+-
   name: 'receiving a L8 RES portal'
   assertion: 'should set state as awesome'
   inputs:
@@ -46,8 +60,8 @@ cases:
   inputs:
     key: 'state'
     in:
-      title: 'c-base space station'
-      guid: 'a6301120831b46f1be00fa2cb0bce195.16'
+      title: 'Bona Peiser Arbeitsstaette'
+      guid: '872e6dd05dd54702917bc6d36a539795.16'
       health: 100
       level: 8
       team: 'ALIENS'
@@ -55,13 +69,27 @@ cases:
     out:
       equals: 'bad'
 -
+  name: 'reducing health of the L8 ENL portal'
+  assertion: 'should set state as attack'
+  inputs:
+    key: 'state'
+    in:
+      title: 'Bona Peiser Arbeitsstaette'
+      guid: '872e6dd05dd54702917bc6d36a539795.16'
+      health: 54
+      level: 8
+      team: 'ALIENS'
+  expect:
+    out:
+      equals: 'attack'
+-
   name: 'receiving a L8 NEUTRAL portal'
   assertion: 'should set state as disco'
   inputs:
     key: 'state'
     in:
-      title: 'c-base space station'
-      guid: 'a6301120831b46f1be00fa2cb0bce195.16'
+      title: 'Stolperstein Martin und Nathan Gelbstein'
+      guid: 'dd1c6e0da7124d7db7c2fe90e1a32f3f.16'
       health: 100
       level: 8
       team: 'NEUTRAL'
