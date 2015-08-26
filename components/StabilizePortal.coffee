@@ -42,6 +42,7 @@ class StabilizePortal extends noflo.Component
       'stable'
       'awesome'
       'bad'
+      'disco'
       ]
 
     timer = setTimeout =>
