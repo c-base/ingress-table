@@ -40,7 +40,7 @@ cases:
   expect:
     out:
       equals: 'awesome'
-      -
+-
   name: 'receiving a L8 ENL portal'
   assertion: 'should set state as bad'
   inputs:
@@ -50,7 +50,21 @@ cases:
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
       health: 100
       level: 8
-      team: 'RESISTANCE'
+      team: 'ALIENS'
   expect:
     out:
-      equals: 'awesome'
+      equals: 'bad'
+-
+  name: 'receiving a L8 NEUTRAL portal'
+  assertion: 'should set state as bad'
+  inputs:
+    key: 'state'
+    in:
+      title: 'c-base space station'
+      guid: 'a6301120831b46f1be00fa2cb0bce195.16'
+      health: 100
+      level: 8
+      team: 'NEUTRAL'
+  expect:
+    out:
+      equals: 'disco'

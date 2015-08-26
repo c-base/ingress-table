@@ -43,6 +43,24 @@ class CalculateState extends noflo.Component
       state.state = 'disco'
       return state
 
+    if newState.level is 8 and newState.team is 'RESISTANCE'
+      state.state = 'awesome'
+      return state
+
+    if newState.level is 8 and newState.team is 'ALIENS'
+      state.state = 'bad'
+      return state
+
+    if newState.level is 8 and newState.team is 'NEUTRAL'
+      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) has disco"
+      state.state = 'disco'
+      return state
+
+    if newState.level > 8
+      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) plays calvinball"
+      state.state = 'calvinball'
+      return state
+
     previous = previousStates[newState.guid]
     unless previous
       console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
@@ -65,23 +83,6 @@ class CalculateState extends noflo.Component
       state.state = 'attack'
       return state
 
-    if newState.level is 8 and newState.team is 'RESISTANCE'
-      state.state = 'awesome'
-      return state
-
-    if newState.level is 8 and newState.team is 'ALIENS'
-      state.state = 'bad'
-      return state
-
-    if newState.level is 8 and newState.team is 'NEUTRAL'
-      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) has disco"
-      state.state = 'disco'
-      return state
-
-    if newState.level > 8
-      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) plays calvinball"
-      state.state = 'calvinball'
-      return state
 
     return state
 
