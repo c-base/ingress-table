@@ -3,7 +3,7 @@ name: "Portal state calculation"
 fixture:
  type: 'fbp'
  data: |
-  # @runtime noflo
+  # @runtime noflo-nodejs
 
   INPORT=c.STATE:IN
   INPORT=g.KEY:KEY
