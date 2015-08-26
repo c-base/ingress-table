@@ -1,0 +1,22 @@
+topic: "ingress-table/CalculateState"
+name: "Portal state calculation"
+fixture:
+ type: 'fbp'
+ data: |
+  # @runtime noflo
+
+  INPORT=c.STATE:IN
+  INPORT=
+  OUTPORT=g.OUT:OUT
+
+  c(ingress-table/CalculateState) STATE -> IN g(objects/GetObjectKey)
+
+cases:
+-
+  name: 'receiving a stable portal'
+  assertion: 'should set state as stable'
+  inputs:
+    in: 96.2
+  expect:
+    equals:
+      out: 96.2
