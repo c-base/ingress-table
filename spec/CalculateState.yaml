@@ -56,7 +56,7 @@ cases:
       equals: 'bad'
 -
   name: 'receiving a L8 NEUTRAL portal'
-  assertion: 'should set state as bad'
+  assertion: 'should set state as disco'
   inputs:
     key: 'state'
     in:
