@@ -22,11 +22,12 @@ module.exports = ->
       tasks: ['test']
 
     # BDD tests on Node.js
-    cafemocha:
+    mochaTest:
       nodejs:
         src: ['spec/*.coffee']
         options:
           reporter: 'spec'
+          require: 'coffee-script/register'
 
     # Coding standards
     coffeelint:
@@ -48,11 +49,11 @@ module.exports = ->
 
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
-  @loadNpmTasks 'grunt-cafe-mocha'
+  @loadNpmTasks 'grunt-mocha-test'
   @loadNpmTasks 'grunt-coffeelint'
 
   # Our local tasks
   @registerTask 'microflo', ['exec:build_arduino']
   @registerTask 'build', ['noflo_manifest']
-  @registerTask 'test', ['coffeelint', 'build', 'cafemocha']
+  @registerTask 'test', ['coffeelint', 'build', 'mochaTest']
   @registerTask 'default', ['test']
