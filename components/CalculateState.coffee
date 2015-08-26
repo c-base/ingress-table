@@ -51,6 +51,8 @@ class CalculateState extends noflo.Component
       for mod in newState.mods
         if mod.type is 'Link Amp' and mod.rarity is 'Very Rare'
           specialMods = true
+        if mod.type is 'SoftBank-Ultralink' and mod.rarity is 'Very Rare'
+          specialMods = true
       if specialMods
         console.log newState.updated, "Portal #{newState.title} has special disco mods"
         state.state = 'disco'

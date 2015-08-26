@@ -104,3 +104,24 @@ cases:
   expect:
     out:
       equals: 'disco'
+-
+  name: 'receiving a portal with SoftBank Ultralink'
+  assertion: 'should set state as disco'
+  inputs:
+    key: 'state'
+    in:
+      title: 'c-base space station'
+      guid: 'a6301120831b46f1be00fa2cb0bce195.16'
+      health: 100
+      level: 8
+      team: 'RESISTANCE'
+      mods:
+      -
+        type: 'Link Amp'
+        rarity: 'Rare'
+      -
+        type: 'SoftBank-Ultralink'
+        rarity: 'Very Rare'
+  expect:
+    out:
+      equals: 'disco'
