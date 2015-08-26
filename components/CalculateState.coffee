@@ -44,15 +44,17 @@ class CalculateState extends noflo.Component
       return state
 
     if newState.level is 8 and newState.team is 'RESISTANCE'
+      console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
       state.state = 'awesome'
       return state
 
     if newState.level is 8 and newState.team is 'ALIENS'
+      console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
       state.state = 'bad'
       return state
 
     if newState.level is 8 and newState.team is 'NEUTRAL'
-      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) has disco"
+      console.log newState.updated, "Portal #{newState.title} (#{newState.team}) is L#{newState.level} and has disco"
       state.state = 'disco'
       return state
 

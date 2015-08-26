@@ -3,7 +3,7 @@ name: "Portal state calculation"
 fixture:
  type: 'fbp'
  data: |
-  # @runtime noflo-nodejs
+  # @runtime noflo
 
   INPORT=c.STATE:IN
   INPORT=g.KEY:KEY
@@ -56,7 +56,7 @@ cases:
       equals: 'bad'
 -
   name: 'receiving a L8 NEUTRAL portal'
-  assertion: 'should set state as disco'
+  assertion: 'should set state as bad'
   inputs:
     key: 'state'
     in:
