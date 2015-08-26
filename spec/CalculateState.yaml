@@ -24,5 +24,5 @@ cases:
       level: 4
       team: 'RESISTANCE'
   expect:
-    equals:
-      out: 'stable'
+    out:
+      equals: 'stable'
