@@ -6,7 +6,7 @@ fixture:
   # @runtime noflo
 
   INPORT=c.STATE:IN
-  INPORT=
+  INPORT=g.KEY:KEY
   OUTPORT=g.OUT:OUT
 
   c(ingress-table/CalculateState) STATE -> IN g(objects/GetObjectKey)
@@ -16,7 +16,13 @@ cases:
   name: 'receiving a stable portal'
   assertion: 'should set state as stable'
   inputs:
-    in: 96.2
+    key: 'state'
+    in:
+      title: 'c-base space station'
+      guid: 'a6301120831b46f1be00fa2cb0bce195.16'
+      health: 100
+      level: 4
+      team: 'RESISTANCE'
   expect:
     equals:
-      out: 96.2
+      out: 'stable'
