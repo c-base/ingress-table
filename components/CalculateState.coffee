@@ -97,7 +97,6 @@ class CalculateState extends noflo.Component
       state.state = 'attack'
       return state
 
-
     return state
 
 exports.getComponent = -> new CalculateState
