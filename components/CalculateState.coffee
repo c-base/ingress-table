@@ -1,5 +1,7 @@
 noflo = require 'noflo'
 
+# @runtime noflo-nodejs
+
 class CalculateState extends noflo.Component
   icon: 'eye'
   description: 'Determine the table state of a portal based on state changes in Ingress'
@@ -42,6 +44,17 @@ class CalculateState extends noflo.Component
       console.log newState.updated, "Portal #{newState.title} has shards"
       state.state = 'disco'
       return state
+    
+    if newState.mods?.length
+      # Check if we have "special" mods for triggering disco mode
+      specialMods = false
+      for mod in newState.mods
+        if mod.type is 'Link Amp' and mod.rarity is 'Very Rare'
+          specialMods = true
+      if specialMods
+        console.log newState.updated, "Portal #{newState.title} has special disco mods"
+        state.state = 'disco'
+        return state
 
     if newState.level is 8 and newState.team is 'RESISTANCE'
       console.log newState.updated, "Portal #{newState.title} is L#{newState.level} #{newState.team}"
