@@ -6,17 +6,15 @@ fixture:
   # @runtime noflo-nodejs
 
   INPORT=c.STATE:IN
-  INPORT=g.KEY:KEY
-  OUTPORT=g.OUT:OUT
+  OUTPORT=r.OUT:OUT
 
-  c(ingress-table/CalculateState) STATE -> IN g(objects/GetObjectKey)
+  c(ingress-table/CalculateState) STATE -> IN r(core/Repeat)
 
 cases:
 -
   name: 'receiving a stable L4 portal'
   assertion: 'should set state as stable'
   inputs:
-    key: 'state'
     in:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
@@ -25,12 +23,12 @@ cases:
       team: 'RESISTANCE'
   expect:
     out:
+      path: '$.state'
       equals: 'stable'
 -
   name: 'receiving a L8 RES portal'
   assertion: 'should set state as awesome'
   inputs:
-    key: 'state'
     in:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
@@ -39,12 +37,12 @@ cases:
       team: 'RESISTANCE'
   expect:
     out:
+      path: '$.state'
       equals: 'awesome'
 -
   name: 'receiving a L8 ENL portal'
   assertion: 'should set state as bad'
   inputs:
-    key: 'state'
     in:
       title: 'Bona Peiser Arbeitsstaette'
       guid: '872e6dd05dd54702917bc6d36a539795.16'
@@ -53,12 +51,12 @@ cases:
       team: 'ALIENS'
   expect:
     out:
+      path: '$.state'
       equals: 'bad'
 -
   name: 'receiving a L8 NEUTRAL portal'
   assertion: 'should set state as disco'
   inputs:
-    key: 'state'
     in:
       title: 'Stolperstein Martin und Nathan Gelbstein'
       guid: 'dd1c6e0da7124d7db7c2fe90e1a32f3f.16'
@@ -67,12 +65,12 @@ cases:
       team: 'NEUTRAL'
   expect:
     out:
+      path: '$.state'
       equals: 'disco'
 -
   name: 'receiving a portal with RLA'
   assertion: 'should set state as awesome'
   inputs:
-    key: 'state'
     in:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
@@ -85,12 +83,12 @@ cases:
         rarity: 'Rare'
   expect:
     out:
+      path: '$.state'
       equals: 'awesome'
 -
   name: 'receiving a portal with VRLA'
   assertion: 'should set state as disco'
   inputs:
-    key: 'state'
     in:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
@@ -103,12 +101,12 @@ cases:
         rarity: 'Very Rare'
   expect:
     out:
+      path: '$.state'
       equals: 'disco'
 -
   name: 'receiving a portal with SoftBank Ultralink'
   assertion: 'should set state as disco'
   inputs:
-    key: 'state'
     in:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
@@ -124,4 +122,5 @@ cases:
         rarity: 'Very Rare'
   expect:
     out:
+      path: '$.state'
       equals: 'disco'
