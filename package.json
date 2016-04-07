@@ -31,7 +31,7 @@
     "grunt-contrib-watch": "0.6.1",
     "grunt-exec": "0.4.6",
     "grunt-noflo-manifest": "0.1.11",
-    "mocha": "2.3.3",
+    "mocha": "2.4.5",
     "noflo-nodejs": "0.5.2"
   },
   "scripts": {
