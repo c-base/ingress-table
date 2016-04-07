@@ -10,7 +10,7 @@
   "dependencies": {
     "google-auth-library": "0.9.7",
     "microflo": "0.3.29",
-    "noflo": "0.5.17",
+    "noflo": "0.7.4",
     "noflo-core": "0.1.14",
     "noflo-filesystem": "1.0.6",
     "noflo-mqtt": "0.1.2",
