@@ -24,7 +24,7 @@
   "devDependencies": {
     "chai": "~3.5.0",
     "coffee-script": "~1.10.0",
-    "fbp-spec": "~0.1.5",
+    "fbp-spec": "~0.1.14",
     "grunt": "~0.4.5",
     "grunt-mocha-test": "~0.12.7",
     "grunt-coffeelint": "~0.0.15",
@@ -90,5 +90,7 @@
   },
   "author": "",
   "license": "MIT",
-  "keywords": ["noflo"]
+  "keywords": [
+    "noflo"
+  ]
 }
