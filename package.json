@@ -16,7 +16,7 @@
     "noflo-mqtt": "~0.1.2",
     "noflo-objects": "~0.1.12",
     "noflo-packets": "~0.1.6",
-    "noflo-runtime": "~0.1.5",
+    "noflo-runtime": "~0.1.7",
     "noflo-strings": "~0.1.11",
     "noflo-webserver": "~0.0.4",
     "noflo-websocket": "~0.1.3"
@@ -90,5 +90,7 @@
   },
   "author": "",
   "license": "MIT",
-  "keywords": ["noflo"]
+  "keywords": [
+    "noflo"
+  ]
 }
