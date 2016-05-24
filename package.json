@@ -17,7 +17,7 @@
     "noflo-objects": "~0.1.12",
     "noflo-packets": "~0.1.6",
     "noflo-runtime": "~0.1.5",
-    "noflo-strings": "~0.1.11",
+    "noflo-strings": "~0.1.12",
     "noflo-webserver": "~0.0.4",
     "noflo-websocket": "~0.1.3"
   },
@@ -90,5 +90,7 @@
   },
   "author": "",
   "license": "MIT",
-  "keywords": ["noflo"]
+  "keywords": [
+    "noflo"
+  ]
 }
