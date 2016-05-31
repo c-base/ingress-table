@@ -1,77 +1,69 @@
 topic: "ingress-table/CalculateState"
 name: "Portal state calculation"
-fixture:
- type: 'fbp'
- data: |
-  # @runtime noflo-nodejs
-
-  INPORT=c.STATE:IN
-  OUTPORT=r.OUT:OUT
-
-  c(ingress-table/CalculateState) STATE -> IN r(core/Repeat)
-
+timeout: 20000
+starttimeout: 20000
 cases:
 -
   name: 'receiving a stable L4 portal'
   assertion: 'should set state as stable'
   inputs:
-    in:
+    state:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
       health: 100
       level: 4
       team: 'RESISTANCE'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'stable'
 -
   name: 'receiving a L8 RES portal'
   assertion: 'should set state as awesome'
   inputs:
-    in:
+    state:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
       health: 100
       level: 8
       team: 'RESISTANCE'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'awesome'
 -
   name: 'receiving a L8 ENL portal'
   assertion: 'should set state as bad'
   inputs:
-    in:
+    state:
       title: 'Bona Peiser Arbeitsstaette'
       guid: '872e6dd05dd54702917bc6d36a539795.16'
       health: 100
       level: 8
       team: 'ALIENS'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'bad'
 -
   name: 'receiving a L8 NEUTRAL portal'
   assertion: 'should set state as disco'
   inputs:
-    in:
+    state:
       title: 'Stolperstein Martin und Nathan Gelbstein'
       guid: 'dd1c6e0da7124d7db7c2fe90e1a32f3f.16'
       health: 100
       level: 8
       team: 'NEUTRAL'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'disco'
 -
   name: 'receiving a portal with RLA'
   assertion: 'should set state as awesome'
   inputs:
-    in:
+    state:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
       health: 100
@@ -82,14 +74,14 @@ cases:
         type: 'Link Amp'
         rarity: 'Rare'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'awesome'
 -
   name: 'receiving a portal with VRLA'
   assertion: 'should set state as disco'
   inputs:
-    in:
+    state:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
       health: 100
@@ -100,14 +92,14 @@ cases:
         type: 'Link Amp'
         rarity: 'Very Rare'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'disco'
 -
   name: 'receiving a portal with SoftBank Ultralink'
   assertion: 'should set state as disco'
   inputs:
-    in:
+    state:
       title: 'c-base space station'
       guid: 'a6301120831b46f1be00fa2cb0bce195.16'
       health: 100
@@ -121,6 +113,6 @@ cases:
         type: 'SoftBank Ultra Link'
         rarity: 'Very Rare'
   expect:
-    out:
+    state:
       path: '$.state'
       equals: 'disco'
