@@ -14,7 +14,11 @@ module.exports = ->
     noflo_manifest:
       update:
         files:
-          'package.json': ['graphs/*', 'components/*']
+          'package.json': [
+            'graphs/ConfigPaths.json'
+            'graphs/FetchDat.json'
+            'components/*'
+          ]
 
     # Automated recompilation and testing when developing
     watch:

@@ -54,10 +54,7 @@
     },
     "graphs": {
       "ConfigPaths": "graphs/ConfigPaths.json",
-      "FetchDat": "graphs/FetchDat.json",
-      "PrepareMessage": "graphs/PrepareMessage.json",
-      "bgt9b": "graphs/bgt9b.json",
-      "main": "graphs/main.json"
+      "FetchDat": "graphs/FetchDat.json"
     },
     "runtimes": [
       {
