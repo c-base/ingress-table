@@ -12,4 +12,4 @@ nodeRuntime =
 
 fbpspec.mocha.run nodeRuntime, './spec',
   fixturetimeout: 20000
-  starttimeout: 20000
+  starttimeout: 100000
