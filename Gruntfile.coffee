@@ -39,6 +39,21 @@ module.exports = ->
             value: 80
             level: 'warn'
 
+    noflo_lint:
+      graphs:
+        options:
+          description: 'ignore'
+          icon: 'ignore'
+          port_descriptions: 'ignore'
+          asynccomponent: 'error'
+          wirepattern: 'warn'
+          process_api: 'ignore'
+          legacy_api: 'ignore'
+        files:
+          src: [
+            'graphs/bgt9b.json'
+          ]
+
     exec:
       build_arduino: "#{microflo_make} GRAPH=graphs/PortalLights.fbp LIBRARY=arduino-standard build-arduino"
       build_tiva: "#{microflo_make} STELLARIS_GRAPH=graphs/TableLights.fbp build-stellaris"
@@ -51,9 +66,10 @@ module.exports = ->
   @loadNpmTasks 'grunt-contrib-watch'
   @loadNpmTasks 'grunt-mocha-test'
   @loadNpmTasks 'grunt-coffeelint'
+  @loadNpmTasks 'grunt-noflo-lint'
 
   # Our local tasks
   @registerTask 'microflo', ['exec:build_arduino']
   @registerTask 'build', ['noflo_manifest']
-  @registerTask 'test', ['coffeelint', 'build', 'mochaTest']
+  @registerTask 'test', ['coffeelint', 'build', 'noflo_lint', 'mochaTest']
   @registerTask 'default', ['test']

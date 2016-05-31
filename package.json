@@ -30,6 +30,7 @@
     "grunt-coffeelint": "^0.0.15",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-exec": "^0.4.7",
+    "grunt-noflo-lint": "^0.1.1",
     "grunt-noflo-manifest": "^0.1.11",
     "mocha": "^2.5.3",
     "noflo-nodejs": "^0.7.1"
