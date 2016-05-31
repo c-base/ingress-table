@@ -35,8 +35,7 @@
     "noflo-nodejs": "^0.7.1"
   },
   "scripts": {
-    "test": "grunt test",
-    "postinstall": "./node_modules/.bin/noflo-cache-preheat"
+    "test": "grunt test"
   },
   "noflo": {
     "icon": "beer",
