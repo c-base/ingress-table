@@ -17,7 +17,7 @@
     "noflo-objects": "~0.1.13",
     "noflo-packets": "~0.1.7",
     "noflo-runtime": "~0.2.0",
-    "noflo-strings": "~0.1.11",
+    "noflo-strings": "~0.1.12",
     "noflo-webserver": "~0.0.4",
     "noflo-websocket": "~0.1.3"
   },
