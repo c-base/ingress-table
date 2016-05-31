@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "google-auth-library": "~0.9.7",
-    "microflo": "~0.3.36",
+    "microflo": "~0.3.29",
     "noflo": "~0.7.5",
     "noflo-core": "~0.2.0",
     "noflo-filesystem": "~1.0.6",
@@ -30,7 +30,6 @@
     "grunt-mocha-test": "^0.12.7",
     "grunt-noflo-lint": "^0.1.1",
     "grunt-noflo-manifest": "^0.1.11",
-    "microflo-emscripten": "^0.3.28",
     "mocha": "^2.5.3",
     "noflo-nodejs": "^0.7.1"
   },
