@@ -72,5 +72,5 @@ module.exports = ->
   # Our local tasks
   @registerTask 'microflo', ['exec:build_arduino']
   @registerTask 'build', ['noflo_manifest']
-  @registerTask 'test', ['coffeelint', 'build', 'noflo_lint', 'mochaTest']
+  @registerTask 'test', ['coffeelint', 'build', 'mochaTest']
   @registerTask 'default', ['test']
