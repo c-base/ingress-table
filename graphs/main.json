@@ -3,7 +3,8 @@
         "name": "main",
         "environment": {
             "type": "noflo-nodejs"
-        }
+        },
+        "main": true
     },
     "inports": {},
     "outports": {},
