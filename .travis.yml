@@ -1,6 +1,9 @@
 language: node_js
 node_js:
 - '0.10'
+env:
+  matrix:
+  - DEBUG=fbp-spec:*
 before_script:
 - npm install -g grunt-cli
 before_install:
