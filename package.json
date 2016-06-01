@@ -13,7 +13,7 @@
     "noflo": "~0.7.5",
     "noflo-core": "~0.2.0",
     "noflo-filesystem": "~1.0.6",
-    "noflo-mqtt": "~0.1.2",
+    "noflo-mqtt": "~0.2.0",
     "noflo-objects": "~0.1.13",
     "noflo-packets": "~0.1.7",
     "noflo-runtime": "~0.2.0",
