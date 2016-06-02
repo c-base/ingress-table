@@ -10,7 +10,7 @@
   "dependencies": {
     "google-auth-library": "~0.9.8",
     "microflo": "~0.3.36",
-    "noflo": "~0.7.5",
+    "noflo": "~0.7.6",
     "noflo-core": "~0.3.0",
     "noflo-filesystem": "~1.0.6",
     "noflo-mqtt": "~0.3.0",
@@ -35,7 +35,8 @@
     "noflo-nodejs": "^0.7.1"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "postinstall": "./node_modules/.bin/noflo-cache-preheat"
   },
   "noflo": {
     "icon": "beer",
