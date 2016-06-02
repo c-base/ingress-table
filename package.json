@@ -11,7 +11,7 @@
     "google-auth-library": "~0.9.7",
     "microflo": "~0.3.36",
     "noflo": "~0.7.5",
-    "noflo-core": "~0.2.0",
+    "noflo-core": "~0.3.0",
     "noflo-filesystem": "~1.0.6",
     "noflo-mqtt": "~0.3.0",
     "noflo-objects": "~0.1.13",
