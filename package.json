@@ -29,7 +29,6 @@
     "grunt-exec": "^1.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-noflo-lint": "^0.1.3",
-    "grunt-noflo-manifest": "^0.1.11",
     "microflo-emscripten": "^0.3.28",
     "mocha": "^3.1.2",
     "noflo-nodejs": "^0.7.1"
@@ -39,23 +38,6 @@
     "postinstall": "./node_modules/.bin/noflo-cache-preheat"
   },
   "noflo": {
-    "icon": "beer",
-    "components": {
-      "CalculateState": "components/CalculateState.coffee",
-      "ConvertStreetLight": "components/ConvertStreetLight.coffee",
-      "DetectAttack": "components/DetectAttack.coffee",
-      "DetermineWinner": "components/DetermineWinner.coffee",
-      "GetPortalStates": "components/GetPortalStates.coffee",
-      "PortalToMessage": "components/PortalToMessage.coffee",
-      "Pulsate": "components/Pulsate.coffee",
-      "StabilizePortal": "components/StabilizePortal.coffee",
-      "StateToColor": "components/StateToColor.coffee",
-      "StateToTransmission": "components/StateToTransmission.coffee"
-    },
-    "graphs": {
-      "ConfigPaths": "graphs/ConfigPaths.json",
-      "FetchDat": "graphs/FetchDat.json"
-    },
     "runtimes": [
       {
         "id": "PortalLights",

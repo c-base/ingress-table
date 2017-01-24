@@ -10,16 +10,6 @@ module.exports = ->
   @initConfig
     pkg: @file.readJSON 'package.json'
 
-    # Updating the package manifest files
-    noflo_manifest:
-      update:
-        files:
-          'package.json': [
-            'graphs/ConfigPaths.json'
-            'graphs/FetchDat.json'
-            'components/*'
-          ]
-
     # Automated recompilation and testing when developing
     watch:
       files: ['spec/*.coffee', 'components/*.coffee']
@@ -65,7 +55,6 @@ module.exports = ->
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
-  @loadNpmTasks 'grunt-noflo-manifest'
 
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
@@ -75,6 +64,6 @@ module.exports = ->
 
   # Our local tasks
   @registerTask 'microflo', ['exec:build_arduino']
-  @registerTask 'build', ['noflo_manifest']
+  @registerTask 'build', []
   @registerTask 'test', ['coffeelint', 'build', 'noflo_lint', 'mochaTest']
   @registerTask 'default', ['test']
