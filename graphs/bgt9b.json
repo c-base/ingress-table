@@ -3,8 +3,7 @@
         "name": "bgt9b",
         "environment": {
             "type": "noflo-nodejs"
-        },
-        "main": true
+        }
     },
     "inports": {},
     "outports": {},
