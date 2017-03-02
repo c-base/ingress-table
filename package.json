@@ -17,7 +17,7 @@
     "noflo-objects": "~0.2.0",
     "noflo-packets": "~0.1.7",
     "noflo-runtime": "~0.3.0",
-    "noflo-strings": "~0.2.0"
+    "noflo-strings": "~0.3.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
