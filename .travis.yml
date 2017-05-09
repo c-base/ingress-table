@@ -3,6 +3,10 @@ node_js:
 - '4.6'
 before_script:
 - npm install -g grunt-cli
+- ./spec/microflo-linux.sh PortalLights 5555 &
+- ./spec/microflo-linux.sh PortalLights 4444 &
+after_script:
+- kill `pgrep microflo-linux`
 before_install:
 - openssl aes-256-cbc -K $encrypted_b877c04c0554_key -iv $encrypted_b877c04c0554_iv
   -in cookie.json.enc -out cookie.json -d
