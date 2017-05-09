@@ -88,7 +88,7 @@ module.exports = ->
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
       portallights_run: './spec/microflo-linux.sh PortalLights 5555 & sleep 5'
-
+      kill_microflo_linux: 'kill $(pgrep microflo-linux)'
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
@@ -105,6 +105,7 @@ module.exports = ->
     'exec:portallights_linux_gen', 'exec:portallights_linux_comp',
   ]
   @registerTask 'run-microflo-linux', [
+    'exec:kill_microflo_linux'
     'exec:tablelights_run'
     'exec:portallights_run'
   ]
