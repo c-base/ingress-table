@@ -1,33 +1,26 @@
 noflo = require 'noflo'
 
-class DetermineWinner extends noflo.Component
-  icon: 'trophy'
-  decription: 'Determine which faction is winning'
-
-  constructor: ->
-    @inPorts = new noflo.InPorts
+exports.getComponent = ->
+  c = new noflo.Component
+    icon: 'trophy'
+    decription: 'Determine which faction is winning'
+    inPorts:
       states:
         datatype: 'object'
         required: yes
-    @outPorts = new noflo.OutPorts
+    outPorts:
       colors:
         datatype: 'array'
-        required: yes
+        required: no
       blue:
         datatype: 'int'
         required: no
       green:
         datatype: 'int'
         required: no
-
-    @inPorts.states.on 'data', (states) =>
-      @outPorts.colors.send @determine states
-    @inPorts.states.on 'disconnect', =>
-      @outPorts.colors.disconnect()
-      @outPorts.blue.disconnect()
-      @outPorts.green.disconnect()
-
-  determine: (states) ->
+  c.process (input, output) ->
+    return unless input.hasData 'states'
+    states = input.getData 'states'
     us = 0
     them = 0
 
@@ -40,13 +33,16 @@ class DetermineWinner extends noflo.Component
         continue
 
     if them > us
-      @outPorts.green.send 200
-      @outPorts.blue.send 0
-      return [[0, 255, 0]]
+      output.sendDone
+        green: 200
+        blue: 0
+        colors: [[0, 255, 0]]
+      return
     if us > them
-      @outPorts.green.send 0
-      @outPorts.blue.send 200
-      return [[0, 0, 255]]
-    return [[0, 0, 0]]
-
-exports.getComponent = -> new DetermineWinner
+      output.sendDone
+        green: 0
+        blue: 200
+        colors: [[0, 0, 255]]
+      return
+    output.sendDone
+      colors: [[0, 0, 0]]
