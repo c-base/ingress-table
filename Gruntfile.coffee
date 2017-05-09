@@ -84,8 +84,11 @@ module.exports = ->
       build_tiva: "#{microflo_make} STELLARIS_GRAPH=graphs/TableLights.fbp build-stellaris"
       tablelights_linux_gen: microflo_gen 'TableLights' 
       tablelights_linux_comp: microflo_compile 'TableLights'
+      tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
+      portallights_run: './spec/microflo-linux.sh PortalLights 5555 & sleep 5'
+
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
@@ -97,10 +100,14 @@ module.exports = ->
   @loadNpmTasks 'grunt-noflo-lint'
 
   # Our local tasks
-  @registerTask 'microflo', [
+  @registerTask 'build-microflo', [
     'exec:tablelights_linux_gen', 'exec:tablelights_linux_comp',
     'exec:portallights_linux_gen', 'exec:portallights_linux_comp',
   ]
-  @registerTask 'build', []
-  @registerTask 'test', ['coffeelint', 'build', 'noflo_lint', 'mochaTest']
+  @registerTask 'run-microflo-linux', [
+    'exec:tablelights_run'
+    'exec:portallights_run'
+  ]
+  @registerTask 'build', ['build-microflo']
+  @registerTask 'test', ['coffeelint', 'build', 'noflo_lint', 'run-microflo-linux', 'mochaTest']
   @registerTask 'default', ['test']

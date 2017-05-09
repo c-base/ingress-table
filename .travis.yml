@@ -3,8 +3,6 @@ node_js:
 - '4.6'
 before_script:
 - npm install -g grunt-cli
-- ./spec/microflo-linux.sh PortalLights 5555 &
-- ./spec/microflo-linux.sh PortalLights 4444 &
 after_script:
 - kill `pgrep microflo-linux`
 before_install:
