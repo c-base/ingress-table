@@ -118,6 +118,7 @@ module.exports = ->
     'exec:portallights_linux_gen', 'exec:portallights_linux_comp',
   ]
   @registerTask 'run-microflo-linux', [
+    'exec:kill_microflo_linux'
     'exec:tablelights_run'
     'exec:portallights_run'
   ]
