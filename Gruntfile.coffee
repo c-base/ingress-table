@@ -1,3 +1,6 @@
+fs = require 'fs'
+path = require 'path'
+
 microflo_make = "make -f ./node_modules/microflo/Makefile \
   MICROFLO_SOURCE_DIR=#{process.cwd()}/node_modules/microflo/microflo \
   MICROFLO=./node_modules/.bin/microflo
@@ -12,6 +15,13 @@ microflo_gen = (name, options={}) ->
     library: "./components-#{name}.json"
   for k,v of defaults
     options[k] = v if not options[k]?
+
+  dir = path.dirname options.out
+  parent = path.dirname dir
+  grandparent = path.dirname parent
+  fs.mkdirSync grandparent if not fs.existsSync grandparent
+  fs.mkdirSync parent if not fs.existsSync parent
+  fs.mkdirSync dir if not fs.existsSync dir
   cmd = [
     options.microflo,
     '--target', options.target
