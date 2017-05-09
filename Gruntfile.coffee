@@ -38,8 +38,9 @@ microflo_compile = (name, options={}) ->
     options[k] = v if not options[k]?
   cmd = [
     "g++ -g -Wall -Werror -Wno-unused-variable -DLINUX -std=c++0x"
-    "-I./build -I./node_modules/microflo/microflo -lrt -lutil"
+    "-I./build -I./node_modules/microflo/microflo"
     "-o", options.out, options.in
+    "-lrt -lutil"
   ]
   return cmd.join(' ')
 
