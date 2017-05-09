@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "google-auth-library": "~0.10.0",
-    "microflo": "~0.3.49",
+    "microflo": "~0.3.50",
     "noflo": "~0.8.0",
     "noflo-core": "~0.4.0",
     "noflo-filesystem": "~1.1.1",
