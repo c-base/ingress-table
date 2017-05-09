@@ -54,6 +54,7 @@ exports.getComponent = ->
     datatype: 'array'
     description: 'Array of portal IDs indexed by the light in chain'
     required: yes
+    control: yes
   c.inPorts.add 'state',
     datatype: 'object'
     description: 'Portal state object from Ingress API'
@@ -68,27 +69,28 @@ exports.getComponent = ->
     datatype: 'object'
     required: no
 
-  noflo.helpers.WirePattern c,
-    in: 'state'
-    params: ['portals']
-    out: ['light', 'states']
-    forwardGroups: no
-  , (data, groups, out) ->
-    c.previousStates = {} unless c.previousStates
+  c.setUp = (callback) ->
+    # Previous seen state of the portals, keyed by GUID
+    c.previousStates = {}
+    callback()
+  c.tearDown = (callback) ->
+    delete c.previousStates
+    callback()
 
-    unless data.guid
-      c.error new Error 'Portal data is missing GUID'
+  c.process (input, output) ->
+    return unless input.hasData 'state', 'portals'
+    [state, portals] = input.getData 'state', 'portals'
+    unless state.guid
+      output.done new Error 'Portal data is missing GUID'
       return
-    unless c.params.portals
-      c.error new Error 'Portal list not available'
-      return
-    idx = c.params.portals.indexOf data.guid
+    idx = portals.indexOf state.guid
     if idx is -1
-      c.error new Error "Portal #{data.guid} is not in portals list"
+      output.done new Error "Portal #{state.guid} is not in portals list"
       return
 
-    out.light.send stateToArray idx, data
-    c.previousStates[data.guid] = data
-    out.states.send c.previousStates
-
-  c
+    output.send
+      light: stateToArray idx, state
+    c.previousStates[state.guid] = state
+    output.send
+      states: c.previousStates
+    output.done()
