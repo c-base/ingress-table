@@ -1,0 +1,30 @@
+{
+  "components": [
+    "./node_modules/microflo-core/components/AnalogRead",
+    "./node_modules/microflo-core/components/BooleanAnd",
+    "./node_modules/microflo-core/components/BooleanOr",
+    "./node_modules/microflo-core/components/BreakBeforeMake",
+    "./node_modules/microflo-core/components/Constrain",
+    "./node_modules/microflo-core/components/Count",
+    "./node_modules/microflo-core/components/Delimit",
+    "./node_modules/microflo-core/components/DigitalRead",
+    "./node_modules/microflo-core/components/DigitalWrite",
+    "./node_modules/microflo-core/components/Forward",
+    "./node_modules/microflo-core/components/Gate",
+    "./node_modules/microflo-core/components/HysteresisLatch",
+    "./node_modules/microflo-core/components/LedChainWS",
+    "./node_modules/microflo-core/components/InvertBoolean",
+    "./node_modules/microflo-core/components/MapLinear",
+    "./node_modules/microflo-core/components/Max",
+    "./node_modules/microflo-core/components/Min",
+    "./node_modules/microflo-core/components/MonitorPin",
+    "./node_modules/microflo-core/components/NumberEquals",
+    "./node_modules/microflo-core/components/PwmWrite",
+    "./node_modules/microflo-core/components/ReadCapacitivePin",
+    "./node_modules/microflo-core/components/Route",
+    "./node_modules/microflo-core/components/Split",
+    "./node_modules/microflo-core/components/Timer",
+    "./node_modules/microflo-core/components/ToggleBoolean",
+    "./node_modules/microflo-core/components/BoolToInt"
+  ]
+}
