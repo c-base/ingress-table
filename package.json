@@ -29,7 +29,7 @@
     "grunt-exec": "^2.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-noflo-lint": "^0.3.0",
-    "microflo-core": "^0.3.37",
+    "microflo-core": "^0.3.38",
     "mocha": "^3.1.2",
     "noflo-nodejs": "^0.8.1"
   },
