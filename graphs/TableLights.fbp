@@ -1,7 +1,8 @@
 # @runtime microflo
 
-INPORT=FloorBlue.ONTIME:FLOORBLUE
+INPORT=FloorRed.ONTIME:FLOORRED
 INPORT=FloorGreen.ONTIME:FLOORGREEN
+INPORT=FloorBlue.ONTIME:FLOORBLUE
 INPORT=RedOne.ONTIME:REDONE
 INPORT=GreenOne.ONTIME:GREENONE
 INPORT=BlueOne.ONTIME:BLUEONE
@@ -16,6 +17,8 @@ INPORT=Green4.ONTIME:GREENFOUR
 INPORT=Blue4.ONTIME:BLUEFOUR
 
 # Floor light
+Board(TivaC) PF2 -> PIN FloorRed(PseudoPwmWrite)
+'220' -> PERIOD FloorRed
 Board(TivaC) PA7 -> PIN FloorBlue(PseudoPwmWrite)
 '220' -> PERIOD FloorBlue
 Board(TivaC) PA6 -> PIN FloorGreen(PseudoPwmWrite)
