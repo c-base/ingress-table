@@ -1,6 +1,6 @@
 {
     "properties": {
-        "name": "FetchDat",
+        "name": "FetchData",
         "environment": {
             "type": "noflo-nodejs",
             "content": ""

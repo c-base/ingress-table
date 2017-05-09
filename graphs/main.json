@@ -69,7 +69,7 @@
     ],
     "processes": {
         "FetchData": {
-            "component": "ingress-table/FetchDat",
+            "component": "ingress-table/FetchData",
             "metadata": {
                 "label": "FetchData",
                 "x": 468,

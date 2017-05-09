@@ -114,7 +114,7 @@
             }
         },
         "ingress-table/FetchDat_7edo2": {
-            "component": "ingress-table/FetchDat",
+            "component": "ingress-table/FetchData",
             "metadata": {
                 "label": "FetchData",
                 "x": 0,
