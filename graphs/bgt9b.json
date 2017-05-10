@@ -1,4 +1,5 @@
 {
+    "caseSensitive": false,
     "properties": {
         "name": "bgt9b",
         "environment": {
@@ -39,24 +40,7 @@
         },
         {
             "name": "Street Lights",
-            "nodes": [
-                "core/RunInterval_5f3rf",
-                "ingress-table/DetectAttack_ahdoi",
-                "ingress-table/Pulsate_qo650",
-                "strings/ParseJson_l8zh"
-            ],
-            "metadata": {
-                "description": ""
-            }
-        },
-        {
-            "name": "Data Retrieval",
-            "nodes": [
-                "ConfigPaths",
-                "core/Output_qmkan",
-                "core/Repeat_x0tsf",
-                "ingress-table/FetchDat_7edo2"
-            ],
+            "nodes": [],
             "metadata": {
                 "description": ""
             }
@@ -70,34 +54,21 @@
         },
         {
             "name": "Portal Status",
-            "nodes": [
-                "ingress-table/CalculateState_xkyq7",
-                "ingress-table/DetermineWinner_z8u0g",
-                "ingress-table/StabilizePortal_sg4x0",
-                "ingress-table/StateToColor_ifaav"
-            ],
+            "nodes": [],
             "metadata": {
                 "description": ""
             }
         },
         {
             "name": "c-beam",
-            "nodes": [
-                "PortalToCbeam",
-                "PortalToMessage"
-            ],
+            "nodes": [],
             "metadata": {
                 "description": ""
             }
         },
         {
             "name": "Table Lights",
-            "nodes": [
-                "PortalLights",
-                "core/RunInterval_82o32",
-                "ingress-table/ConvertStreetLight_luj6x",
-                "ingress-table/TableLights_9jw9e"
-            ],
+            "nodes": [],
             "metadata": {
                 "description": ""
             }
@@ -108,181 +79,28 @@
             "component": "core/Repeat",
             "metadata": {
                 "label": "Start",
-                "x": -180,
-                "y": 360,
+                "x": -36,
+                "y": 396,
                 "width": 72,
                 "height": 72
             }
         },
-        "ingress-table/FetchDat_7edo2": {
-            "component": "ingress-table/FetchData",
+        "ingress-table/main_areeg": {
+            "component": "ingress-table/main",
             "metadata": {
-                "label": "FetchData",
-                "x": 0,
-                "y": 540,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/StateToColor_ifaav": {
-            "component": "ingress-table/StateToColor",
-            "metadata": {
-                "label": "ToRGB",
-                "x": 648,
-                "y": 540,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/CalculateState_xkyq7": {
-            "component": "ingress-table/CalculateState",
-            "metadata": {
-                "label": "WatchState",
-                "x": 324,
-                "y": 576,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/StabilizePortal_sg4x0": {
-            "component": "ingress-table/StabilizePortal",
-            "metadata": {
-                "label": "Stabilize",
-                "x": 468,
-                "y": 576,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "strings/ParseJson_l8zh": {
-            "component": "strings/ParseJson",
-            "metadata": {
-                "label": "StreetColor",
-                "x": 324,
-                "y": 1008,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/DetermineWinner_z8u0g": {
-            "component": "ingress-table/DetermineWinner",
-            "metadata": {
-                "label": "BlueOrGreen",
-                "x": 792,
-                "y": 576,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/Pulsate_qo650": {
-            "component": "ingress-table/Pulsate",
-            "metadata": {
-                "label": "Pulsate",
-                "x": 792,
-                "y": 1008,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "core/RunInterval_5f3rf": {
-            "component": "core/RunInterval",
-            "metadata": {
-                "label": "PulseInterval",
-                "x": 324,
-                "y": 756,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "core/Output_qmkan": {
-            "component": "core/Output",
-            "metadata": {
-                "label": "LogErrors",
+                "label": "main",
                 "x": 108,
-                "y": 1008,
+                "y": 396,
                 "width": 72,
                 "height": 72
             }
         },
-        "ConfigPaths": {
-            "component": "ingress-table/ConfigPaths",
+        "ingress-table/lights_zm5zk": {
+            "component": "ingress-table/lights",
             "metadata": {
-                "label": "ConfigPaths",
-                "x": -180,
-                "y": 540,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/DetectAttack_ahdoi": {
-            "component": "ingress-table/DetectAttack",
-            "metadata": {
-                "label": "DetectAttacks",
-                "x": 684,
-                "y": 756,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/ConvertStreetLight_luj6x": {
-            "component": "ingress-table/ConvertStreetLight",
-            "metadata": {
-                "label": "ConvertStreets",
-                "x": 1008,
-                "y": 1008,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "core/RunInterval_82o32": {
-            "component": "core/RunInterval",
-            "metadata": {
-                "label": "UpdateLights",
-                "x": 1080,
-                "y": 468,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "ingress-table/TableLights_9jw9e": {
-            "component": "runtime/StreetLights",
-            "metadata": {
-                "label": "TableLights",
-                "x": 1440,
-                "y": 972,
-                "device": "/dev/ttyACM1",
-                "baudrate": 115200,
-                "width": 72,
-                "height": 132
-            }
-        },
-        "PortalLights": {
-            "component": "runtime/PortalLights",
-            "metadata": {
-                "label": "PortalLights",
-                "x": 1440,
-                "y": 360,
-                "device": "/dev/ttyACM0",
-                "width": 72,
-                "height": 72
-            }
-        },
-        "PortalToCbeam": {
-            "component": "mqtt/SendMessage",
-            "metadata": {
-                "label": "PortalToCbeam",
-                "x": 792,
-                "y": 360,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "PortalToMessage": {
-            "component": "ingress-table/PortalToMessage",
-            "metadata": {
-                "label": "PortalToMessage",
-                "x": 324,
-                "y": 360,
+                "label": "lights",
+                "x": 252,
+                "y": 396,
                 "width": 72,
                 "height": 72
             }
@@ -295,7 +113,7 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "ingress-table/FetchDat_7edo2",
+                "process": "ingress-table/main_areeg",
                 "port": "poll"
             },
             "metadata": {
@@ -304,25 +122,12 @@
         },
         {
             "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "portals"
+                "process": "ingress-table/main_areeg",
+                "port": "light"
             },
             "tgt": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "portals"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "ingress-table/CalculateState_xkyq7",
-                "port": "state"
+                "process": "ingress-table/lights_zm5zk",
+                "port": "light"
             },
             "metadata": {
                 "route": 4
@@ -330,211 +135,12 @@
         },
         {
             "src": {
-                "process": "ingress-table/CalculateState_xkyq7",
-                "port": "state"
+                "process": "ingress-table/main_areeg",
+                "port": "floor"
             },
             "tgt": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "state"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "state"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "states"
-            },
-            "tgt": {
-                "process": "ingress-table/DetermineWinner_z8u0g",
-                "port": "states"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "strings/ParseJson_l8zh",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "colors"
-            },
-            "metadata": {
-                "route": null
-            }
-        },
-        {
-            "src": {
-                "process": "core/RunInterval_5f3rf",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "step"
-            },
-            "metadata": {
-                "route": 3
-            }
-        },
-        {
-            "src": {
-                "process": "core/Repeat_x0tsf",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "core/RunInterval_5f3rf",
-                "port": "start"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "apierror"
-            },
-            "tgt": {
-                "process": "core/Output_qmkan",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "configerror"
-            },
-            "tgt": {
-                "process": "core/Output_qmkan",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "missingconfig"
-            },
-            "tgt": {
-                "process": "core/Output_qmkan",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ConfigPaths",
-                "port": "error"
-            },
-            "tgt": {
-                "process": "core/Output_qmkan",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ConfigPaths",
-                "port": "serverfile"
-            },
-            "tgt": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "apiconfig"
-            }
-        },
-        {
-            "src": {
-                "process": "ConfigPaths",
-                "port": "portalfile"
-            },
-            "tgt": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "portalconfig"
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "ingress-table/DetectAttack_ahdoi",
-                "port": "state"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "mainportal"
-            },
-            "tgt": {
-                "process": "ingress-table/DetectAttack_ahdoi",
-                "port": "portal"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/DetectAttack_ahdoi",
-                "port": "color"
-            },
-            "tgt": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "colors"
-            }
-        },
-        {
-            "src": {
-                "process": "core/Repeat_x0tsf",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "core/RunInterval_82o32",
-                "port": "start"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "blueone"
+                "process": "ingress-table/lights_zm5zk",
+                "port": "floor"
             },
             "metadata": {
                 "route": 7
@@ -542,250 +148,15 @@
         },
         {
             "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
+                "process": "ingress-table/main_areeg",
+                "port": "streets"
             },
             "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greenone"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redone"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "bluethree"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greenthree"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redthree"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street4"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "bluefour"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street4"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greenfour"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street4"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redfour"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street2"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "bluetwo"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street2"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "greentwo"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "street2"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "redtwo"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/DetermineWinner_z8u0g",
-                "port": "green"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "floorgreen"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/DetermineWinner_z8u0g",
-                "port": "blue"
-            },
-            "tgt": {
-                "process": "ingress-table/TableLights_9jw9e",
-                "port": "floorblue"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "core/RunInterval_82o32",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "PortalLights",
-                "port": "show"
-            },
-            "metadata": {
-                "route": 0
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "color"
-            },
-            "tgt": {
-                "process": "PortalLights",
-                "port": "pixel"
+                "process": "ingress-table/lights_zm5zk",
+                "port": "streets"
             },
             "metadata": {
                 "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "PortalToMessage",
-                "port": "topic"
-            },
-            "tgt": {
-                "process": "PortalToCbeam",
-                "port": "topic"
-            }
-        },
-        {
-            "src": {
-                "process": "PortalToMessage",
-                "port": "message"
-            },
-            "tgt": {
-                "process": "PortalToCbeam",
-                "port": "message"
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/FetchDat_7edo2",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "PortalToMessage",
-                "port": "portal"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ingress-table/Pulsate_qo650",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "ingress-table/ConvertStreetLight_luj6x",
-                "port": "colors"
-            },
-            "metadata": {
-                "route": 3
-            }
-        },
-        {
-            "data": "[255,255,255]",
-            "tgt": {
-                "process": "strings/ParseJson_l8zh",
-                "port": "in"
             }
         },
         {
@@ -793,76 +164,6 @@
             "tgt": {
                 "process": "core/Repeat_x0tsf",
                 "port": "in"
-            }
-        },
-        {
-            "data": "portals.json",
-            "tgt": {
-                "process": "ConfigPaths",
-                "port": "portalfile"
-            }
-        },
-        {
-            "data": 20,
-            "tgt": {
-                "process": "core/RunInterval_5f3rf",
-                "port": "interval"
-            }
-        },
-        {
-            "data": "NOFLO_PROJECT_ROOT",
-            "tgt": {
-                "process": "ConfigPaths",
-                "port": "envvar"
-            }
-        },
-        {
-            "data": "10.0.1.17",
-            "tgt": {
-                "process": "PortalToCbeam",
-                "port": "broker"
-            }
-        },
-        {
-            "data": true,
-            "tgt": {
-                "process": "PortalToCbeam",
-                "port": "retain"
-            }
-        },
-        {
-            "data": 0,
-            "tgt": {
-                "process": "PortalToCbeam",
-                "port": "qos"
-            }
-        },
-        {
-            "data": "1000",
-            "tgt": {
-                "process": "core/RunInterval_82o32",
-                "port": "interval"
-            }
-        },
-        {
-            "data": "2000",
-            "tgt": {
-                "process": "ingress-table/StateToColor_ifaav",
-                "port": "blink"
-            }
-        },
-        {
-            "data": "20000",
-            "tgt": {
-                "process": "ingress-table/StabilizePortal_sg4x0",
-                "port": "wait"
-            }
-        },
-        {
-            "data": "cookie.json",
-            "tgt": {
-                "process": "ConfigPaths",
-                "port": "serverfile"
             }
         }
     ]
