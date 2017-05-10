@@ -514,6 +514,13 @@
                 "process": "ConfigPaths",
                 "port": "serverfile"
             }
+        },
+        {
+            "data": "true",
+            "tgt": {
+                "process": "FetchData",
+                "port": "poll"
+            }
         }
     ]
 }
