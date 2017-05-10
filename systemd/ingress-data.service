@@ -1,0 +1,12 @@
+[Service]
+WorkingDirectory=/opt/ingress-table
+ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/noflo-runtime-msgflo --broker=mqtt://10.0.1.17 --name ingress-data --cache=true --basedir /opt/ingress-table --graph ingress-table/data
+Restart=always
+User=bergie
+Environment=NOFLO_PROJECT_ROOT=/opt/ingress-table
+
+[Unit]
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target

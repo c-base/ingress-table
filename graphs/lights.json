@@ -6,7 +6,8 @@
             "type": "noflo-nodejs"
         },
         "description": "Drive the lights on the table",
-        "icon": "lightbulb-o"
+        "icon": "lightbulb-o",
+        "main": true
     },
     "inports": {
         "streets": {
