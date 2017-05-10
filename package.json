@@ -46,7 +46,6 @@
         "icon": "lightbulb-o",
         "type": "microflo",
         "protocol": "websocket",
-        "graph": "./graphs/PortalLights.fbp",
         "address": "ws://localhost:5555"
       },
       {
@@ -56,7 +55,6 @@
         "description": "Handles street and ambient LED lights (Tiva)",
         "type": "microflo",
         "protocol": "websocket",
-        "graph": "./graphs/TableLights.fbp",
         "address": "ws://localhost:4444"
       }
     ]
