@@ -51,7 +51,7 @@
             }
         },
         "serverfile": {
-            "process": "strings/CompileString_pjcg2",
+            "process": "filesystem/JoinPath_pjcg2",
             "port": "out",
             "metadata": {
                 "x": 0,
@@ -61,7 +61,7 @@
             }
         },
         "portalfile": {
-            "process": "strings/CompileString_667tt",
+            "process": "filesystem/JoinPath_667tt",
             "port": "out",
             "metadata": {
                 "x": 0,
@@ -93,30 +93,20 @@
                 "height": 72
             }
         },
-        "packets/DoNotDisconnect_uev3m": {
-            "component": "packets/DoNotDisconnect",
+        "filesystem/JoinPath_pjcg2": {
+            "component": "filesystem/JoinPath",
             "metadata": {
-                "label": "packets/DoNotDisconnect",
-                "x": -324,
-                "y": 432,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "strings/CompileString_pjcg2": {
-            "component": "strings/CompileString",
-            "metadata": {
-                "label": "strings/CompileString",
+                "label": "filesystem/JoinPath",
                 "x": -144,
                 "y": 432,
                 "width": 72,
                 "height": 72
             }
         },
-        "strings/CompileString_667tt": {
-            "component": "strings/CompileString",
+        "filesystem/JoinPath_667tt": {
+            "component": "filesystem/JoinPath",
             "metadata": {
-                "label": "strings/CompileString",
+                "label": "filesystem/JoinPath",
                 "x": -144,
                 "y": 540,
                 "width": 72,
@@ -141,8 +131,8 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "strings/CompileString_667tt",
-                "port": "in"
+                "process": "filesystem/JoinPath_667tt",
+                "port": "file"
             }
         },
         {
@@ -151,8 +141,8 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "strings/CompileString_pjcg2",
-                "port": "in"
+                "process": "filesystem/JoinPath_pjcg2",
+                "port": "file"
             }
         },
         {
@@ -161,45 +151,18 @@
                 "port": "out"
             },
             "tgt": {
-                "process": "packets/DoNotDisconnect_uev3m",
-                "port": "in"
-            },
-            "metadata": {
-                "route": null
+                "process": "filesystem/JoinPath_pjcg2",
+                "port": "directory"
             }
         },
         {
             "src": {
-                "process": "packets/DoNotDisconnect_uev3m",
+                "process": "core/ReadEnv_2mde7",
                 "port": "out"
             },
             "tgt": {
-                "process": "strings/CompileString_pjcg2",
-                "port": "in"
-            }
-        },
-        {
-            "src": {
-                "process": "packets/DoNotDisconnect_uev3m",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/CompileString_667tt",
-                "port": "in"
-            }
-        },
-        {
-            "data": "/",
-            "tgt": {
-                "process": "strings/CompileString_pjcg2",
-                "port": "delimiter"
-            }
-        },
-        {
-            "data": "/",
-            "tgt": {
-                "process": "strings/CompileString_667tt",
-                "port": "delimiter"
+                "process": "filesystem/JoinPath_667tt",
+                "port": "directory"
             }
         }
     ]
