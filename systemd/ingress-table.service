@@ -1,0 +1,12 @@
+[Service]
+WorkingDirectory=/opt/ingress-table
+ExecStart=/usr/bin/node --register=false --graph graphs/bgt9b.json --secret=ingress --catch-exceptions=false --cache=true
+Restart=always
+User=bergie
+Environment=NOFLO_PROJECT_ROOT=/opt/ingress-table
+
+[Unit]
+After=network-online.target
+
+[Install]
+WantedBy=multi-user.target
