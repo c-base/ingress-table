@@ -12,4 +12,4 @@ trap 'kill $(jobs -p)' EXIT
 
 $FIRMWARE_FILE $SERIAL_FILE &
 sleep 2
-./node_modules/.bin/microflo runtime $OPTIONS --componentmap $COMPONENT_MAP | grep 'listening'
+./node_modules/.bin/microflo runtime $OPTIONS --componentmap $COMPONENT_MAP
