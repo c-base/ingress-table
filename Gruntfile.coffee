@@ -1,17 +1,13 @@
 fs = require 'fs'
 path = require 'path'
 
-microflo_make = "make -f ./node_modules/microflo/Makefile \
-  MICROFLO_SOURCE_DIR=#{process.cwd()}/node_modules/microflo/microflo \
-  MICROFLO=./node_modules/.bin/microflo
-  BUILD_DIR=#{process.cwd()}/build"
-
 arduino_build = (name, options) ->
   # Wrapper around the `arduino-builder` CLI tool setting up the neccesary paths
   defaults =
     board: 'arduino:avr:uno'
-    sketch: "build/arduino/#{name}/#{name}.cpp"
+    sketch: "build/arduino/#{name}/#{name}.#{options.ext||'cpp'}"
     arduino: process.env.ARDUINO or process.env.HOME + '/arduino-1.8.1'
+    'arm-none-eabi-gcc': '/home/jon/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1'
 
   for k,v of defaults
     options[k] = v if not options[k]?
@@ -24,6 +20,7 @@ arduino_build = (name, options) ->
     '-hardware', path.join(options.arduino, 'hardware')
     '-tools', path.join(options.arduino, 'tools-builder'),
     '-tools ', path.join(options.arduino, 'hardware', 'tools')
+    "-prefs=runtime.tools.arm-none-eabi-gcc.path=#{options['arm-none-eabi-gcc']}"
     '-fqbn', options.board,
     options.sketch
   ]
@@ -33,7 +30,7 @@ microflo_gen = (name, options={}) ->
   defaults =
     microflo: './node_modules/.bin/microflo'
     target: 'linux'
-    out: "build/#{options.target||'linux'}/#{name}/#{name}.cpp"
+    out: "build/#{options.target||'linux'}/#{name}/#{name}.#{options.ext||'cpp'}"
     graph: "graphs/#{name}.fbp"
     library: "./components-#{name}.json"
   for k,v of defaults
@@ -116,7 +113,8 @@ module.exports = ->
     # "$(node build.js build/arduino/PortalLights/PortalLights.cpp)"
 
     exec:
-      build_tiva: "#{microflo_make} STELLARIS_GRAPH=graphs/TableLights.fbp build-stellaris"
+      tablelights_arduino_gen: microflo_gen 'TableLights', { target: 'arduino' }
+      tablelights_arduino_build: arduino_build 'TableLights', { board: 'energia:tivac:EK-TM4C123GXL' }
       tablelights_linux_gen: microflo_gen 'TableLights' 
       tablelights_linux_comp: microflo_compile 'TableLights'
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
@@ -144,6 +142,7 @@ module.exports = ->
     'exec:portallights_linux_gen', 'exec:portallights_linux_comp',
   ]
   @registerTask 'build-microflo-arduino', [
+    'exec:tablelights_arduino_gen', 'exec:tablelights_arduino_build',
     'exec:portallights_arduino_gen', 'exec:portallights_arduino_build',
   ]
   @registerTask 'run-microflo-linux', [
