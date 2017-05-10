@@ -1,8 +1,7 @@
 noflo = require 'noflo'
 chai = require 'chai'
 
-device = "simulator://"
-#device = "serial:///dev/ttyACM0"
+device = "ws://localhost:5555"
 
 Runtime = require('noflo-runtime/src/RemoteSubGraph').RemoteSubGraph
 
@@ -19,17 +18,18 @@ describe 'MicroFlo Portal Lights', ->
       label: "Ingress Table Arduino"
       description: ""
       type: "microflo"
-      protocol: "microflo"
+      protocol: "websocket"
       address: device
       id: "2ef763ff-1f28-49b8-b58f-5c6a5c23af25"
       graph: "./graphs/PortalLights.fbp",
 
-    it.skip 'should have ports', (done) ->
+    it 'should have ports', (done) ->
       @timeout 100000
       runtime = new Runtime
       runtime.setDefinition def
       checkPorts = () ->
-        console.log runtime.inPorts
+        console.log Object.keys runtime.inPorts.ports
+        console.log Object.keys runtime.outPorts.ports
         chai.expect(runtime.inPorts.ports['pixel']).to.be.an 'object'
         chai.expect(runtime.inPorts.ports['show']).to.be.an 'object'
         chai.expect(runtime.outPorts.ports['shown']).to.be.an 'object'
@@ -52,7 +52,7 @@ describe 'MicroFlo Portal Lights', ->
       ###
       input = [ 30, "0xFF00FF" ]
 
-      it.skip 'should respond with the same data', (done) ->
+      it 'should respond with the same data', (done) ->
         insocket = noflo.internalSocket.createSocket()
         output = noflo.internalSocket.createSocket()
         runtime.inPorts["pixel"].attach insocket

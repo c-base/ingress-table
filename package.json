@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "google-auth-library": "~0.10.0",
-    "microflo": "~0.3.36",
+    "microflo": "~0.3.50",
     "noflo": "~0.8.0",
     "noflo-core": "~0.4.0",
     "noflo-filesystem": "~1.1.1",
@@ -29,7 +29,7 @@
     "grunt-exec": "^2.0.0",
     "grunt-mocha-test": "^0.13.2",
     "grunt-noflo-lint": "^0.3.0",
-    "microflo-emscripten": "^0.3.28",
+    "microflo-core": "^0.3.38",
     "mocha": "^3.1.2",
     "noflo-nodejs": "^0.8.1"
   },
@@ -45,9 +45,9 @@
         "description": "Handles portal LED strip (Arduino)",
         "icon": "lightbulb-o",
         "type": "microflo",
-        "protocol": "microflo",
+        "protocol": "websocket",
         "graph": "./graphs/PortalLights.fbp",
-        "address": "simulator://"
+        "address": "ws://localhost:5555"
       },
       {
         "id": "StreetLights",
@@ -55,17 +55,11 @@
         "icon": "lightbulb-o",
         "description": "Handles street and ambient LED lights (Tiva)",
         "type": "microflo",
-        "protocol": "microflo",
+        "protocol": "websocket",
         "graph": "./graphs/TableLights.fbp",
-        "address": "simulator://"
+        "address": "ws://localhost:4444"
       }
     ]
-  },
-  "microflo": {
-    "graphs": {
-      "TableLights": "graphs/TableLights.fbp",
-      "PortalLights": "graphs/PortalLights.fbp"
-    }
   },
   "author": "",
   "license": "MIT",
