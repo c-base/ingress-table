@@ -28,7 +28,8 @@ describe 'MicroFlo Portal Lights', ->
       runtime = new Runtime
       runtime.setDefinition def
       checkPorts = () ->
-        console.log runtime.inPorts
+        console.log Object.keys runtime.inPorts.ports
+        console.log Object.keys runtime.outPorts.ports
         chai.expect(runtime.inPorts.ports['pixel']).to.be.an 'object'
         chai.expect(runtime.inPorts.ports['show']).to.be.an 'object'
         chai.expect(runtime.outPorts.ports['shown']).to.be.an 'object'
