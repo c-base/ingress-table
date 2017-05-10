@@ -5,7 +5,6 @@
         "environment": {
             "type": "noflo-nodejs"
         },
-        "main": true,
         "description": "Ingress data fetching for the Ingress Table",
         "icon": "fire"
     },
