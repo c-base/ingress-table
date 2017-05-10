@@ -86,9 +86,9 @@
             }
         },
         "ingress-table/main_areeg": {
-            "component": "ingress-table/main",
+            "component": "ingress-table/data",
             "metadata": {
-                "label": "main",
+                "label": "data",
                 "x": 108,
                 "y": 396,
                 "width": 72,
