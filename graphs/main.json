@@ -1,25 +1,59 @@
 {
+    "caseSensitive": false,
     "properties": {
         "name": "main",
         "environment": {
             "type": "noflo-nodejs"
         },
-        "main": true
+        "main": true,
+        "description": "Ingress data fetching for the Ingress Table",
+        "icon": "fire"
     },
-    "inports": {},
-    "outports": {},
-    "groups": [
-        {
-            "name": "c-beam",
-            "nodes": [
-                "LogMqttErrors",
-                "PortalToMessage",
-                "SendToCbeam"
-            ],
+    "inports": {
+        "in": {
+            "process": "Repeat",
+            "port": "in",
             "metadata": {
-                "description": ""
+                "x": 108,
+                "y": 576,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {
+        "light": {
+            "process": "StateToLights",
+            "port": "light",
+            "metadata": {
+                "x": 1512,
+                "y": 612,
+                "width": 72,
+                "height": 72
             }
         },
+        "streets": {
+            "process": "core/Repeat_ikdjr",
+            "port": "out",
+            "metadata": {
+                "x": 1512,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "floor": {
+            "process": "BlueOrGreen",
+            "port": "colors",
+            "metadata": {
+                "x": 1512,
+                "y": 504,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "groups": [
         {
             "name": "Data Retrieval",
             "nodes": [
@@ -27,18 +61,6 @@
                 "LogApiErrors",
                 "FetchData",
                 "Repeat"
-            ],
-            "metadata": {
-                "description": ""
-            }
-        },
-        {
-            "name": "Street Lights",
-            "nodes": [
-                "PulseInterval",
-                "DetectAttack",
-                "Pulsate",
-                "StreetColor"
             ],
             "metadata": {
                 "description": ""
@@ -56,11 +78,22 @@
             }
         },
         {
-            "name": "Ingress Table",
+            "name": "c-beam",
             "nodes": [
-                "ConvertStrets",
-                "PortalLights",
-                "StreetLights"
+                "LogMqttErrors",
+                "PortalToMessage",
+                "SendToCbeam"
+            ],
+            "metadata": {
+                "description": ""
+            }
+        },
+        {
+            "name": "Street lights",
+            "nodes": [
+                "DetectAttack",
+                "StreetColor",
+                "core/Repeat_ikdjr"
             ],
             "metadata": {
                 "description": ""
@@ -108,21 +141,11 @@
                 "height": 72
             }
         },
-        "PortalToMessage": {
-            "component": "ingress-table/PortalToMessage",
-            "metadata": {
-                "label": "PortalToMessage",
-                "x": 828,
-                "y": -72,
-                "width": 72,
-                "height": 72
-            }
-        },
         "SendToCbeam": {
             "component": "mqtt/SendMessage",
             "metadata": {
                 "label": "SendToCbeam",
-                "x": 1044,
+                "x": 1188,
                 "y": -72,
                 "width": 72,
                 "height": 72
@@ -132,7 +155,7 @@
             "component": "core/Output",
             "metadata": {
                 "label": "LogMqttErrors",
-                "x": 1188,
+                "x": 1368,
                 "y": -72,
                 "width": 72,
                 "height": 72
@@ -148,26 +171,6 @@
                 "height": 72
             }
         },
-        "Pulsate": {
-            "component": "ingress-table/Pulsate",
-            "metadata": {
-                "label": "Pulsate",
-                "x": 1188,
-                "y": 108,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "PulseInterval": {
-            "component": "core/RunInterval",
-            "metadata": {
-                "label": "PulseInterval",
-                "x": 828,
-                "y": 216,
-                "width": 72,
-                "height": 72
-            }
-        },
         "DetectAttack": {
             "component": "ingress-table/DetectAttack",
             "metadata": {
@@ -178,21 +181,11 @@
                 "height": 72
             }
         },
-        "ConvertStrets": {
-            "component": "ingress-table/ConvertStreetLight",
-            "metadata": {
-                "label": "ConvertStrets",
-                "x": 1368,
-                "y": -36,
-                "width": 72,
-                "height": 72
-            }
-        },
         "BlueOrGreen": {
             "component": "ingress-table/DetermineWinner",
             "metadata": {
                 "label": "BlueOrGreen",
-                "x": 1188,
+                "x": 1332,
                 "y": 504,
                 "width": 72,
                 "height": 72
@@ -212,30 +205,30 @@
             "component": "ingress-table/StateToTransmission",
             "metadata": {
                 "label": "StateToLights",
-                "x": 1044,
+                "x": 1116,
                 "y": 576,
                 "width": 72,
                 "height": 72
             }
         },
-        "PortalLights": {
-            "component": "runtime/PortalLights",
+        "PortalToMessage": {
+            "component": "ingress-table/PortalToMessage",
             "metadata": {
-                "label": "PortalLights",
-                "x": 1584,
-                "y": 576,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "StreetLights": {
-            "component": "runtime/StreetLights",
-            "metadata": {
-                "label": "StreetLights",
-                "x": 1620,
+                "label": "PortalToMessage",
+                "x": 828,
                 "y": -72,
                 "width": 72,
-                "height": 132
+                "height": 72
+            }
+        },
+        "core/Repeat_ikdjr": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": 1368,
+                "y": 108,
+                "width": 72,
+                "height": 72
             }
         }
     },
@@ -333,45 +326,6 @@
         },
         {
             "src": {
-                "process": "FetchData",
-                "port": "state"
-            },
-            "tgt": {
-                "process": "PortalToMessage",
-                "port": "portal"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "PortalToMessage",
-                "port": "topic"
-            },
-            "tgt": {
-                "process": "SendToCbeam",
-                "port": "topic"
-            },
-            "metadata": {
-                "route": 5
-            }
-        },
-        {
-            "src": {
-                "process": "PortalToMessage",
-                "port": "message"
-            },
-            "tgt": {
-                "process": "SendToCbeam",
-                "port": "message"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
                 "process": "SendToCbeam",
                 "port": "error"
             },
@@ -385,42 +339,6 @@
         },
         {
             "src": {
-                "process": "StreetColor",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "Pulsate",
-                "port": "colors"
-            }
-        },
-        {
-            "src": {
-                "process": "PulseInterval",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "Pulsate",
-                "port": "step"
-            },
-            "metadata": {
-                "route": 3
-            }
-        },
-        {
-            "src": {
-                "process": "Repeat",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "PulseInterval",
-                "port": "start"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
                 "process": "FetchData",
                 "port": "mainportal"
             },
@@ -430,29 +348,6 @@
             },
             "metadata": {
                 "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "DetectAttack",
-                "port": "color"
-            },
-            "tgt": {
-                "process": "Pulsate",
-                "port": "colors"
-            }
-        },
-        {
-            "src": {
-                "process": "Pulsate",
-                "port": "colors"
-            },
-            "tgt": {
-                "process": "ConvertStrets",
-                "port": "colors"
-            },
-            "metadata": {
-                "route": 3
             }
         },
         {
@@ -522,25 +417,12 @@
         },
         {
             "src": {
-                "process": "ConvertStrets",
-                "port": "street1"
+                "process": "PortalToMessage",
+                "port": "message"
             },
             "tgt": {
-                "process": "StreetLights",
-                "port": "redone"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street1"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "greenone"
+                "process": "SendToCbeam",
+                "port": "message"
             },
             "metadata": {
                 "route": 4
@@ -548,38 +430,12 @@
         },
         {
             "src": {
-                "process": "ConvertStrets",
-                "port": "street1"
+                "process": "PortalToMessage",
+                "port": "topic"
             },
             "tgt": {
-                "process": "StreetLights",
-                "port": "blueone"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street2"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "redtwo"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "StateToLights",
-                "port": "light"
-            },
-            "tgt": {
-                "process": "PortalLights",
-                "port": "pixel"
+                "process": "SendToCbeam",
+                "port": "topic"
             },
             "metadata": {
                 "route": 5
@@ -587,12 +443,12 @@
         },
         {
             "src": {
-                "process": "ConvertStrets",
-                "port": "street2"
+                "process": "FetchData",
+                "port": "state"
             },
             "tgt": {
-                "process": "StreetLights",
-                "port": "greentwo"
+                "process": "PortalToMessage",
+                "port": "portal"
             },
             "metadata": {
                 "route": 4
@@ -600,119 +456,28 @@
         },
         {
             "src": {
-                "process": "ConvertStrets",
-                "port": "street2"
+                "process": "DetectAttack",
+                "port": "color"
             },
             "tgt": {
-                "process": "StreetLights",
-                "port": "bluetwo"
+                "process": "core/Repeat_ikdjr",
+                "port": "in"
             },
             "metadata": {
-                "route": 7
+                "route": 0
             }
         },
         {
             "src": {
-                "process": "ConvertStrets",
-                "port": "street3"
+                "process": "StreetColor",
+                "port": "out"
             },
             "tgt": {
-                "process": "StreetLights",
-                "port": "redthree"
+                "process": "core/Repeat_ikdjr",
+                "port": "in"
             },
             "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "greenthree"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street3"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "bluethree"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street4"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "redfour"
-            },
-            "metadata": {
-                "route": 1
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street4"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "greenfour"
-            },
-            "metadata": {
-                "route": 4
-            }
-        },
-        {
-            "src": {
-                "process": "ConvertStrets",
-                "port": "street4"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "bluefour"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "BlueOrGreen",
-                "port": "blue"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "floorblue"
-            },
-            "metadata": {
-                "route": 7
-            }
-        },
-        {
-            "src": {
-                "process": "BlueOrGreen",
-                "port": "green"
-            },
-            "tgt": {
-                "process": "StreetLights",
-                "port": "floorgreen"
-            },
-            "metadata": {
-                "route": 4
+                "route": 0
             }
         },
         {
@@ -727,13 +492,6 @@
             "tgt": {
                 "process": "ConfigPaths",
                 "port": "portalfile"
-            }
-        },
-        {
-            "data": "start",
-            "tgt": {
-                "process": "Repeat",
-                "port": "in"
             }
         },
         {
@@ -762,13 +520,6 @@
             "tgt": {
                 "process": "StreetColor",
                 "port": "in"
-            }
-        },
-        {
-            "data": 20,
-            "tgt": {
-                "process": "PulseInterval",
-                "port": "interval"
             }
         },
         {
