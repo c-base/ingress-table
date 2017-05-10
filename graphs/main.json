@@ -15,7 +15,7 @@
             "port": "fetch",
             "metadata": {
                 "x": 108,
-                "y": 216,
+                "y": 432,
                 "width": 72,
                 "height": 72
             }
@@ -25,7 +25,7 @@
             "port": "poll",
             "metadata": {
                 "x": 108,
-                "y": 360,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -57,7 +57,7 @@
             "port": "colors",
             "metadata": {
                 "x": 1512,
-                "y": 504,
+                "y": 468,
                 "width": 72,
                 "height": 72
             }
@@ -115,7 +115,7 @@
             "metadata": {
                 "label": "FetchData",
                 "x": 468,
-                "y": 216,
+                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -184,7 +184,7 @@
             "component": "ingress-table/DetermineWinner",
             "metadata": {
                 "label": "BlueOrGreen",
-                "x": 1332,
+                "x": 1368,
                 "y": 504,
                 "width": 72,
                 "height": 72
@@ -450,7 +450,7 @@
                 "port": "in"
             },
             "metadata": {
-                "route": 0
+                "route": 1
             }
         },
         {
