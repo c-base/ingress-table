@@ -1,4 +1,5 @@
 {
+    "caseSensitive": false,
     "properties": {
         "name": "FetchData",
         "environment": {
@@ -35,6 +36,16 @@
             "metadata": {
                 "x": -72,
                 "y": -180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "fetch": {
+            "process": "strings/SendString_3ssea",
+            "port": "in",
+            "metadata": {
+                "x": -72,
+                "y": 360,
                 "width": 72,
                 "height": 72
             }
@@ -125,21 +136,21 @@
             }
         },
         {
-            "name": "Scheduling",
+            "name": "Fetch Data",
             "nodes": [
-                "core/Repeat_ghioo",
-                "core/RunInterval_a6amz"
+                "GetPortals",
+                "objects/SplitArray_5f4ly",
+                "strings/SendString_3ssea"
             ],
             "metadata": {
                 "description": ""
             }
         },
         {
-            "name": "Fetch Data",
+            "name": "Scheduling",
             "nodes": [
-                "GetPortals",
-                "objects/SplitArray_5f4ly",
-                "strings/SendString_3ssea"
+                "core/Repeat_ghioo",
+                "core/RunInterval_a6amz"
             ],
             "metadata": {
                 "description": ""
@@ -193,16 +204,6 @@
                 "label": "MainPortal",
                 "x": 468,
                 "y": 36,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "core/RunInterval_a6amz": {
-            "component": "core/RunInterval",
-            "metadata": {
-                "label": "FetchTimer",
-                "x": 468,
-                "y": 468,
                 "width": 72,
                 "height": 72
             }
@@ -296,6 +297,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "core/RunInterval_a6amz": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "FetchTimer",
+                "x": 468,
+                "y": 468,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "connections": [
@@ -336,32 +347,6 @@
             },
             "metadata": {
                 "route": 6
-            }
-        },
-        {
-            "src": {
-                "process": "core/RunInterval_a6amz",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "strings/SendString_3ssea",
-                "port": "in"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "core/Repeat_ghioo",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "core/RunInterval_a6amz",
-                "port": "start"
-            },
-            "metadata": {
-                "route": 2
             }
         },
         {
@@ -506,6 +491,32 @@
             },
             "metadata": {
                 "route": 5
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_ghioo",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RunInterval_a6amz",
+                "port": "start"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_a6amz",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "strings/SendString_3ssea",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 2
             }
         },
         {

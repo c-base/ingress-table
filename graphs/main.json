@@ -10,12 +10,12 @@
         "icon": "fire"
     },
     "inports": {
-        "in": {
-            "process": "Repeat",
-            "port": "in",
+        "fetch": {
+            "process": "FetchData",
+            "port": "fetch",
             "metadata": {
                 "x": 108,
-                "y": 576,
+                "y": 216,
                 "width": 72,
                 "height": 72
             }
@@ -59,8 +59,7 @@
             "nodes": [
                 "ConfigPaths",
                 "LogApiErrors",
-                "FetchData",
-                "Repeat"
+                "FetchData"
             ],
             "metadata": {
                 "description": ""
@@ -127,16 +126,6 @@
                 "label": "ConfigPaths",
                 "x": 252,
                 "y": -72,
-                "width": 72,
-                "height": 72
-            }
-        },
-        "Repeat": {
-            "component": "core/Repeat",
-            "metadata": {
-                "label": "Repeat",
-                "x": 252,
-                "y": 576,
                 "width": 72,
                 "height": 72
             }
@@ -306,19 +295,6 @@
             "tgt": {
                 "process": "FetchData",
                 "port": "apiconfig"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
-                "process": "Repeat",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "FetchData",
-                "port": "poll"
             },
             "metadata": {
                 "route": 2
