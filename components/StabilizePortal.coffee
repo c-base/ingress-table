@@ -1,68 +1,60 @@
 noflo = require 'noflo'
 
-class StabilizePortal extends noflo.Component
-  icon: 'fire-extinguisher'
-  description: 'Resets a volatile portal to stable after a given time'
+exports.getComponent = ->
+  c = new noflo.Component
+  c.icon = 'fire-extinguisher'
+  c.description = 'Resets a volatile portal to stable after a given time'
+  c.inPorts.add 'state',
+    datatype: 'object'
+    description: 'Calculated state of the portal, e.g. under attack but blue'
+    required: yes
+  c.inPorts.add 'wait',
+    datatype: 'int'
+    description: 'How long to keep a portal volatile before stabilizing'
+    required: no
+    control: true
+    default: 5000
+  c.outPorts.add 'state',
+    datatype: 'object'
+    description: 'Calculated state of the portal, e.g. under attack but blue'
+    required: yes
 
-  constructor: ->
-    @canDisconnect = true
-    @timers = []
-    @wait = 5000
-    @inPorts = new noflo.InPorts
-      state:
-        datatype: 'object'
-        description: 'Calculated state of the portal, e.g. under attack but blue'
-        required: yes
-      wait:
-        datatype: 'int'
-        description: 'How long to keep a portal volatile before stabilizing'
-        required: no
-    @outPorts = new noflo.OutPorts
-      state:
-        datatype: 'object'
-        description: 'Calculated state of the portal, e.g. under attack but blue'
-        required: yes
+  c.setUp = (callback) ->
+    c.timers = []
+    callback()
+  c.tearDown = (callback) ->
+    return callback() unless c.timers
+    while c.timers.length
+      context = c.timers.shift()
+      clearTimeout context.timer
+      context.timer = null
+      context.deactivate()
+    callback()
 
-    @inPorts.state.on 'connect', =>
-      @canDisconnect = false
-    @inPorts.state.on 'data', (state) =>
-      # Pass the current state through
-      @outPorts.state.send state
-      # Set a stabilization timer
-      @stabilize state
+  c.process (input, output, context) ->
+    return unless input.hasData 'state', 'wait'
+    wait = input.getData 'wait'
+    state = input.getData 'state'
 
-    @inPorts.state.on 'disconnect', =>
-      @canDisconnect = true
-      do @checkDisconnect
+    # Pass the current state through
+    output.send
+      state: state
 
-    @inPorts.wait.on 'data', (@wait) =>
-
-  stabilize: (state) =>
-    return if state.state in [
+    # Deactivate in case of stable states
+    return output.done() if state.state in [
       'stable'
       'awesome'
       'bad'
       'disco'
-      ]
+    ]
 
-    timer = setTimeout =>
+    # Set a stabilization timer
+    context.timer = setTimeout ->
       state.state = 'stable'
-      @outPorts.state.send state
-      @timers.splice @timers.indexOf(timer), 1
-      do @checkDisconnect
-    , @wait
-
-    @timers.push timer
-
-  checkDisconnect: ->
-    return unless @canDisconnect
-    return if @timers.length
-    @outPorts.state.disconnect()
-
-  shutdown: ->
-    while @timers.length
-      timer = @timers.shift()
-      clearTimeout timer
-    do @checkDisconnect
-
-exports.getComponent = -> new StabilizePortal
+      output.send
+        state: state
+      c.timers.splice c.timers.indexOf(context), 1
+      context.timer = null
+      context.deactivate()
+    , wait
+    c.timers.push context
