@@ -6,6 +6,29 @@ microflo_make = "make -f ./node_modules/microflo/Makefile \
   MICROFLO=./node_modules/.bin/microflo
   BUILD_DIR=#{process.cwd()}/build"
 
+arduino_build = (name, options) ->
+  # Wrapper around the `arduino-builder` CLI tool setting up the neccesary paths
+  defaults =
+    board: 'arduino:avr:uno'
+    sketch: "build/arduino/#{name}/#{name}.cpp"
+    arduino: process.env.ARDUINO or process.env.HOME + '/arduino-1.8.1'
+
+  for k,v of defaults
+    options[k] = v if not options[k]?
+
+  buildDir = path.join path.dirname(options.sketch), 'builder'
+  builder = path.join options.arduino, 'arduino-builder'
+  cmd = [
+    builder,
+    '-compile', ' -verbose'
+    '-hardware', path.join(options.arduino, 'hardware')
+    '-tools', path.join(options.arduino, 'tools-builder'),
+    '-tools ', path.join(options.arduino, 'hardware', 'tools')
+    '-fqbn', options.board,
+    options.sketch
+  ]
+  return cmd.join(' ')
+
 microflo_gen = (name, options={}) ->
   defaults =
     microflo: './node_modules/.bin/microflo'
@@ -90,12 +113,15 @@ module.exports = ->
             'graphs/main.json'
           ]
 
+    # "$(node build.js build/arduino/PortalLights/PortalLights.cpp)"
+
     exec:
-      build_arduino: "#{microflo_make} GRAPH=graphs/PortalLights.fbp LIBRARY=arduino-standard build-arduino"
       build_tiva: "#{microflo_make} STELLARIS_GRAPH=graphs/TableLights.fbp build-stellaris"
       tablelights_linux_gen: microflo_gen 'TableLights' 
       tablelights_linux_comp: microflo_compile 'TableLights'
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
+      portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino' }
+      portallights_arduino_build: arduino_build 'PortalLights', { board: 'arduino:avr:leonardo' }
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
       portallights_run: './spec/microflo-linux.sh PortalLights 5555 & sleep 5'
@@ -113,15 +139,19 @@ module.exports = ->
   @loadNpmTasks 'grunt-noflo-lint'
 
   # Our local tasks
-  @registerTask 'build-microflo', [
+  @registerTask 'build-microflo-linux', [
     'exec:tablelights_linux_gen', 'exec:tablelights_linux_comp',
     'exec:portallights_linux_gen', 'exec:portallights_linux_comp',
+  ]
+  @registerTask 'build-microflo-arduino', [
+    'exec:portallights_arduino_gen', 'exec:portallights_arduino_build',
   ]
   @registerTask 'run-microflo-linux', [
     'exec:kill_microflo_linux'
     'exec:tablelights_run'
     'exec:portallights_run'
   ]
-  @registerTask 'build', ['build-microflo']
+  @registerTask 'build', ['build-microflo-linux']
   @registerTask 'test', ['coffeelint', 'build', 'run-microflo-linux', 'mochaTest']
+
   @registerTask 'default', ['test']
