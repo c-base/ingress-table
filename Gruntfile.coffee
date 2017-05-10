@@ -135,7 +135,7 @@ module.exports = ->
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
       portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino', ext: 'ino.tmpl' }
       portallights_arduino_build: arduino_build 'PortalLights', 
-        board: 'arduino:avr:leonardo'
+        board: 'arduino:avr:uno'
         ext: 'ino'
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
