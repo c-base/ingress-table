@@ -1,6 +1,6 @@
 [Service]
 WorkingDirectory=/opt/ingress-table
-ExecStart=/usr/bin/node --register=false --graph graphs/bgt9b.json --secret=ingress --catch-exceptions=false --cache=true
+ExecStart=/usr/bin/node --register=false --graph graphs/main.json --secret=ingress --catch-exceptions=false --cache=true
 Restart=always
 User=bergie
 Environment=NOFLO_PROJECT_ROOT=/opt/ingress-table

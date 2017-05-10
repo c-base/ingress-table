@@ -1,7 +1,7 @@
 {
     "caseSensitive": false,
     "properties": {
-        "name": "bgt9b",
+        "name": "main",
         "environment": {
             "type": "noflo-nodejs"
         },

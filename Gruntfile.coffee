@@ -87,7 +87,7 @@ module.exports = ->
           legacy_api: 'ignore'
         files:
           src: [
-            'graphs/bgt9b.json'
+            'graphs/main.json'
           ]
 
     exec:

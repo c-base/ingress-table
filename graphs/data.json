@@ -1,7 +1,7 @@
 {
     "caseSensitive": false,
     "properties": {
-        "name": "main",
+        "name": "data",
         "environment": {
             "type": "noflo-nodejs"
         },

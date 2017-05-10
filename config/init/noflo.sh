@@ -3,7 +3,7 @@
 NODE=/opt/node/bin/node
 NOFLO_PROJECT_ROOT=/home/pi/Projects/ingress-table
 SERVER_JS_FILE=$NOFLO_PROJECT_ROOT/node_modules/.bin/noflo
-NOFLO_GRAPH=$NOFLO_PROJECT_ROOT/graphs/bgt9b.json
+NOFLO_GRAPH=$NOFLO_PROJECT_ROOT/graphs/main.json
 USER=pi
 OUT=/home/pi/nodejs.log
 
