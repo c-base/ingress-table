@@ -3,10 +3,14 @@ sudo: false
 dist: trusty
 node_js:
 - '6'
+env:
+- ARDUINO=`pwd`/arduino-1.8.1
+before_install:
+- wget -O arduino.tgz https://downloads.arduino.cc/arduino-1.8.1-linux64.tar.xz
+- tar -xf arduino.tgz
+- openssl aes-256-cbc -K $encrypted_b877c04c0554_key -iv $encrypted_b877c04c0554_iv
+  -in cookie.json.enc -out cookie.json -d
 before_script:
 - npm install -g grunt-cli
 after_script:
 - kill `pgrep microflo-linux`
-before_install:
-- openssl aes-256-cbc -K $encrypted_b877c04c0554_key -iv $encrypted_b877c04c0554_iv
-  -in cookie.json.enc -out cookie.json -d

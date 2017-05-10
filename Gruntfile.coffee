@@ -151,7 +151,7 @@ module.exports = ->
     'exec:tablelights_run'
     'exec:portallights_run'
   ]
-  @registerTask 'build', ['build-microflo-linux']
+  @registerTask 'build', ['build-microflo-linux', 'build-microflo-arduino']
   @registerTask 'test', ['coffeelint', 'build', 'run-microflo-linux', 'mochaTest']
 
   @registerTask 'default', ['test']
