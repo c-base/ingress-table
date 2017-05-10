@@ -19,6 +19,16 @@
                 "width": 72,
                 "height": 72
             }
+        },
+        "poll": {
+            "process": "FetchData",
+            "port": "poll",
+            "metadata": {
+                "x": 108,
+                "y": 360,
+                "width": 72,
+                "height": 72
+            }
         }
     },
     "outports": {
