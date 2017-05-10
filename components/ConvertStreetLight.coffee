@@ -1,7 +1,7 @@
 noflo = require 'noflo'
 
 class ConvertStreetLight extends noflo.Component
-  icon: 'filter'
+  icon: 'road'
   description: 'Convert street light RGB values so we can send them to PWM'
 
   constructor: ->

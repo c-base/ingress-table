@@ -1,0 +1,414 @@
+{
+    "caseSensitive": false,
+    "properties": {
+        "name": "lights",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "Drive the lights on the table",
+        "icon": "lightbulb-o"
+    },
+    "inports": {
+        "streets": {
+            "process": "ingress-table/Pulsate_4hwtq",
+            "port": "colors",
+            "metadata": {
+                "x": 468,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "floor": {
+            "process": "ingress-table/ConvertFloor_hesgn",
+            "port": "colors",
+            "metadata": {
+                "x": 468,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "light": {
+            "process": "ingress-table/AnimatePortals_n59t2",
+            "port": "light",
+            "metadata": {
+                "x": 468,
+                "y": 108,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "ingress-table/Pulsate_4hwtq": {
+            "component": "ingress-table/Pulsate",
+            "metadata": {
+                "label": "Pulsate",
+                "x": 612,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/RunInterval_97j95": {
+            "component": "core/RunInterval",
+            "metadata": {
+                "label": "RunInterval",
+                "x": 468,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ingress-table/ConvertStreetLight_m63wp": {
+            "component": "ingress-table/ConvertStreetLight",
+            "metadata": {
+                "label": "ConvertStreetLight",
+                "x": 756,
+                "y": 432,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "ingress-table/ConvertFloor_hesgn": {
+            "component": "ingress-table/ConvertFloor",
+            "metadata": {
+                "label": "ConvertFloor",
+                "x": 756,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "runtime/StreetLights_30dru": {
+            "component": "runtime/StreetLights",
+            "metadata": {
+                "label": "StreetLights",
+                "x": 936,
+                "y": 360,
+                "width": 72,
+                "height": 144
+            }
+        },
+        "ingress-table/AnimatePortals_n59t2": {
+            "component": "ingress-table/AnimatePortals",
+            "metadata": {
+                "label": "AnimatePortals",
+                "x": 756,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "runtime/PortalLights_nv7z6": {
+            "component": "runtime/PortalLights",
+            "metadata": {
+                "label": "PortalLights",
+                "x": 936,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Repeat_wtvsx": {
+            "component": "core/Repeat",
+            "metadata": {
+                "label": "Repeat",
+                "x": 324,
+                "y": 324,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "core/RunInterval_97j95",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/Pulsate_4hwtq",
+                "port": "step"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/Pulsate_4hwtq",
+                "port": "colors"
+            },
+            "tgt": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "colors"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertFloor_hesgn",
+                "port": "floor"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "floorred"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertFloor_hesgn",
+                "port": "floor"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "floorgreen"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertFloor_hesgn",
+                "port": "floor"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "floorblue"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "redone"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "greenone"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street1"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "blueone"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "redtwo"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "greentwo"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street2"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "bluetwo"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "redthree"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "greenthree"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street3"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "bluethree"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "redfour"
+            },
+            "metadata": {
+                "route": 1
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "greenfour"
+            },
+            "metadata": {
+                "route": 4
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/ConvertStreetLight_m63wp",
+                "port": "street4"
+            },
+            "tgt": {
+                "process": "runtime/StreetLights_30dru",
+                "port": "bluefour"
+            },
+            "metadata": {
+                "route": 7
+            }
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_97j95",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/AnimatePortals_n59t2",
+                "port": "step"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/AnimatePortals_n59t2",
+                "port": "pixel"
+            },
+            "tgt": {
+                "process": "runtime/PortalLights_nv7z6",
+                "port": "pixel"
+            },
+            "metadata": {
+                "route": 6
+            }
+        },
+        {
+            "src": {
+                "process": "core/RunInterval_97j95",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "runtime/PortalLights_nv7z6",
+                "port": "show"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "core/Repeat_wtvsx",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RunInterval_97j95",
+                "port": "start"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "bang",
+            "tgt": {
+                "process": "core/Repeat_wtvsx",
+                "port": "in"
+            }
+        },
+        {
+            "data": 500,
+            "tgt": {
+                "process": "core/RunInterval_97j95",
+                "port": "interval"
+            }
+        }
+    ]
+}
