@@ -8,6 +8,8 @@ arduino_build = (name, options) ->
     sketch: "build/arduino/#{name}/#{name}.#{options.ext||'cpp'}"
     arduino: process.env.ARDUINO or process.env.HOME + '/arduino-1.8.1'
     'arm-none-eabi-gcc': '/home/jon/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1'
+    libraries: '/home/jon/Arduino/libraries'
+    outdir: path.join(process.cwd(), "build/arduino/#{name}/builder/")
 
   for k,v of defaults
     options[k] = v if not options[k]?
@@ -20,8 +22,10 @@ arduino_build = (name, options) ->
     '-hardware', path.join(options.arduino, 'hardware')
     '-tools', path.join(options.arduino, 'tools-builder'),
     '-tools ', path.join(options.arduino, 'hardware', 'tools')
+    '-libraries', options.libraries
     "-prefs=runtime.tools.arm-none-eabi-gcc.path=#{options['arm-none-eabi-gcc']}"
-    '-fqbn', options.board,
+    '-fqbn', options.board
+    '-build-path', options.outdir
     options.sketch
   ]
   return cmd.join(' ')
@@ -42,6 +46,7 @@ microflo_gen = (name, options={}) ->
   fs.mkdirSync grandparent if not fs.existsSync grandparent
   fs.mkdirSync parent if not fs.existsSync parent
   fs.mkdirSync dir if not fs.existsSync dir
+  fs.mkdirSync path.join(dir,'builder') if not fs.existsSync path.join(dir,'builder')
   cmd = [
     options.microflo,
     '--target', options.target
@@ -111,6 +116,16 @@ module.exports = ->
           ]
 
     # "$(node build.js build/arduino/PortalLights/PortalLights.cpp)"
+  
+    'string-replace':
+      portallights:
+        files:
+          'build/arduino/PortalLights/PortalLights.ino': 'build/arduino/PortalLights/PortalLights.ino.tmpl'
+        options:
+          replacements: [
+            pattern: '\n'
+            replacement: '\n#include <Adafruit_WS2801.h>\n#define HAVE_ADAFRUIT_WS2801\n\n'
+          ]
 
     exec:
       tablelights_arduino_gen: microflo_gen 'TableLights', { target: 'arduino' }
@@ -118,8 +133,10 @@ module.exports = ->
       tablelights_linux_gen: microflo_gen 'TableLights' 
       tablelights_linux_comp: microflo_compile 'TableLights'
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
-      portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino' }
-      portallights_arduino_build: arduino_build 'PortalLights', { board: 'arduino:avr:leonardo' }
+      portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino', ext: 'ino.tmpl' }
+      portallights_arduino_build: arduino_build 'PortalLights', 
+        board: 'arduino:avr:leonardo'
+        ext: 'ino'
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
       portallights_run: './spec/microflo-linux.sh PortalLights 5555 & sleep 5'
@@ -129,6 +146,7 @@ module.exports = ->
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
+  @loadNpmTasks 'grunt-string-replace'
 
   # Grunt plugins used for testing
   @loadNpmTasks 'grunt-contrib-watch'
@@ -142,8 +160,9 @@ module.exports = ->
     'exec:portallights_linux_gen', 'exec:portallights_linux_comp',
   ]
   @registerTask 'build-microflo-arduino', [
+    'exec:portallights_arduino_gen', 'string-replace:portallights', 'exec:portallights_arduino_build',
     'exec:tablelights_arduino_gen', 'exec:tablelights_arduino_build',
-    'exec:portallights_arduino_gen', 'exec:portallights_arduino_build',
+
   ]
   @registerTask 'run-microflo-linux', [
     'exec:kill_microflo_linux'
