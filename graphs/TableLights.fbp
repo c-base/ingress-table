@@ -32,7 +32,7 @@ Board(TivaC) PB7 -> PIN GreenOne(PseudoPwmWrite)
 Board(TivaC) PB6 -> PIN BlueOne(PseudoPwmWrite)
 '220' -> PERIOD BlueOne
 
-Board(TivaC) PF3 -> PIN RedTwo(PseudoPwmWrite)
+Board(TivaC) PF2 -> PIN RedTwo(PseudoPwmWrite)
 '220' -> PERIOD RedTwo
 Board(TivaC) PC4 -> PIN GreenTwo(PseudoPwmWrite)
 '220' -> PERIOD GreenTwo
