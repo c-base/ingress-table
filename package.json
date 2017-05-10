@@ -45,9 +45,9 @@
         "description": "Handles portal LED strip (Arduino)",
         "icon": "lightbulb-o",
         "type": "microflo",
-        "protocol": "microflo",
+        "protocol": "websocket",
         "graph": "./graphs/PortalLights.fbp",
-        "address": "simulator://"
+        "address": "ws://localhost:5555"
       },
       {
         "id": "StreetLights",
@@ -55,9 +55,9 @@
         "icon": "lightbulb-o",
         "description": "Handles street and ambient LED lights (Tiva)",
         "type": "microflo",
-        "protocol": "microflo",
+        "protocol": "websocket",
         "graph": "./graphs/TableLights.fbp",
-        "address": "simulator://"
+        "address": "ws://localhost:4444"
       }
     ]
   },
