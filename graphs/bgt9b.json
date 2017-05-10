@@ -160,6 +160,19 @@
             }
         },
         {
+            "src": {
+                "process": "core/Repeat_x0tsf",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "ingress-table/lights_zm5zk",
+                "port": "animate"
+            },
+            "metadata": {
+                "route": 2
+            }
+        },
+        {
             "data": "start",
             "tgt": {
                 "process": "core/Repeat_x0tsf",
