@@ -6,7 +6,7 @@ class Pulsate extends noflo.Component
 
   constructor: ->
     @value = 0
-    @steps = [0, 70, 50, 15]
+    @tracks = [0, 70, 50, 15]
     @maxSteps = 100
     @colors = [255, 255, 255]
     @inPorts = new noflo.InPorts
@@ -28,7 +28,7 @@ class Pulsate extends noflo.Component
     @inPorts.colors.on 'data', (@colors) =>
     @inPorts.step.on 'data', =>
       colors = []
-      for step, idx in @steps
+      for step, idx in @tracks
         ledColors = []
         for color in @colors
           unless color
@@ -36,10 +36,9 @@ class Pulsate extends noflo.Component
             continue
           ledColors.push @step step
         colors.push ledColors
-        @steps[idx]++
-        if @steps[idx] > @maxSteps
-          @steps[idx] = 0
-
+        @tracks[idx]++
+        if @tracks[idx] > @maxSteps
+          @tracks[idx] = 0
       @outPorts.colors.send colors
     @inPorts.step.on 'disconnect', =>
       @outPorts.colors.disconnect()
