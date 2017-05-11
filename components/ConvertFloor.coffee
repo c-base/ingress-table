@@ -9,11 +9,20 @@ exports.getComponent = ->
   c.outPorts.add 'floor',
     datatype: 'int'
     addressable: true
+  c.previous = null
+  c.tearDown = (callback) ->
+    c.previous = null
+    callback()
   c.process (input, output) ->
     return unless input.hasData 'colors'
     colors = input.getData 'colors'
     return output.done() unless colors.length
-    [r, g, b] = colors[0]
+    followed = colors[0]
+    if c.previous and followed[0] is c.previous[0] and followed[1] is c.previous[1] and followed[2] is c.previous[2]
+      # No state change
+      return output.done()
+    c.previous = followed
+    [r, g, b] = followed
     output.send
       floor: new noflo.IP 'data', r,
         index: 0
