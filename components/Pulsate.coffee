@@ -49,7 +49,7 @@ class Pulsate extends noflo.Component
     # reduce value range between 1 and 0
     rangeAdjust = 2
     # Max RGB value
-    maxValue = 200
+    maxValue = 100
 
     upperLimit = 0.5
     lowerLimit = 0
