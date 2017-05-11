@@ -32,7 +32,7 @@ arduino_build = (name, options) ->
 
 flash_avr = (hexfile, options={}) ->
   defaults =
-    board: 'arduino:avr:leonardo'
+    board: 'arduino:avr:uno'
     serial: '/dev/ttyACM0'
   for k,v of defaults
     options[k] = v if not options[k]?
@@ -161,7 +161,7 @@ module.exports = ->
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
       portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino', ext: 'ino.tmpl' }
       portallights_arduino_build: arduino_build 'PortalLights', 
-        board: 'arduino:avr:leonardo'
+        board: 'arduino:avr:uno'
         ext: 'ino'
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
@@ -169,7 +169,7 @@ module.exports = ->
       kill_microflo_linux:
         options: { shell: '/bin/bash' }
         command: 'pkill microflo-linux || echo no processes to kill'
-      flash_arduino: flash_avr 'build/arduino/PortalLights/builder/PortalLights.ino.hex', { board: 'arduino:avr:leonardo' }
+      flash_arduino: flash_avr 'build/arduino/PortalLights/builder/PortalLights.ino.hex', { board: 'arduino:avr:uno' }
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
