@@ -443,7 +443,7 @@
             }
         },
         {
-            "data": 500,
+            "data": 3000,
             "tgt": {
                 "process": "StreetCycle",
                 "port": "interval"

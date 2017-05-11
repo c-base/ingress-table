@@ -1,54 +1,14 @@
 # @runtime microflo
 
-INPORT=FloorRed.ONTIME:FLOORRED
-INPORT=FloorGreen.ONTIME:FLOORGREEN
-INPORT=FloorBlue.ONTIME:FLOORBLUE
 INPORT=RedOne.ONTIME:REDONE
 INPORT=GreenOne.ONTIME:GREENONE
-INPORT=BlueOne.ONTIME:BLUEONE
-INPORT=RedTwo.ONTIME:REDTWO
-INPORT=GreenTwo.ONTIME:GREENTWO
-INPORT=BlueTwo.ONTIME:BLUETWO
-INPORT=Red3.ONTIME:REDTHREE
-INPORT=Green3.ONTIME:GREENTHREE
-INPORT=Blue3.ONTIME:BLUETHREE
-INPORT=Red4.ONTIME:REDFOUR
-INPORT=Green4.ONTIME:GREENFOUR
-INPORT=Blue4.ONTIME:BLUEFOUR
-
-# Floor light
-Board(TivaC) PF2 -> PIN FloorRed(PseudoPwmWrite)
-'220' -> PERIOD FloorRed
-Board(TivaC) PA7 -> PIN FloorBlue(PseudoPwmWrite)
-'220' -> PERIOD FloorBlue
-Board(TivaC) PA6 -> PIN FloorGreen(PseudoPwmWrite)
-'220' -> PERIOD FloorGreen
+INPORT=RedOne.ONTIME:REDONE
 
 # Street lights
-Board(TivaC) PB4 -> PIN RedOne(PseudoPwmWrite)
-'220' -> PERIOD RedOne
-Board(TivaC) PB7 -> PIN GreenOne(PseudoPwmWrite)
-'220' -> PERIOD GreenOne
-Board(TivaC) PB6 -> PIN BlueOne(PseudoPwmWrite)
-'220' -> PERIOD BlueOne
+'30' -> PIN RedOne(PwmWrite)
+'39' -> PIN GreenOne(PwmWrite)
+'40' -> PIN BlueOne(PwmWrite)
 
-Board(TivaC) PF2 -> PIN RedTwo(PseudoPwmWrite)
-'220' -> PERIOD RedTwo
-Board(TivaC) PC4 -> PIN GreenTwo(PseudoPwmWrite)
-'220' -> PERIOD GreenTwo
-Board(TivaC) PC5 -> PIN BlueTwo(PseudoPwmWrite)
-'220' -> PERIOD BlueTwo
-
-Board(TivaC) PD0 -> PIN Red3(PseudoPwmWrite)
-'220' -> PERIOD Red3
-Board(TivaC) PD1 -> PIN Green3(PseudoPwmWrite)
-'220' -> PERIOD Green3
-Board(TivaC) PF1 -> PIN Blue3(PseudoPwmWrite)
-'220' -> PERIOD Blue3
-
-Board(TivaC) PB5 -> PIN Red4(PseudoPwmWrite)
-'220' -> PERIOD Red4
-Board(TivaC) PE4 -> PIN Green4(PseudoPwmWrite)
-'220' -> PERIOD Green4
-Board(TivaC) PE5 -> PIN Blue4(PseudoPwmWrite)
-'220' -> PERIOD Blue4
+'100' -> dutycycle RedOne
+'1' -> dutycycle GreenOne
+'10' -> dutycycle BlueOne
