@@ -11,10 +11,10 @@ exports.getComponent = ->
   c.outPorts.add 'pixel',
     datatype: 'array'
   c.state = {}
-  c.second = false
+  c.sent = {}
   c.tearDown = (callback) ->
     c.state = {}
-    c.second = false
+    c.sent = {}
     callback()
   c.process (input, output) ->
     if input.hasData 'light'
@@ -25,14 +25,15 @@ exports.getComponent = ->
     return unless input.hasData 'step'
     input.getData 'step'
     for portal, state of c.state
-      if c.second
-        value = state[1]
-      else
+      # Start with first color
+      value = state[1]
+      if value is c.sent[portal]
+        # If previous sent was first, go with second color
         value = state[2]
+      # Don't send if color isn't changing
+      continue if value is c.sent[portal]
       output.send
         pixel: [portal, value]
-    if c.second
-      c.second = false
-    else
-      c.second = true
+      # Store sent value
+      c.sent[portal] = value
     output.done()
