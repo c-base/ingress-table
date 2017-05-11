@@ -88,6 +88,7 @@ loadGraph (err, inst) ->
             setPortals [64, 64, 64]
             setTimeout ->
               console.log "DONE"
+              process.exit 0
             , 5000
           , 5000
         , 5000
