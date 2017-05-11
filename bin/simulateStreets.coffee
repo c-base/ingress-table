@@ -7,13 +7,16 @@ loader = new noflo.ComponentLoader path.resolve __dirname, '../'
 fbp = """
 INPORT=Pulsate.COLORS:COLORS
 INPORT=Pulsate.STEP:STEP
-INPORT=StreetLights.FLOORRED:RED
-INPORT=StreetLights.FLOORGREEN:GREEN
-INPORT=StreetLights.FLOORBLUE:BLUE
 Pulsate(ingress-table/Pulsate) COLORS -> COLORS Convert(ingress-table/ConvertStreetLight)
-Convert STREET1[0] -> REDONE StreetLights(runtime/StreetLights)
-Convert STREET1[1] -> GREENONE StreetLights
-Convert STREET1[2] -> BLUEONE StreetLights
+Convert STREET1[0] -> IN RepeatRed(core/Repeat)
+Convert STREET1[1] -> IN RepeatGreen(core/Repeat)
+Convert STREET1[2] -> IN RepeatRed(core/Repeat)
+RepeatRed OUT -> REDONE StreetLights(runtime/StreetLights)
+RepeatGreen OUT -> GREENONE StreetLights
+RepeatBlue OUT -> BLUEONE StreetLights
+RepeatRed OUT -> FLOORRED StreetLights
+RepeatGreen OUT -> FLOORGREEN StreetLights
+RepeatBlue OUT -> FLOORBLUE StreetLights
 Convert STREET2[0] -> REDTWO StreetLights
 Convert STREET2[1] -> GREENTWO StreetLights
 Convert STREET2[2] -> BLUETWO StreetLights
@@ -26,12 +29,15 @@ Convert STREET4[2] -> BLUEFOUR StreetLights
 """
 
 loadGraph = (graphDef, callback) ->
-  noflo.graph.loadFBP graphDef, (graph) ->
-    loader.listComponents ->
+  noflo.graph.loadFBP graphDef, (err, graph) ->
+    return callback err if err
+    loader.listComponents (err) ->
+      return callback err if err
       console.log 'Registering test graph to NoFlo'
-      loader.registerGraph 'ingress-table', 'SimulateStreets', graph, ->
+      loader.registerGraph 'ingress-table', 'SimulateStreets', graph, (err) ->
+        return callback err if err
         console.log 'Loading the test graph as component'
-        loader.load 'SimulateStreets', (err, inst) ->
+        loader.load 'ingress-table/SimulateStreets', (err, inst) ->
           console.log 'Loaded the test graph. Waiting for ready state'
           return callback err if err
 
@@ -64,7 +70,7 @@ loadGraph fbp, (err, inst) ->
   , 500
 
   inst.network.on 'data', (data) ->
-    return if data.id.indexOf('STREET') is -1
+    return if data.id.indexOf('Street') is -1
     console.log data.id, data.data
 
   setTimeout ->
