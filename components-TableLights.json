@@ -2,7 +2,7 @@
   "components": [
     "./node_modules/microflo-core/components/AnalogRead",
     "./node_modules/microflo-core/components/MbedLPC",
-    "./node_modules/microflo-core/components/TivaC",
+    "./components/LaunchpadDigitalPins",
     "./node_modules/microflo-core/components/PseudoPwmWrite",
     "./node_modules/microflo-core/components/BooleanAnd",
     "./node_modules/microflo-core/components/BooleanOr",
