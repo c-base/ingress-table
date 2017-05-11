@@ -5,6 +5,7 @@ Restart=always
 User=bergie
 
 [Unit]
+Wants=microflo-portallights.service microflo-streetlights.service
 After=network-online.target
 
 [Install]
