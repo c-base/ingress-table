@@ -10,6 +10,8 @@ exports.getComponent = ->
     datatype: 'bang'
   c.outPorts.add 'pixel',
     datatype: 'array'
+  c.outPorts.add 'show',
+    datatype: 'bang'
   c.state = {}
   c.sent = {}
   c.tearDown = (callback) ->
@@ -24,6 +26,7 @@ exports.getComponent = ->
       return
     return unless input.hasData 'step'
     input.getData 'step'
+    sent = false
     for portal, state of c.state
       # Start with first color
       value = state[1]
@@ -36,4 +39,9 @@ exports.getComponent = ->
         pixel: [portal, value]
       # Store sent value
       c.sent[portal] = value
+      sent = true
+    return output.done() unless sent
+    # Tell pixels to redraw
+    output.send
+      show: true
     output.done()

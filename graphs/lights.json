@@ -6,7 +6,8 @@
             "type": "noflo-nodejs"
         },
         "description": "Drive the lights on the table",
-        "icon": "lightbulb-o"
+        "icon": "lightbulb-o",
+        "main": true
     },
     "inports": {
         "streets": {
@@ -50,7 +51,18 @@
             }
         }
     },
-    "outports": {},
+    "outports": {
+        "shown": {
+            "process": "runtime/PortalLights_nv7z6",
+            "port": "shown",
+            "metadata": {
+                "x": 1080,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
     "groups": [],
     "processes": {
         "ingress-table/Pulsate_4hwtq": {
@@ -145,7 +157,7 @@
                 "port": "step"
             },
             "metadata": {
-                "route": 2
+                "route": 3
             }
         },
         {
@@ -366,7 +378,7 @@
                 "port": "step"
             },
             "metadata": {
-                "route": 2
+                "route": 3
             }
         },
         {
@@ -384,19 +396,6 @@
         },
         {
             "src": {
-                "process": "core/RunInterval_97j95",
-                "port": "out"
-            },
-            "tgt": {
-                "process": "runtime/PortalLights_nv7z6",
-                "port": "show"
-            },
-            "metadata": {
-                "route": 2
-            }
-        },
-        {
-            "src": {
                 "process": "core/Repeat_achee",
                 "port": "out"
             },
@@ -406,6 +405,19 @@
             },
             "metadata": {
                 "route": 2
+            }
+        },
+        {
+            "src": {
+                "process": "ingress-table/AnimatePortals_n59t2",
+                "port": "show"
+            },
+            "tgt": {
+                "process": "runtime/PortalLights_nv7z6",
+                "port": "show"
+            },
+            "metadata": {
+                "route": 3
             }
         },
         {
