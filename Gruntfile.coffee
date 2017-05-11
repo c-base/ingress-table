@@ -45,11 +45,9 @@ flash_avr = (hexfile, options={}) ->
     resetCommand = "python2 ./leonardo-reset.py #{options.serial}; sleep 2"
     boardOptions = '-patmega32u4 -cavr109 -b57600'
 
-  options.arduino = '/home/jon/arduino-1.8.1/'
   cmd = [
     resetCommand, ';'
     'avrdude', '-v'
-    '-C', "#{options.arduino}/hardware/tools/avr/etc/avrdude.conf"
     "-P#{options.serial}", boardOptions
     '-D', "-Uflash:w:#{hexfile}:i"
   ]
