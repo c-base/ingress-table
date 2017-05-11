@@ -66,4 +66,8 @@ loadGraph (err, inst) ->
         sendAndWait port, socket, 100, ->
           sendAndWait port, socket, 0, ->
             step()
-  do step
+  inst.start (err) ->
+    if err
+      console.log err
+      process.exit 1
+    do step
