@@ -20,38 +20,38 @@ Board(LaunchpadDigitalPins)
 
 # Floor light
 # FIXME: should be PF2
-#Board PB4 -> PIN FloorRed(PwmWrite) # OK
-#Board PA7 -> PIN FloorBlue(PseudoPwmWrite) # NO
-#'220' -> PERIOD FloorBlue
-#Board PA6 -> PIN FloorGreen(PseudoPwmWrite) # NO
-#'220' -> PERIOD FloorGreen
+Board PB4 -> PIN FloorRed(PwmWrite) # OK
+Board PA7 -> PIN FloorBlue(PseudoPwmWrite) # NO
+'220' -> PERIOD FloorBlue
+Board PA6 -> PIN FloorGreen(PseudoPwmWrite) # NO
+'220' -> PERIOD FloorGreen
 
 # Street lights
-#Board PB4 -> PIN RedOne(PwmWrite) # OK
-#Board PB7 -> PIN GreenOne(PwmWrite) # OK
-#Board PB6 -> PIN BlueOne(PwmWrite) # OK
+Board PB4 -> PIN RedOne(PwmWrite) # OK
+Board PB7 -> PIN GreenOne(PwmWrite) # OK
+Board PB6 -> PIN BlueOne(PwmWrite) # OK
 
-#Board PF3 -> PIN RedTwo(PwmWrite) # OK
-#Board PC4 -> PIN GreenTwo(PwmWrite) # OK
-#Board PC5 -> PIN BlueTwo(PwmWrite) # OK
+Board PF3 -> PIN RedTwo(PwmWrite) # OK
+Board PC4 -> PIN GreenTwo(PwmWrite) # OK
+Board PC5 -> PIN BlueTwo(PwmWrite) # OK
 
-#Board PD0 -> PIN Red3(PwmWrite) # OK
-#Board PD1 -> PIN Green3(PwmWrite) #  OK
-#Board PF1 -> PIN Blue3(PwmWrite) # OK
+Board PD0 -> PIN Red3(PwmWrite) # OK
+Board PD1 -> PIN Green3(PwmWrite) #  OK
+Board PF1 -> PIN Blue3(PwmWrite) # OK
 
-#Board PB5 -> PIN Red4(PwmWrite) # OK
-#Board PE4 -> PIN Green4(PseudoPwmWrite) # NO
-#'220' -> PERIOD Green4
-#Board PE5 -> PIN Blue4(PseudoPwmWrite) # NO
-#'220' -> PERIOD Blue4
+Board PB5 -> PIN Red4(PwmWrite) # OK
+Board PE4 -> PIN Green4(PseudoPwmWrite) # NO
+'220' -> PERIOD Green4
+Board PE5 -> PIN Blue4(PseudoPwmWrite) # NO
+'220' -> PERIOD Blue4
 
 ## Testing
 # LED_RED = PF1 = 30
 # LED_GREEN = PF3 = 39
 # LED_BLUE = PF2 = 40
 
-Board PF1 -> PIN RedOne(PwmWrite)
-Board PF3 -> PIN GreenOne(PwmWrite)
+#Board PF1 -> PIN RedOne(PwmWrite)
+#Board PF3 -> PIN GreenOne(PwmWrite)
 Board PF2 -> PIN BlueOne(PwmWrite)
 
 # testing setup data
@@ -63,6 +63,6 @@ Board PF2 -> PIN BlueOne(PwmWrite)
 #'39' -> PIN GreenOne(PwmWrite)
 #'40' -> PIN BlueOne(PwmWrite)
 
-'0' -> dutycycle RedOne
-'0' -> dutycycle GreenOne
-'50' -> dutycycle BlueOne
+'0' -> dutycycle Blue3 # PF1 red onboard LED
+'40' -> dutycycle RedTwo # PF3 green onboard LED
+'0' -> dutycycle BlueOne
