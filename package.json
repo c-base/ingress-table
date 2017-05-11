@@ -36,6 +36,7 @@
   },
   "scripts": {
     "test": "grunt test",
+    "portallights": "./node_modules/.bin/microflo runtime --port 5555 --graph graphs/PortalLights.fbp --componentmap build/arduino/PortalLights/componentlib-map.json --serial /dev/ttyACM0 --baudrate 9600",
     "postinstall": "./node_modules/.bin/noflo-cache-preheat"
   },
   "noflo": {
