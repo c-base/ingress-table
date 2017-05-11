@@ -21,9 +21,9 @@ Board(LaunchpadDigitalPins)
 # Floor light
 Board PF2 -> PIN FloorRed(PwmWrite) # OK
 Board PA7 -> PIN FloorBlue(PseudoPwmWrite) # NO
-'220' -> PERIOD FloorBlue
+'120' -> PERIOD FloorBlue
 Board PA6 -> PIN FloorGreen(PseudoPwmWrite) # NO
-'220' -> PERIOD FloorGreen
+'120' -> PERIOD FloorGreen
 
 # Street lights
 Board PB4 -> PIN RedOne(PwmWrite) # OK
@@ -40,9 +40,9 @@ Board PF1 -> PIN Blue3(PwmWrite) # OK
 
 Board PB5 -> PIN Red4(PwmWrite) # OK
 Board PE4 -> PIN Green4(PseudoPwmWrite) # NO
-'220' -> PERIOD Green4
+'120' -> PERIOD Green4
 Board PE5 -> PIN Blue4(PseudoPwmWrite) # NO
-'220' -> PERIOD Blue4
+'120' -> PERIOD Blue4
 
 # send pins definition on startup
 'true' -> IN Board
