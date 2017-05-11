@@ -30,6 +30,32 @@ arduino_build = (name, options) ->
   ]
   return cmd.join(' ')
 
+flash_avr = (hexfile, options={}) ->
+  defaults =
+    board: 'arduino:avr:leonardo'
+    serial: '/dev/ttyACM0'
+  for k,v of defaults
+    options[k] = v if not options[k]?
+
+  boardOptions = ""
+  resetCommand = 'echo Reset command not needed'
+  if options.board == 'arduino:avr:uno'
+    boardOptions = '-patmega328p -carduino -b115200'
+  else if options.board == 'arduino:avr:leonardo'
+    resetCommand = "python2 ./leonardo-reset.py #{options.serial}; sleep 2"
+    boardOptions = '-patmega32u4 -cavr109 -b57600'
+
+  options.arduino = '/home/jon/arduino-1.8.1/'
+  cmd = [
+    resetCommand, ';'
+    'avrdude', '-v'
+    '-C', "#{options.arduino}/hardware/tools/avr/etc/avrdude.conf"
+    "-P#{options.serial}", boardOptions
+    '-D', "-Uflash:w:#{hexfile}:i"
+  ]
+  console.log cmd.join(' ')
+  return cmd.join(' ')
+
 microflo_gen = (name, options={}) ->
   defaults =
     microflo: './node_modules/.bin/microflo'
@@ -135,7 +161,7 @@ module.exports = ->
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
       portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino', ext: 'ino.tmpl' }
       portallights_arduino_build: arduino_build 'PortalLights', 
-        board: 'arduino:avr:uno'
+        board: 'arduino:avr:leonardo'
         ext: 'ino'
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
@@ -143,6 +169,7 @@ module.exports = ->
       kill_microflo_linux:
         options: { shell: '/bin/bash' }
         command: 'pkill microflo-linux || echo no processes to kill'
+      flash_arduino: flash_avr 'build/arduino/PortalLights/builder/PortalLights.ino.hex', { board: 'arduino:avr:leonardo' }
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'
