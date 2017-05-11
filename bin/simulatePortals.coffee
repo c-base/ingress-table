@@ -49,44 +49,47 @@ loadGraph (err, inst) ->
     console.log "SHOWN", data
   pixelset.on 'data', (data) ->
     console.log "PIXELSET", data
-  inst.start()
+  inst.start (err) ->
+    if err
+      console.log err
+      process.exit 1
 
-  # TODO: don't send until runtime hits running state
+    # TODO: don't send until runtime hits running state
 
-  setPortal = (id, color) ->
-    val = "[#{id}, \"#{rgb2hex(color)}\"]"
-    console.log "Sending #{val}"
-    pixel.send val
+    setPortal = (id, color) ->
+      val = "[#{id}, \"#{rgb2hex(color)}\"]"
+      console.log "Sending #{val}"
+      pixel.send val
 
-  setPortals = (color) ->
-    for portal,idx in portals.portals
-      continue unless portal
-      if idx is 37
-        if color[2] is 64
-          setPortal idx, [0, 0, 200]
-        else
-          setPortal idx, [0, 0, 64]
-        continue
-      setPortal idx, color
-    console.log 'Sending SHOW'
-    show.send true
+    setPortals = (color) ->
+      for portal,idx in portals.portals
+        continue unless portal
+        if idx is 37
+          if color[2] is 64
+            setPortal idx, [0, 0, 200]
+          else
+            setPortal idx, [0, 0, 64]
+          continue
+        setPortal idx, color
+      console.log 'Sending SHOW'
+      show.send true
 
-  setTimeout ->
-    console.log 'portals blue'
-    setPortals [0, 0, 64]
     setTimeout ->
-      console.log 'portals green'
-      setPortals [0, 64, 0]
+      console.log 'portals blue'
+      setPortals [0, 0, 64]
       setTimeout ->
-        console.log 'portals red'
-        setPortals [96, 0, 0]
+        console.log 'portals green'
+        setPortals [0, 64, 0]
         setTimeout ->
-          console.log 'portals white'
-          setPortals [64, 64, 64]
+          console.log 'portals red'
+          setPortals [96, 0, 0]
           setTimeout ->
-            console.log "DONE"
+            console.log 'portals white'
+            setPortals [64, 64, 64]
+            setTimeout ->
+              console.log "DONE"
+            , 5000
           , 5000
         , 5000
       , 5000
     , 5000
-  , 5000
