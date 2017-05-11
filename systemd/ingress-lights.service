@@ -1,6 +1,6 @@
 [Service]
 WorkingDirectory=/opt/ingress-table
-ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/noflo-runtime-msgflo --broker=mqtt://10.0.1.17 --name ingress-lights --cache=true --basedir /opt/ingress-table --graph ingress-table/lights --dedicated-network=false
+ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/noflo-runtime-msgflo --broker=mqtt://10.0.1.17 --name ingress-lights --cache=true --basedir /opt/ingress-table --graph ingress-table/lights
 Restart=always
 User=bergie
 
