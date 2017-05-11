@@ -409,7 +409,7 @@
             }
         },
         {
-            "data": 500,
+            "data": 3000,
             "tgt": {
                 "process": "core/RunInterval_97j95",
                 "port": "interval"

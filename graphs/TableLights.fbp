@@ -25,11 +25,11 @@ Board(TivaC) PA6 -> PIN FloorGreen(PseudoPwmWrite)
 '220' -> PERIOD FloorGreen
 
 # Street lights
-Board(TivaC) PB4 -> PIN RedOne(PseudoPwmWrite)
+'30' -> PIN RedOne(PseudoPwmWrite)
 '220' -> PERIOD RedOne
-Board(TivaC) PB7 -> PIN GreenOne(PseudoPwmWrite)
+'39' -> PIN GreenOne(PseudoPwmWrite)
 '220' -> PERIOD GreenOne
-Board(TivaC) PB6 -> PIN BlueOne(PseudoPwmWrite)
+'40' -> PIN BlueOne(PseudoPwmWrite)
 '220' -> PERIOD BlueOne
 
 Board(TivaC) PF2 -> PIN RedTwo(PseudoPwmWrite)
