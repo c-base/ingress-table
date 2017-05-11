@@ -7,6 +7,7 @@ loader = new noflo.ComponentLoader path.resolve __dirname, '../'
 fbp = """
 INPORT=Pulsate.COLORS:COLORS
 INPORT=Pulsate.STEP:STEP
+INPORT=StreetLights.FLOORRED:RED
 INPORT=StreetLights.FLOORGREEN:GREEN
 INPORT=StreetLights.FLOORBLUE:BLUE
 Pulsate(ingress-table/Pulsate) COLORS -> COLORS Convert(ingress-table/ConvertStreetLight)
