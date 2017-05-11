@@ -19,8 +19,7 @@
 Board(LaunchpadDigitalPins)
 
 # Floor light
-# FIXME: should be PF2
-Board PB4 -> PIN FloorRed(PwmWrite) # OK
+Board PF2 -> PIN FloorRed(PwmWrite) # OK
 Board PA7 -> PIN FloorBlue(PseudoPwmWrite) # NO
 '220' -> PERIOD FloorBlue
 Board PA6 -> PIN FloorGreen(PseudoPwmWrite) # NO
@@ -45,24 +44,10 @@ Board PE4 -> PIN Green4(PseudoPwmWrite) # NO
 Board PE5 -> PIN Blue4(PseudoPwmWrite) # NO
 '220' -> PERIOD Blue4
 
-## Testing
-# LED_RED = PF1 = 30
-# LED_GREEN = PF3 = 39
-# LED_BLUE = PF2 = 40
+# send pins definition on startup
+'true' -> IN Board
 
-#Board PF1 -> PIN RedOne(PwmWrite)
-#Board PF3 -> PIN GreenOne(PwmWrite)
-Board PF2 -> PIN BlueOne(PwmWrite)
-
-# testing setup data
-#Board PF2 -> dutycycle RedOne
-
-'true' -> IN Board # send pin definitions
-
-#'30' -> PIN RedOne(PwmWrite)
-#'39' -> PIN GreenOne(PwmWrite)
-#'40' -> PIN BlueOne(PwmWrite)
-
-'0' -> dutycycle Blue3 # PF1 red onboard LED
-'40' -> dutycycle RedTwo # PF3 green onboard LED
-'0' -> dutycycle BlueOne
+## Default
+'90' -> dutycycle Blue3 # PF1 red onboard LED
+'0' -> dutycycle RedTwo # PF3 green onboard LED
+'10' -> dutycycle FloorRed # PF2 blue onboard LED
