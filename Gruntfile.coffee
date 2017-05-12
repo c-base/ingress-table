@@ -10,6 +10,7 @@ arduino_build = (name, options) ->
     'arm-none-eabi-gcc': '/home/jon/.arduino15/packages/arduino/tools/arm-none-eabi-gcc/4.8.3-2014q1'
     libraries: '/home/jon/Arduino/libraries'
     outdir: path.join(process.cwd(), "build/arduino/#{name}/builder/")
+    warnings: 'all'
 
   for k,v of defaults
     options[k] = v if not options[k]?
@@ -19,6 +20,7 @@ arduino_build = (name, options) ->
   cmd = [
     builder,
     '-compile', ' -verbose'
+    '-warnings', options.warnings
     '-hardware', path.join(options.arduino, 'hardware')
     '-tools', path.join(options.arduino, 'tools-builder'),
     '-tools ', path.join(options.arduino, 'hardware', 'tools')
