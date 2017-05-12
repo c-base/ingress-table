@@ -148,12 +148,26 @@ module.exports = ->
         options:
           replacements: [
             pattern: '\n'
-            replacement: '\n#include <Adafruit_WS2801.h>\n#define HAVE_ADAFRUIT_WS2801\n\n'
+            replacement: """\n
+              #include <Adafruit_WS2801.h>
+              #define HAVE_ADAFRUIT_WS2801
+              #define MICROFLO_ARDUINO_BAUDRATE 9600
+            \n"""
+          ]
+      tablelights:
+        files:
+          'build/arduino/TableLights/TableLights.ino': 'build/arduino/TableLights/TableLights.ino.tmpl'
+        options:
+          replacements: [
+            pattern: '\n'
+            replacement: """\n
+              #define MICROFLO_ARDUINO_BAUDRATE 115200
+            \n"""
           ]
 
     exec:
-      tablelights_arduino_gen: microflo_gen 'TableLights', { target: 'arduino' }
-      tablelights_arduino_build: arduino_build 'TableLights', { board: 'energia:tivac:EK-TM4C123GXL' }
+      tablelights_arduino_gen: microflo_gen 'TableLights', { target: 'arduino', ext: 'ino.tmpl' }
+      tablelights_arduino_build: arduino_build 'TableLights', { board: 'energia:tivac:EK-TM4C123GXL', ext: 'ino' }
       tablelights_linux_gen: microflo_gen 'TableLights' 
       tablelights_linux_comp: microflo_compile 'TableLights'
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
@@ -186,7 +200,7 @@ module.exports = ->
   ]
   @registerTask 'build-microflo-arduino', [
     'exec:portallights_arduino_gen', 'string-replace:portallights', 'exec:portallights_arduino_build',
-    'exec:tablelights_arduino_gen', 'exec:tablelights_arduino_build',
+    'exec:tablelights_arduino_gen', 'string-replace:tablelights', 'exec:tablelights_arduino_build',
 
   ]
   @registerTask 'run-microflo-linux', [
