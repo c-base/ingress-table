@@ -36,13 +36,13 @@ exports.getComponent = ->
       output.sendDone
         green: 200
         blue: 0
-        colors: [[0, 255, 0]]
+        colors: [0, 255, 0]
       return
     if us > them
       output.sendDone
         green: 0
         blue: 200
-        colors: [[0, 0, 255]]
+        colors: [0, 0, 255]
       return
     output.sendDone
-      colors: [[255, 255, 0]]
+      colors: [255, 255, 0]

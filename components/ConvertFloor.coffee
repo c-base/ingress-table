@@ -17,12 +17,11 @@ exports.getComponent = ->
     return unless input.hasData 'colors'
     colors = input.getData 'colors'
     return output.done() unless colors.length
-    followed = colors[0]
-    if c.previous and followed[0] is c.previous[0] and followed[1] is c.previous[1] and followed[2] is c.previous[2]
+    if c.previous and colors[0] is c.previous[0] and colors[1] is c.previous[1] and colors[2] is c.previous[2]
       # No state change
       return output.done()
-    c.previous = followed
-    [r, g, b] = followed
+    c.previous = colors
+    [r, g, b] = colors
     output.send
       floor: new noflo.IP 'data', r,
         index: 0
