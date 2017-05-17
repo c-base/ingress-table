@@ -13,18 +13,21 @@ The status information is then transmitted to a microcontroller that shows porta
 
 ## Starting and Stopping the Service
 
-Copy `noflo.init` to `/etc/init.d/noflo.sh` and create the links at `/etc/rc2.d/S90noflo.sh` and `/etc/rc2.d/K10noflo.sh`
-pointing to the init script.
+Clone this repository to `/opt/ingress-table` on your system, add an authorized access token as `cookie.json`, `npm install` dependencies.
 
-The init script needs timeout to work: https://github.com/pshved/timeout. Copy timeout to /home/pi/timeout and make it executable.
+Copy the systemd service files from `systemd/` folder to `/etc/systemd/system`
 
-Now you can start/stop the service using /etc/init.d/noflo.sh {start|stop}
+Reload systemd files with `sudo systemctl daemon-reload`
 
+Start the services with:
+
+* `sudo systemctl start ingress-data` (for the API interface part)
+* `sudo systemctl start ingress-lights` (for the light control)
 
 ## Hardware
 
-* Beaglebone Black running NoFlo
-* Arduino Leonardo running Microflo for controlling the WS2801-based LED strand (portal lights)
+* Raspberry Pi running NoFlo
+* Arduino Uno running Microflo for controlling the WS2801-based LED strand (portal lights)
 * 50 individually controllable LEDs for portals (based on the WS2801 controller chip)
 * 5 LED strips for streets (map background) and floor lighting
 * Launchpad Tiva running MicroFlo for controlling the 5 RGB-LED strips
