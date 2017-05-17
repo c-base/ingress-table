@@ -3,6 +3,8 @@ Ingress Table [![Build Status](https://travis-ci.org/c-base/ingress-table.svg?br
 
 The software side of a "physical Intel map", built with [NoFlo](http://noflojs.org) and [MicroFlo](http://microflo.org). Please read the [introductory blog post](http://bergie.iki.fi/blog/ingress-table/) for more information. The actual table can be seen live at the [c-base](http://c-base.org/) space station in Berlin.
 
+![Ingress Table in action](https://cloud.githubusercontent.com/assets/3346/25990625/b05e8dde-3700-11e7-8b90-ff89da860a01.jpg)
+
 ## How does this work?
 
 We have a NoFlo graph that periodically pulls portal status information from a cloud-based data provider, and converts that to status information to be shown on the table surface.
