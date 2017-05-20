@@ -19,8 +19,12 @@ exports.getComponent = ->
         datatype: 'int'
         required: no
   c.process (input, output) ->
-    return unless input.hasData 'states'
-    states = input.getData 'states'
+    return unless input.hasStream 'states'
+    states = input.getStream('states').filter((ip) ->
+      ip.type is 'data'
+    ).map((ip) ->
+      ip.data
+    ).pop()
     us = 0
     them = 0
 
