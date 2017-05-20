@@ -28,6 +28,8 @@ exports.getComponent = ->
     delete c.previousStates
     callback()
 
+  c.forwardBrackets =
+    state: ['state']
   c.process (input, output) ->
     return unless input.hasData 'state'
     newState = input.getData 'state'

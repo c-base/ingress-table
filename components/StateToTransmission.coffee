@@ -77,6 +77,8 @@ exports.getComponent = ->
     delete c.previousStates
     callback()
 
+  c.forwardBrackets =
+    state: ['states']
   c.process (input, output) ->
     return unless input.hasData 'state', 'portals'
     [state, portals] = input.getData 'state', 'portals'
