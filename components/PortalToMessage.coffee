@@ -15,7 +15,8 @@ exports.getComponent = ->
     in: 'portal'
     out: ['topic', 'message']
     forwardGroups: true
-  , (data, groups, out) ->
+    async: true
+  , (data, groups, out, callback) ->
     previous = c.previousData[data.guid]
 
     send = ->
@@ -40,4 +41,4 @@ exports.getComponent = ->
       return
 
     do send
-  c
+    do callback
