@@ -1,39 +1,35 @@
 noflo = require 'noflo'
 
-class ConvertStreetLight extends noflo.Component
-  icon: 'road'
-  description: 'Convert street light RGB values so we can send them to PWM'
-
-  constructor: ->
-    @inPorts = new noflo.InPorts
-      colors:
-        datatype: 'array'
-        description: 'Street light values'
-    @outPorts = new noflo.OutPorts
-      street1:
-        datatype: 'int'
-        addressable: true
-      street2:
-        datatype: 'int'
-        addressable: true
-      street3:
-        datatype: 'int'
-        addressable: true
-      street4:
-        datatype: 'int'
-        addressable: true
-
-    @inPorts.colors.on 'data', (data) =>
-      @convert data
-
-  convertLight: (light, colors) ->
-    for color, idx in colors
-      continue unless @outPorts.ports["street#{light}"].isAttached idx
-      @outPorts.ports["street#{light}"].send color, idx
-
-  convert: (data) ->
-    return unless data.length is 4
-    for light, idx in data
-      @convertLight idx+1, light
-
-exports.getComponent = -> new ConvertStreetLight
+exports.getComponent = ->
+  c = new noflo.Component
+  c.icon = 'road'
+  c.description = 'Convert street light RGB values so we can send them to PWM'
+  c.inPorts.add 'colors',
+    datatype: 'array'
+    description: 'Street light values'
+  c.outPorts.add 'street1',
+    datatype: 'int'
+    addressable: true
+  c.outPorts.add 'street2',
+    datatype: 'int'
+    addressable: true
+  c.outPorts.add 'street3',
+    datatype: 'int'
+    addressable: true
+  c.outPorts.add 'street4',
+    datatype: 'int'
+    addressable: true
+  c.process (input, output) ->
+    return unless input.hasData 'colors'
+    data = input.getData 'colors'
+    unless data.length is 4
+      output.done()
+      return
+    for light, target in data
+      for color, idx in light
+        light = target + 1
+        result = {}
+        result["street#{light}"] = new noflo.IP 'data', color,
+          index: idx
+        output.send result
+    output.done()

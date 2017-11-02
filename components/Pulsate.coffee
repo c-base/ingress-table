@@ -1,71 +1,68 @@
 noflo = require 'noflo'
 
-class Pulsate extends noflo.Component
-  icon: 'rotate-right'
-  description: 'Pulsate lights naturally'
+calculateStep = (step, maxSteps) ->
+  # move value above 0
+  adjust = 1
+  # reduce value range between 1 and 0
+  rangeAdjust = 2
+  # Max RGB value
+  maxValue = 100
 
-  constructor: ->
-    @value = 0
-    @tracks = [0, 70, 50, 15]
-    @maxSteps = 100
-    @colors = [255, 255, 255]
-    @inPorts = new noflo.InPorts
-      step:
-        datatype: 'bang'
-        description: 'Calculate the next cycle of the animation'
-        required: yes
-      colors:
-        datatype: 'array'
-        description: 'Colors to make pulsing'
-        required: no
+  upperLimit = 0.5
+  lowerLimit = 0
 
-    @outPorts = new noflo.OutPorts
-      colors:
-        datatype: 'array'
-        description: 'Current color values'
-        required: yes
+  # convert to percentage of time units
+  percentage = (step * 100 / maxSteps) / 100
 
-    @inPorts.colors.on 'data', (@colors) =>
-    @inPorts.step.on 'data', =>
-      colors = []
-      for step, idx in @tracks
-        ledColors = []
-        for color in @colors
-          unless color
-            ledColors.push 0
-            continue
-          ledColors.push @step step
-        colors.push ledColors
-        @tracks[idx]++
-        if @tracks[idx] > @maxSteps
-          @tracks[idx] = 0
-      @outPorts.colors.send colors
-    @inPorts.step.on 'disconnect', =>
-      @outPorts.colors.disconnect()
+  # normalize to range between 1 and 0
+  x = ((Math.sin(2 * Math.PI * percentage)) + adjust) / rangeAdjust
 
-  step: (step) ->
-    # move value above 0
-    adjust = 1
-    # reduce value range between 1 and 0
-    rangeAdjust = 2
-    # Max RGB value
-    maxValue = 100
+  # returns a value between UPPER_LIMIT and LOWER_LIMIT
+  value = Math.max(lowerLimit, Math.min(x, upperLimit))
 
-    upperLimit = 0.5
-    lowerLimit = 0
+  # stretch to UPPER_LIMIT
+  valueStretch = value / upperLimit
 
-    # convert to percentage of time units
-    percentage = (step * 100 / @maxSteps) / 100
+  return Math.floor Math.abs (valueStretch * maxValue)
 
-    # normalize to range between 1 and 0
-    x = ((Math.sin(2 * Math.PI * percentage)) + adjust) / rangeAdjust
-
-    # returns a value between UPPER_LIMIT and LOWER_LIMIT
-    value = Math.max(lowerLimit, Math.min(x, upperLimit))
-
-    # stretch to UPPER_LIMIT
-    valueStretch = value / upperLimit
-
-    return Math.floor Math.abs (valueStretch * maxValue)
-
-exports.getComponent = -> new Pulsate
+exports.getComponent = ->
+  c = new noflo.Component
+  c.icon = 'rotate-right'
+  c.description = 'Pulsate lights naturally'
+  c.inPorts.add 'step',
+    datatype: 'bang'
+    description: 'Calculate the next cycle of the animation'
+    required: yes
+  c.inPorts.add 'colors',
+    datatype: 'array'
+    description: 'Colors to make pulsing'
+    required: no
+    control: yes
+  c.outPorts.add 'colors',
+    datatype: 'array'
+    description: 'Current color values'
+    required: yes
+  c.tracks = [0, 70, 50, 15]
+  c.maxSteps = 100
+  c.tearDown = (callback) ->
+    c.tracks = [0, 70, 50, 15]
+    do callback
+  c.process (input, output) ->
+    return unless input.hasData 'step', 'colors'
+    input.getData 'step'
+    colors = input.getData 'colors'
+    resultColors = []
+    for step, idx in c.tracks
+      ledColors = []
+      for color in colors
+        unless color
+          # Light is off, no need to calculate
+          ledColors.push 0
+          continue
+        ledColors.push calculateStep step, c.maxSteps
+      resultColors.push ledColors
+      c.tracks[idx]++
+      if c.tracks[idx] > c.maxSteps
+        c.tracks[idx] = 0
+    output.sendDone
+      colors: resultColors
