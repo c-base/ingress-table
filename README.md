@@ -7,9 +7,11 @@ The software side of a "physical Intel map", built with [NoFlo](http://noflojs.o
 
 ## How does this work?
 
-We have a NoFlo graph that periodically pulls portal status information from a cloud-based data provider, and converts that to status information to be shown on the table surface.
+We have a NoFlo graph that periodically pulls portal status information from the data provider, and converts that to status information to be shown on the table surface.
 
 The status information is then transmitted to a microcontroller that shows portal owners, attack notifications, etc. using the LEDs.
+
+At c-base the table runs as part of the [c-flo](https://github.com/c-base/c-flo) IoT network, with the data fetching part running on a server machine, and the light control running inside the table itself. Messaging related to these is coordinated by [MsgFlo](https://msgflo.org).
 
 ## Starting and Stopping the Service
 
