@@ -15,7 +15,7 @@
     "noflo-filesystem": "~2.0.0",
     "noflo-mqtt": "~0.5.0",
     "noflo-objects": "~0.4.0",
-    "noflo-runtime": "~0.5.1",
+    "noflo-runtime": "~0.6.0",
     "noflo-runtime-msgflo": "^0.11.3",
     "noflo-strings": "~0.4.0"
   },
