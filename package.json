@@ -16,7 +16,7 @@
     "noflo-mqtt": "~0.4.0",
     "noflo-objects": "~0.3.0",
     "noflo-runtime": "~0.5.1",
-    "noflo-runtime-msgflo": "^0.11.3",
+    "noflo-runtime-msgflo": "^0.12.0",
     "noflo-strings": "~0.3.0"
   },
   "devDependencies": {
