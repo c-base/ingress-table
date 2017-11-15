@@ -8,7 +8,7 @@
     "url": "git://github.com/c-base/ingress-table.git"
   },
   "dependencies": {
-    "google-auth-library": "~0.10.0",
+    "google-auth-library": "~0.11.0",
     "microflo": "~0.5.0",
     "noflo": "~1.0.0",
     "noflo-core": "~0.5.0",
