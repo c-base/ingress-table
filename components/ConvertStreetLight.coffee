@@ -27,9 +27,9 @@ exports.getComponent = ->
       return
     for light, target in data
       for color, idx in light
-        light = target + 1
+        port = target + 1
         result = {}
-        result["street#{light}"] = new noflo.IP 'data', color,
+        result["street#{port}"] = new noflo.IP 'data', color,
           index: idx
         output.send result
     output.done()
