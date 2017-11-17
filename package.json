@@ -59,7 +59,7 @@
         "description": "Handles street and ambient LED lights (Tiva)",
         "type": "microflo",
         "protocol": "websocket",
-        "graph": "./graphs/TableLights.fbp",
+        "graph": "./graphs/TableLightsPwm.fbp",
         "address": "ws://localhost:4444"
       }
     ]
