@@ -62,7 +62,7 @@ microflo_gen = (name, options={}) ->
     target: 'linux'
     out: "build/#{options.target||'linux'}/#{name}/#{name}.#{options.ext||'cpp'}"
     graph: "graphs/#{name}.fbp"
-    library: "./components-#{name}.json"
+    components: "./node_modules/microflo-core/components"
   for k,v of defaults
     options[k] = v if not options[k]?
 
@@ -76,7 +76,7 @@ microflo_gen = (name, options={}) ->
   cmd = [
     options.microflo,
     '--target', options.target
-    '--library', options.library
+    '--components', options.components
     'generate', options.graph, options.out
   ]
   return cmd.join(' ')
@@ -175,7 +175,7 @@ module.exports = ->
       tablelights_run: './spec/microflo-linux.sh TableLights 4444 & sleep 5'
       portallights_arduino_gen: microflo_gen 'PortalLights', { target: 'arduino', ext: 'ino.tmpl' }
       portallights_arduino_build: arduino_build 'PortalLights', 
-        board: 'arduino:avr:uno'
+        board: 'arduino:avr:leonardo'
         ext: 'ino'
       portallights_linux_gen: microflo_gen 'PortalLights' 
       portallights_linux_comp: microflo_compile 'PortalLights'
@@ -183,7 +183,7 @@ module.exports = ->
       kill_microflo_linux:
         options: { shell: '/bin/bash' }
         command: 'pkill microflo-linux || echo no processes to kill'
-      flash_arduino: flash_avr 'build/arduino/PortalLights/builder/PortalLights.ino.hex', { board: 'arduino:avr:uno' }
+      flash_arduino: flash_avr 'build/arduino/PortalLights/builder/PortalLights.ino.hex', { board: 'arduino:avr:leonardo' }
 
   # Grunt plugins used for building
   @loadNpmTasks 'grunt-exec'

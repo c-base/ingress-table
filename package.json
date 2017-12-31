@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "google-auth-library": "~0.12.0",
-    "microflo": "~0.5.0",
+    "microflo": "~0.6.0",
     "noflo": "~1.0.0",
     "noflo-core": "~0.5.0",
     "noflo-filesystem": "~2.0.0",
@@ -30,14 +30,14 @@
     "grunt-mocha-test": "^0.13.2",
     "grunt-noflo-lint": "^0.3.0",
     "grunt-string-replace": "^1.3.1",
-    "microflo-core": "^0.3.38",
+    "microflo-core": "^0.6.0",
     "mocha": "^4.0.0",
     "noflo-nodejs": "^0.9.0"
   },
   "scripts": {
     "test": "grunt test",
     "start": "./node_modules/.bin/noflo-nodejs --register=false --graph graphs/main.json --secret=ingress --catch-exceptions=false --cache=true",
-    "portallights": "./node_modules/.bin/microflo runtime --port 5555 --graph graphs/PortalLights.fbp --componentmap build/arduino/PortalLights/componentlib-map.json --serial /dev/ttyACM0 --baudrate 9600",
+    "portallights": "./node_modules/.bin/microflo runtime --port 5555 --graph graphs/PortalLights.fbp --componentmap build/arduino/PortalLights/main.component.map.json --serial /dev/ttyACM0 --baudrate 9600",
     "postinstall": "./node_modules/.bin/noflo-cache-preheat"
   },
   "noflo": {
