@@ -62,7 +62,7 @@ microflo_gen = (name, options={}) ->
     target: 'linux'
     out: "build/#{options.target||'linux'}/#{name}/#{name}.#{options.ext||'cpp'}"
     graph: "graphs/#{name}.fbp"
-    components: "./node_modules/microflo-core/components"
+    components: ["./node_modules/microflo-core/components", "./node_modules/microflo-arduino/components/LedChainWS.hpp"]
   for k,v of defaults
     options[k] = v if not options[k]?
 
@@ -75,10 +75,13 @@ microflo_gen = (name, options={}) ->
   fs.mkdirSync path.join(dir,'builder') if not fs.existsSync path.join(dir,'builder')
   cmd = [
     options.microflo,
-    '--target', options.target
-    '--components', options.components
     'generate', options.graph, options.out
+    '--target', options.target
   ]
+
+  for c in options.components
+    cmd = cmd.concat(['--components', c])
+
   return cmd.join(' ')
 
 microflo_compile = (name, options={}) ->
