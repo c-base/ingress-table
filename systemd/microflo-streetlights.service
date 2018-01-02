@@ -1,6 +1,6 @@
 [Service]
 WorkingDirectory=/opt/ingress-table
-ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/microflo runtime --port 4444 --graph graphs/TableLights.fbp --componentmap build/arduino/TableLights/componentlib-map.json --serial /dev/ttyACM1 --baudrate 115200
+ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/microflo runtime --port 4444 --graph graphs/TableLights.fbp --componentmap build/arduino/TableLights/TableLights.component.map.json --serial /dev/ttyACM1 --baudrate 115200
 #ExecStart=/opt/ingress-table/spec/microflo-linux.sh TableLights 4444
 Restart=always
 User=bergie

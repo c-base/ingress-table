@@ -1,6 +1,6 @@
 [Service]
 WorkingDirectory=/opt/ingress-table
-ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/microflo runtime --port 5555 --graph graphs/PortalLights.fbp --componentmap build/arduino/PortalLights/componentlib-map.json --serial /dev/ttyACM0 --baudrate 9600
+ExecStart=/usr/bin/node --max-old-space-size=100 ./node_modules/.bin/microflo runtime --port 5555 --graph graphs/PortalLights.fbp --componentmap build/arduino/PortalLights/PortalLights.component.map.json --serial /dev/ttyACM0 --baudrate 9600
 Restart=always
 User=bergie
 
