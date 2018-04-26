@@ -3,6 +3,7 @@ sudo: false
 dist: trusty
 node_js:
 - '6'
+- '10'
 env:
 - ARDUINO=`pwd`/arduino-1.8.1
 before_install:
